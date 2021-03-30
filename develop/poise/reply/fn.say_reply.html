@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Shorthand of [`send_reply`] for text-only messages"><meta name="keywords" content="rust, rustlang, rust-lang, say_reply"><title>say_reply in poise::reply - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-bfda650e0f1b8d97.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-73ec76ce6fb6d670.css"><link rel="stylesheet" disabled href="../../static.files/dark-505cdfdf9d48c666.css"><link rel="stylesheet" disabled href="../../static.files/ayu-de5a1c2641418e5f.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-2da75ee0e1909b3a.js"></script><script defer src="../../scrape-examples-1f45318ad6bd2a81.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><div class="sidebar-elems"><h2><a href="index.html">In poise::reply</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Function <a href="../index.html">poise</a>::<wbr><a href="index.html">reply</a>::<wbr><a class="fn" href="#">say_reply</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/poise/reply/send_reply.rs.html#40-45">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust fn"><code>pub async fn say_reply&lt;U, E&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;ctx: <a class="enum" href="../structs/enum.Context.html" title="enum poise::structs::Context">Context</a>&lt;'_, U, E&gt;,<br>&nbsp;&nbsp;&nbsp;&nbsp;text: impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/string/struct.String.html" title="struct alloc::string::String">String</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.ReplyHandle.html" title="struct poise::reply::ReplyHandle">ReplyHandle</a>&lt;'_&gt;, <a class="enum" href="../../serenity/error/enum.Error.html" title="enum serenity::error::Error">Error</a>&gt;</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Shorthand of <a href="fn.send_reply.html" title="send_reply"><code>send_reply</code></a> for text-only messages</p>
+<p>Note: panics when called in an autocomplete context!</p>
+</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[16,19],&quot;../../src/serenity_example_port/main.rs.html#449-452&quot;,&quot;lines 449-452&quot;]]"><div class="scraped-example-title">examples/serenity_example_port/main.rs (<a href="../../src/serenity_example_port/main.rs.html#449-452">lines 449-452</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>433</span>
+<span>434</span>
+<span>435</span>
+<span>436</span>
+<span>437</span>
+<span>438</span>
+<span>439</span>
+<span>440</span>
+<span>441</span>
+<span>442</span>
+<span>443</span>
+<span>444</span>
+<span>445</span>
+<span>446</span>
+<span>447</span>
+<span>448</span>
+<span>449</span>
+<span>450</span>
+<span>451</span>
+<span>452</span>
+<span>453</span>
+<span>454</span>
+<span>455</span>
+<span>456</span>
+</pre><pre class="rust"><code><span class="expand">&varr;</span><span class="kw">async fn </span>about_role(
+    ctx: Context&lt;<span class="lifetime">&#39;_</span>&gt;,
+    <span class="attr">#[description = <span class="string">&quot;Name of the role&quot;</span>] </span>potential_role_name: String,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(guild) = ctx.guild() {
+        <span class="comment">// `role_by_name()` allows us to attempt attaining a reference to a role
+        // via its name.
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(role) = guild.role_by_name(<span class="kw-2">&amp;</span>potential_role_name) {
+            <span class="kw">if let </span><span class="prelude-val">Err</span>(why) = ctx.say(<span class="macro">format!</span>(<span class="string">&quot;Role-ID: {}&quot;</span>, role.id)).<span class="kw">await </span>{
+                <span class="macro">println!</span>(<span class="string">&quot;Error sending message: {:?}&quot;</span>, why);
+            }
+
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(());
+        }
+    }
+
+    <span class="highlight focus">poise::say_reply</span>(
+        ctx,
+        <span class="macro">format!</span>(<span class="string">&quot;Could not find role named: {:?}&quot;</span>, potential_role_name),
+    )
+    .<span class="kw">await</span><span class="question-mark">?</span>;
+
+    <span class="prelude-val">Ok</span>(())
+}</code></pre></div>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (b833ad56f 2022-11-18)" data-search-js="search-df80cc3cb87b6482.js" data-settings-js="settings-7e1cf5cc683233f7.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
