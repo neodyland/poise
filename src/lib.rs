@@ -351,35 +351,7 @@ pub mod samples {
 #[doc(hidden)]
 pub use {async_trait::async_trait, futures_util};
 
-/// This module re-exports a bunch of items from all over serenity. Useful if you can't
-/// remember the full paths of serenity items.
-///
-/// One way to use this prelude module in your project is
-/// ```rust
-/// use poise::serenity_prelude as serenity;
-/// ```
-pub mod serenity_prelude {
-    #[doc(no_inline)]
-    #[cfg(feature = "cache")]
-    pub use serenity::cache::*;
-    #[doc(no_inline)]
-    pub use serenity::{
-        async_trait,
-        builder::*,
-        client::{
-            bridge::gateway::{event::*, *},
-            *,
-        },
-        collector::*,
-        gateway::*,
-        http::*,
-        model::application::{command::*, component::*},
-        model::prelude::*,
-        prelude::*,
-        utils::*,
-        *,
-    };
-}
+pub use ::serenity::all as serenity_prelude;
 use serenity_prelude as serenity; // private alias for crate root docs intradoc-links
 
 /// Shorthand for a wrapped async future with a lifetime, used by many parts of this framework.
