@@ -1,44 +1,108 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Traverses commands recursively and sets [`crate::Command::qualified_name`] to its actual value"><meta name="keywords" content="rust, rustlang, rust-lang, set_qualified_names"><title>set_qualified_names in poise::framework - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-1d803bfaeffdc91e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-1a026a992ced2f86.css"><link rel="stylesheet" disabled href="../../static.files/dark-c1fb1a2e91ddd376.css"><link rel="stylesheet" disabled href="../../static.files/ayu-0d555a04945d1455.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-458bffc4c06ccf37.js"></script><script defer src="../../static.files/scrape-examples-1f45318ad6bd2a81.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><div class="sidebar-elems"><h2><a href="index.html">In poise::framework</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Function <a href="../index.html">poise</a>::<wbr><a href="index.html">framework</a>::<wbr><a class="fn" href="#">set_qualified_names</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/poise/framework/mod.rs.html#270-281">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust fn"><code>pub fn set_qualified_names&lt;U, E&gt;(commands: &amp;mut [<a class="struct" href="../structs/struct.Command.html" title="struct poise::structs::Command">Command</a>&lt;U, E&gt;])</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Traverses commands recursively and sets <a href="../structs/struct.Command.html#structfield.qualified_name" title="crate::Command::qualified_name"><code>crate::Command::qualified_name</code></a> to its actual value</p>
-</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[10,10],&quot;../../src/manual_dispatch/main.rs.html#51&quot;,&quot;line 51&quot;]]"><div class="scraped-example-title">examples/manual_dispatch/main.rs (<a href="../../src/manual_dispatch/main.rs.html#51">line 51</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>41</span>
-<span>42</span>
-<span>43</span>
-<span>44</span>
-<span>45</span>
-<span>46</span>
-<span>47</span>
-<span>48</span>
-<span>49</span>
-<span>50</span>
-<span>51</span>
-<span>52</span>
-<span>53</span>
-<span>54</span>
-<span>55</span>
-<span>56</span>
-<span>57</span>
-<span>58</span>
-<span>59</span>
-<span>60</span>
-<span>61</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button><span class="kw">async fn </span>main() -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
-    <span class="kw">let </span>token = std::env::var(<span class="string">&quot;DISCORD_TOKEN&quot;</span>).expect(<span class="string">&quot;missing DISCORD_TOKEN&quot;</span>);
-    <span class="kw">let </span>intents = serenity::GatewayIntents::non_privileged();
-    <span class="kw">let </span><span class="kw-2">mut </span>handler = Handler {
-        options: poise::FrameworkOptions {
-            commands: <span class="macro">vec!</span>[ping()],
-            ..Default::default()
-        },
-        shard_manager: std::sync::Mutex::new(<span class="prelude-val">None</span>),
-    };
-    <span class="highlight focus">poise::set_qualified_names</span>(<span class="kw-2">&amp;mut </span>handler.options.commands); <span class="comment">// some setup
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Traverses commands recursively and sets [`crate::Command::qualified_name`] to its actual value"><meta name="keywords" content="rust, rustlang, rust-lang, set_qualified_names"><title>set_qualified_names in poise::framework - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><script defer src="../../static.files/scrape-examples-1f45318ad6bd2a81.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><div class="sidebar-elems"><h2><a href="index.html">In poise::framework</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Function <a href="../index.html">poise</a>::<wbr><a href="index.html">framework</a>::<wbr><a class="fn" href="#">set_qualified_names</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/poise/framework/mod.rs.html#270-281">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust fn"><code>pub fn set_qualified_names&lt;U, E&gt;(commands: &amp;mut [<a class="struct" href="../structs/struct.Command.html" title="struct poise::structs::Command">Command</a>&lt;U, E&gt;])</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Traverses commands recursively and sets <a href="../structs/struct.Command.html#structfield.qualified_name" title="crate::Command::qualified_name"><code>crate::Command::qualified_name</code></a> to its actual value</p>
+</div></details><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples"><a href="#scraped-examples">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[19,19],&quot;../../src/poise/framework/mod.rs.html#90&quot;,&quot;line 90&quot;]]"><div class="scraped-example-title">src/framework/mod.rs (<a href="../../src/poise/framework/mod.rs.html#90">line 90</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>71</span>
+<span>72</span>
+<span>73</span>
+<span>74</span>
+<span>75</span>
+<span>76</span>
+<span>77</span>
+<span>78</span>
+<span>79</span>
+<span>80</span>
+<span>81</span>
+<span>82</span>
+<span>83</span>
+<span>84</span>
+<span>85</span>
+<span>86</span>
+<span>87</span>
+<span>88</span>
+<span>89</span>
+<span>90</span>
+<span>91</span>
+<span>92</span>
+<span>93</span>
+<span>94</span>
+<span>95</span>
+<span>96</span>
+<span>97</span>
+<span>98</span>
+<span>99</span>
+<span>100</span>
+<span>101</span>
+<span>102</span>
+<span>103</span>
+<span>104</span>
+<span>105</span>
+<span>106</span>
+<span>107</span>
+<span>108</span>
+<span>109</span>
+<span>110</span>
+<span>111</span>
+<span>112</span>
+<span>113</span>
+<span>114</span>
+<span>115</span>
+<span>116</span>
+<span>117</span>
+<span>118</span>
+<span>119</span>
+<span>120</span>
+<span>121</span>
+<span>122</span>
+<span>123</span>
+</pre><pre class="rust"><code><button class="expand">&varr;</button>    <span class="kw">pub async fn </span>new&lt;F&gt;(
+        client_builder: serenity::ClientBuilder,
+        setup: F,
+        <span class="kw-2">mut </span>options: <span class="kw">crate</span>::FrameworkOptions&lt;U, E&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;std::sync::Arc&lt;<span class="self">Self</span>&gt;, serenity::Error&gt;
+    <span class="kw">where
+        </span>F: Send
+            + Sync
+            + <span class="lifetime">&#39;static
+            </span>+ <span class="kw">for</span>&lt;<span class="lifetime">&#39;a</span>&gt; FnOnce(
+                <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>serenity::Context,
+                <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>serenity::Ready,
+                <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">Self</span>,
+            ) -&gt; BoxFuture&lt;<span class="lifetime">&#39;a</span>, <span class="prelude-ty">Result</span>&lt;U, E&gt;&gt;,
+        U: Send + Sync + <span class="lifetime">&#39;static</span>,
+        E: Send + <span class="lifetime">&#39;static</span>,
+    {
+        <span class="kw">use </span>std::sync::{Arc, Mutex};
 
-    </span><span class="kw">let </span>handler = std::sync::Arc::new(handler);
-    <span class="kw">let </span><span class="kw-2">mut </span>client = serenity::Client::builder(token, intents)
-        .event_handler_arc(handler.clone())
-        .<span class="kw">await</span><span class="question-mark">?</span>;
-    <span class="kw-2">*</span>handler.shard_manager.lock().unwrap() = <span class="prelude-val">Some</span>(client.shard_manager.clone());
-    client.start().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="highlight focus">set_qualified_names</span>(<span class="kw-2">&amp;mut </span>options.commands);
+        message_content_intent_sanity_check(<span class="kw-2">&amp;</span>options.prefix_options, client_builder.get_intents());
 
-    <span class="prelude-val">Ok</span>(())
-}</code></pre></div>
-</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (b7bc90fea 2022-11-21)" data-search-js="search-df80cc3cb87b6482.js" data-settings-js="settings-7e1cf5cc683233f7.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+        <span class="kw">let </span>framework_cell = Arc::new(once_cell::sync::OnceCell::&lt;Arc&lt;<span class="self">Self</span>&gt;&gt;::new());
+        <span class="kw">let </span>framework_cell_2 = framework_cell.clone();
+        <span class="kw">let </span>existing_event_handler = client_builder.get_event_handler();
+        <span class="kw">let </span>event_handler = <span class="kw">crate</span>::EventWrapper(<span class="kw">move </span>|ctx, event| {
+            <span class="comment">// unwrap_used: we will only receive events once the client has been started, by which
+            // point framework_cell has been initialized
+            </span><span class="attr">#[allow(clippy::unwrap_used)]
+            </span><span class="kw">let </span>framework = framework_cell_2.get().unwrap().clone();
+            <span class="kw">let </span>existing_event_handler = existing_event_handler.clone();
+
+            Box::pin(<span class="kw">async move </span>{
+                raw_dispatch_event(<span class="kw-2">&amp;*</span>framework, <span class="kw-2">&amp;</span>ctx, <span class="kw-2">&amp;</span>event).<span class="kw">await</span>;
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(handler) = existing_event_handler {
+                    event.dispatch(ctx, <span class="kw-2">&amp;*</span>handler).<span class="kw">await</span>;
+                }
+            }) <span class="kw">as _
+        </span>});
+
+        <span class="kw">let </span>client: serenity::Client = client_builder.event_handler(event_handler).<span class="kw">await</span><span class="question-mark">?</span>;
+
+        <span class="kw">let </span>framework = Arc::new(<span class="self">Self </span>{
+            user_data: once_cell::sync::OnceCell::new(),
+            bot_id: once_cell::sync::OnceCell::new(),
+            setup: Mutex::new(<span class="prelude-val">Some</span>(Box::new(setup))),
+            options,
+            shard_manager: client.shard_manager.clone(),
+            client: parking_lot::Mutex::new(<span class="prelude-val">Some</span>(client)),
+        });
+        <span class="kw">let _</span>: <span class="prelude-ty">Result</span>&lt;<span class="kw">_</span>, <span class="kw">_</span>&gt; = framework_cell.set(framework.clone());
+        <span class="prelude-val">Ok</span>(framework)
+    }</code></pre></div>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
