@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.3.9/src/date.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>date.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="icon" href="https://avatars0.githubusercontent.com/u/55999857"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../time/index.html">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/time-0.3.17/src/date.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>date.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="icon" href="https://avatars0.githubusercontent.com/u/55999857"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../time/index.html">
                         <img src="https://avatars0.githubusercontent.com/u/55999857" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1031,6 +1031,24 @@
 <a href="#1030" id="1030">1030</a>
 <a href="#1031" id="1031">1031</a>
 <a href="#1032" id="1032">1032</a>
+<a href="#1033" id="1033">1033</a>
+<a href="#1034" id="1034">1034</a>
+<a href="#1035" id="1035">1035</a>
+<a href="#1036" id="1036">1036</a>
+<a href="#1037" id="1037">1037</a>
+<a href="#1038" id="1038">1038</a>
+<a href="#1039" id="1039">1039</a>
+<a href="#1040" id="1040">1040</a>
+<a href="#1041" id="1041">1041</a>
+<a href="#1042" id="1042">1042</a>
+<a href="#1043" id="1043">1043</a>
+<a href="#1044" id="1044">1044</a>
+<a href="#1045" id="1045">1045</a>
+<a href="#1046" id="1046">1046</a>
+<a href="#1047" id="1047">1047</a>
+<a href="#1048" id="1048">1048</a>
+<a href="#1049" id="1049">1049</a>
+<a href="#1050" id="1050">1050</a>
 </pre><pre class="rust"><code><span class="doccomment">//! The [`Date`] struct and its associated `impl`s.
 
 </span><span class="kw">use </span>core::fmt;
@@ -1047,18 +1065,17 @@
 <span class="kw">use crate</span>::{error, Duration, Month, PrimitiveDateTime, Time, Weekday};
 
 <span class="doccomment">/// The minimum valid year.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;large-dates&quot;</span>)]
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MIN_YEAR: i32 = -<span class="number">999_999</span>;
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MIN_YEAR: i32 = <span class="kw">if </span><span class="macro">cfg!</span>(feature = <span class="string">&quot;large-dates&quot;</span>) {
+    -<span class="number">999_999
+</span>} <span class="kw">else </span>{
+    -<span class="number">9999
+</span>};
 <span class="doccomment">/// The maximum valid year.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;large-dates&quot;</span>)]
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MAX_YEAR: i32 = <span class="number">999_999</span>;
-
-<span class="doccomment">/// The minimum valid year.
-</span><span class="attr">#[cfg(not(feature = <span class="string">&quot;large-dates&quot;</span>))]
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MIN_YEAR: i32 = -<span class="number">9999</span>;
-<span class="doccomment">/// The maximum valid year.
-</span><span class="attr">#[cfg(not(feature = <span class="string">&quot;large-dates&quot;</span>))]
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MAX_YEAR: i32 = <span class="number">9999</span>;
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>MAX_YEAR: i32 = <span class="kw">if </span><span class="macro">cfg!</span>(feature = <span class="string">&quot;large-dates&quot;</span>) {
+    <span class="number">999_999
+</span>} <span class="kw">else </span>{
+    <span class="number">9999
+</span>};
 
 <span class="doccomment">/// Date in the proleptic Gregorian calendar.
 ///
@@ -1072,16 +1089,7 @@
     // |   2 bits   |        21 bits        |  9 bits   |
     // | unassigned |         year          |  ordinal  |
     // The year is 15 bits when `large-dates` is not enabled.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) value: i32,
-}
-
-<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Date {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), fmt::Error&gt; {
-        f.debug_struct(<span class="string">&quot;Date&quot;</span>)
-            .field(<span class="string">&quot;year&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.year())
-            .field(<span class="string">&quot;ordinal&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.ordinal())
-            .finish()
-    }
+    </span>value: i32,
 }
 
 <span class="kw">impl </span>Date {
@@ -1100,6 +1108,11 @@
     /// guaranteed by the caller.
     </span><span class="attr">#[doc(hidden)]
     </span><span class="kw">pub const fn </span>__from_ordinal_date_unchecked(year: i32, ordinal: u16) -&gt; <span class="self">Self </span>{
+        <span class="macro">debug_assert!</span>(year &gt;= MIN_YEAR);
+        <span class="macro">debug_assert!</span>(year &lt;= MAX_YEAR);
+        <span class="macro">debug_assert!</span>(ordinal != <span class="number">0</span>);
+        <span class="macro">debug_assert!</span>(ordinal &lt;= days_in_year(year));
+
         <span class="self">Self </span>{
             value: (year &lt;&lt; <span class="number">9</span>) | ordinal <span class="kw">as </span>i32,
         }
@@ -1209,7 +1222,8 @@
     /// freely available [here](https://www.researchgate.net/publication/316558298_Date_Algorithms).
     ///
     /// ```rust
-    /// # use time::{Date, macros::date};
+    /// # use time::Date;
+    /// # use time_macros::date;
     /// assert_eq!(Date::from_julian_day(0), Ok(date!(-4713 - 11 - 24)));
     /// assert_eq!(Date::from_julian_day(2_451_545), Ok(date!(2000 - 01 - 01)));
     /// assert_eq!(Date::from_julian_day(2_458_485), Ok(date!(2019 - 01 - 01)));
@@ -1229,24 +1243,27 @@
     /// internally invalid value.
     </span><span class="attr">#[doc(alias = <span class="string">&quot;from_julian_date_unchecked&quot;</span>)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const fn </span>from_julian_day_unchecked(julian_day: i32) -&gt; <span class="self">Self </span>{
-        <span class="attr">#![allow(trivial_numeric_casts)] </span><span class="comment">// cast depends on type alias
-
-        </span><span class="doccomment">/// A type that is either `i32` or `i64`. This subtle difference allows for optimization
-        /// based on the valid values.
-        </span><span class="attr">#[cfg(feature = <span class="string">&quot;large-dates&quot;</span>)]
-        </span><span class="kw">type </span>MaybeWidened = i64;
-        <span class="attr">#[allow(clippy::missing_docs_in_private_items)]
-        #[cfg(not(feature = <span class="string">&quot;large-dates&quot;</span>))]
-        </span><span class="kw">type </span>MaybeWidened = i32;
+        <span class="macro">debug_assert!</span>(julian_day &gt;= <span class="self">Self</span>::MIN.to_julian_day());
+        <span class="macro">debug_assert!</span>(julian_day &lt;= <span class="self">Self</span>::MAX.to_julian_day());
 
         <span class="comment">// To avoid a potential overflow, the value may need to be widened for some arithmetic.
 
         </span><span class="kw">let </span>z = julian_day - <span class="number">1_721_119</span>;
-        <span class="kw">let </span>g = <span class="number">100 </span>* z <span class="kw">as </span>MaybeWidened - <span class="number">25</span>;
-        <span class="kw">let </span>a = (g / <span class="number">3_652_425</span>) <span class="kw">as </span>i32;
-        <span class="kw">let </span>b = a - a / <span class="number">4</span>;
-        <span class="kw">let </span><span class="kw-2">mut </span>year = <span class="macro">div_floor!</span>(<span class="number">100 </span>* b <span class="kw">as </span>MaybeWidened + g, <span class="number">36525</span>) <span class="kw">as </span>i32;
-        <span class="kw">let </span><span class="kw-2">mut </span>ordinal = (b + z - <span class="macro">div_floor!</span>(<span class="number">36525 </span>* year <span class="kw">as </span>MaybeWidened, <span class="number">100</span>) <span class="kw">as </span>i32) <span class="kw">as _</span>;
+        <span class="kw">let </span>(<span class="kw-2">mut </span>year, <span class="kw-2">mut </span>ordinal) = <span class="kw">if </span>julian_day &lt; -<span class="number">19_752_948 </span>|| julian_day &gt; <span class="number">23_195_514 </span>{
+            <span class="kw">let </span>g = <span class="number">100 </span>* z <span class="kw">as </span>i64 - <span class="number">25</span>;
+            <span class="kw">let </span>a = (g / <span class="number">3_652_425</span>) <span class="kw">as </span>i32;
+            <span class="kw">let </span>b = a - a / <span class="number">4</span>;
+            <span class="kw">let </span>year = <span class="macro">div_floor!</span>(<span class="number">100 </span>* b <span class="kw">as </span>i64 + g, <span class="number">36525</span>) <span class="kw">as </span>i32;
+            <span class="kw">let </span>ordinal = (b + z - <span class="macro">div_floor!</span>(<span class="number">36525 </span>* year <span class="kw">as </span>i64, <span class="number">100</span>) <span class="kw">as </span>i32) <span class="kw">as _</span>;
+            (year, ordinal)
+        } <span class="kw">else </span>{
+            <span class="kw">let </span>g = <span class="number">100 </span>* z - <span class="number">25</span>;
+            <span class="kw">let </span>a = g / <span class="number">3_652_425</span>;
+            <span class="kw">let </span>b = a - a / <span class="number">4</span>;
+            <span class="kw">let </span>year = <span class="macro">div_floor!</span>(<span class="number">100 </span>* b + g, <span class="number">36525</span>);
+            <span class="kw">let </span>ordinal = (b + z - <span class="macro">div_floor!</span>(<span class="number">36525 </span>* year, <span class="number">100</span>)) <span class="kw">as _</span>;
+            (year, ordinal)
+        };
 
         <span class="kw">if </span>is_leap_year(year) {
             ordinal += <span class="number">60</span>;
@@ -1264,7 +1281,7 @@
     </span><span class="doccomment">/// Get the year of the date.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).year(), 2019);
     /// assert_eq!(date!(2019 - 12 - 31).year(), 2019);
     /// assert_eq!(date!(2020 - 01 - 01).year(), 2020);
@@ -1276,7 +1293,8 @@
     <span class="doccomment">/// Get the month.
     ///
     /// ```rust
-    /// # use time::{macros::date, Month};
+    /// # use time::Month;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).month(), Month::January);
     /// assert_eq!(date!(2019 - 12 - 31).month(), Month::December);
     /// ```
@@ -1289,7 +1307,7 @@
     /// The returned value will always be in the range `1..=31`.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).day(), 1);
     /// assert_eq!(date!(2019 - 12 - 31).day(), 31);
     /// ```
@@ -1343,7 +1361,7 @@
     /// The returned value will always be in the range `1..=366` (`1..=365` for common years).
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).ordinal(), 1);
     /// assert_eq!(date!(2019 - 12 - 31).ordinal(), 365);
     /// ```
@@ -1367,7 +1385,7 @@
     /// The returned value will always be in the range `1..=53`.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).iso_week(), 1);
     /// assert_eq!(date!(2019 - 10 - 04).iso_week(), 40);
     /// assert_eq!(date!(2020 - 01 - 01).iso_week(), 1);
@@ -1383,7 +1401,7 @@
     /// The returned value will always be in the range `0..=53`.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).sunday_based_week(), 0);
     /// assert_eq!(date!(2020 - 01 - 01).sunday_based_week(), 0);
     /// assert_eq!(date!(2020 - 12 - 31).sunday_based_week(), 52);
@@ -1398,7 +1416,7 @@
     /// The returned value will always be in the range `0..=53`.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).monday_based_week(), 0);
     /// assert_eq!(date!(2020 - 01 - 01).monday_based_week(), 0);
     /// assert_eq!(date!(2020 - 12 - 31).monday_based_week(), 52);
@@ -1411,7 +1429,8 @@
     <span class="doccomment">/// Get the year, month, and day.
     ///
     /// ```rust
-    /// # use time::{macros::date, Month};
+    /// # use time::Month;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2019 - 01 - 01).to_calendar_date(),
     ///     (2019, Month::January, 1)
@@ -1425,7 +1444,7 @@
     <span class="doccomment">/// Get the year and ordinal day number.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).to_ordinal_date(), (2019, 1));
     /// ```
     </span><span class="kw">pub const fn </span>to_ordinal_date(<span class="self">self</span>) -&gt; (i32, u16) {
@@ -1435,7 +1454,8 @@
     <span class="doccomment">/// Get the ISO 8601 year, week number, and weekday.
     ///
     /// ```rust
-    /// # use time::{Weekday::*, macros::date};
+    /// # use time::Weekday::*;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).to_iso_week_date(), (2019, 1, Tuesday));
     /// assert_eq!(date!(2019 - 10 - 04).to_iso_week_date(), (2019, 40, Friday));
     /// assert_eq!(
@@ -1462,7 +1482,8 @@
     <span class="doccomment">/// Get the weekday.
     ///
     /// ```rust
-    /// # use time::{Weekday::*, macros::date};
+    /// # use time::Weekday::*;
+    /// # use time_macros::date;
     /// assert_eq!(date!(2019 - 01 - 01).weekday(), Tuesday);
     /// assert_eq!(date!(2019 - 02 - 01).weekday(), Friday);
     /// assert_eq!(date!(2019 - 03 - 01).weekday(), Friday);
@@ -1484,14 +1505,18 @@
             -<span class="number">3 </span>| <span class="number">4 </span>=&gt; Weekday::Friday,
             -<span class="number">2 </span>| <span class="number">5 </span>=&gt; Weekday::Saturday,
             -<span class="number">1 </span>| <span class="number">6 </span>=&gt; Weekday::Sunday,
-            <span class="kw">_ </span>=&gt; Weekday::Monday,
+            val =&gt; {
+                <span class="macro">debug_assert!</span>(val == <span class="number">0</span>);
+                Weekday::Monday
+            }
         }
     }
 
     <span class="doccomment">/// Get the next calendar date.
     ///
     /// ```rust
-    /// # use time::{Date, macros::date};
+    /// # use time::Date;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2019 - 01 - 01).next_day(),
     ///     Some(date!(2019 - 01 - 02))
@@ -1523,7 +1548,8 @@
     <span class="doccomment">/// Get the previous calendar date.
     ///
     /// ```rust
-    /// # use time::{Date, macros::date};
+    /// # use time::Date;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2019 - 01 - 02).previous_day(),
     ///     Some(date!(2019 - 01 - 01))
@@ -1559,7 +1585,7 @@
     /// freely available [here](https://www.researchgate.net/publication/316558298_Date_Algorithms).
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(date!(-4713 - 11 - 24).to_julian_day(), 0);
     /// assert_eq!(date!(2000 - 01 - 01).to_julian_day(), 2_451_545);
     /// assert_eq!(date!(2019 - 01 - 01).to_julian_day(), 2_458_485);
@@ -1579,7 +1605,8 @@
     </span><span class="doccomment">/// Computes `self + duration`, returning `None` if an overflow occurred.
     ///
     /// ```rust
-    /// # use time::{Date, ext::NumericalDuration, macros::date};
+    /// # use time::{Date, ext::NumericalDuration};
+    /// # use time_macros::date;
     /// assert_eq!(Date::MAX.checked_add(1.days()), None);
     /// assert_eq!(Date::MIN.checked_add((-2).days()), None);
     /// assert_eq!(
@@ -1593,7 +1620,8 @@
     /// This function only takes whole days into account.
     ///
     /// ```rust
-    /// # use time::{Date, ext::NumericalDuration, macros::date};
+    /// # use time::{Date, ext::NumericalDuration};
+    /// # use time_macros::date;
     /// assert_eq!(Date::MAX.checked_add(23.hours()), Some(Date::MAX));
     /// assert_eq!(Date::MIN.checked_add((-23).hours()), Some(Date::MIN));
     /// assert_eq!(
@@ -1622,7 +1650,8 @@
     <span class="doccomment">/// Computes `self - duration`, returning `None` if an overflow occurred.
     ///
     /// ```
-    /// # use time::{Date, ext::NumericalDuration, macros::date};
+    /// # use time::{Date, ext::NumericalDuration};
+    /// # use time_macros::date;
     /// assert_eq!(Date::MAX.checked_sub((-2).days()), None);
     /// assert_eq!(Date::MIN.checked_sub(1.days()), None);
     /// assert_eq!(
@@ -1636,7 +1665,8 @@
     /// This function only takes whole days into account.
     ///
     /// ```
-    /// # use time::{Date, ext::NumericalDuration, macros::date};
+    /// # use time::{Date, ext::NumericalDuration};
+    /// # use time_macros::date;
     /// assert_eq!(Date::MAX.checked_sub((-23).hours()), Some(Date::MAX));
     /// assert_eq!(Date::MIN.checked_sub(23.hours()), Some(Date::MIN));
     /// assert_eq!(
@@ -1667,7 +1697,8 @@
     </span><span class="doccomment">/// Computes `self + duration`, saturating value on overflow.
     ///
     /// ```rust
-    /// # use time::{Date, ext::NumericalDuration, macros::date};
+    /// # use time::{Date, ext::NumericalDuration};
+    /// # use time_macros::date;
     /// assert_eq!(Date::MAX.saturating_add(1.days()), Date::MAX);
     /// assert_eq!(Date::MIN.saturating_add((-2).days()), Date::MIN);
     /// assert_eq!(
@@ -1681,7 +1712,8 @@
     /// This function only takes whole days into account.
     ///
     /// ```rust
-    /// # use time::{ext::NumericalDuration, macros::date};
+    /// # use time::ext::NumericalDuration;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2020 - 12 - 31).saturating_add(23.hours()),
     ///     date!(2020 - 12 - 31)
@@ -1697,6 +1729,7 @@
         } <span class="kw">else if </span>duration.is_negative() {
             <span class="self">Self</span>::MIN
         } <span class="kw">else </span>{
+            <span class="macro">debug_assert!</span>(duration.is_positive());
             <span class="self">Self</span>::MAX
         }
     }
@@ -1704,7 +1737,8 @@
     <span class="doccomment">/// Computes `self - duration`, saturating value on overflow.
     ///
     /// ```
-    /// # use time::{Date, ext::NumericalDuration, macros::date};
+    /// # use time::{Date, ext::NumericalDuration};
+    /// # use time_macros::date;
     /// assert_eq!(Date::MAX.saturating_sub((-2).days()), Date::MAX);
     /// assert_eq!(Date::MIN.saturating_sub(1.days()), Date::MIN);
     /// assert_eq!(
@@ -1718,7 +1752,8 @@
     /// This function only takes whole days into account.
     ///
     /// ```
-    /// # use time::{ext::NumericalDuration, macros::date};
+    /// # use time::ext::NumericalDuration;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2020 - 12 - 31).saturating_sub(23.hours()),
     ///     date!(2020 - 12 - 31)
@@ -1734,6 +1769,7 @@
         } <span class="kw">else if </span>duration.is_negative() {
             <span class="self">Self</span>::MAX
         } <span class="kw">else </span>{
+            <span class="macro">debug_assert!</span>(duration.is_positive());
             <span class="self">Self</span>::MIN
         }
     }
@@ -1743,7 +1779,7 @@
     </span><span class="doccomment">/// Replace the year. The month and day will be unchanged.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2022 - 02 - 18).replace_year(2019),
     ///     Ok(date!(2019 - 02 - 18))
@@ -1759,15 +1795,11 @@
 
         <span class="comment">// Dates in January and February are unaffected by leap years.
         </span><span class="kw">if </span>ordinal &lt;= <span class="number">59 </span>{
-            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-                value: year &lt;&lt; <span class="number">9 </span>| ordinal <span class="kw">as </span>i32,
-            });
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="self">Self</span>::__from_ordinal_date_unchecked(year, ordinal));
         }
 
         <span class="kw">match </span>(is_leap_year(<span class="self">self</span>.year()), is_leap_year(year)) {
-            (<span class="bool-val">false</span>, <span class="bool-val">false</span>) | (<span class="bool-val">true</span>, <span class="bool-val">true</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-                value: year &lt;&lt; <span class="number">9 </span>| ordinal <span class="kw">as </span>i32,
-            }),
+            (<span class="bool-val">false</span>, <span class="bool-val">false</span>) | (<span class="bool-val">true</span>, <span class="bool-val">true</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::__from_ordinal_date_unchecked(year, ordinal)),
             <span class="comment">// February 29 does not exist in common years.
             </span>(<span class="bool-val">true</span>, <span class="bool-val">false</span>) <span class="kw">if </span>ordinal == <span class="number">60 </span>=&gt; <span class="prelude-val">Err</span>(error::ComponentRange {
                 name: <span class="string">&quot;day&quot;</span>,
@@ -1778,21 +1810,17 @@
             }),
             <span class="comment">// We&#39;re going from a common year to a leap year. Shift dates in March and later by
             // one day.
-            </span>(<span class="bool-val">false</span>, <span class="bool-val">true</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-                value: year &lt;&lt; <span class="number">9 </span>| (ordinal + <span class="number">1</span>) <span class="kw">as </span>i32,
-            }),
+            </span>(<span class="bool-val">false</span>, <span class="bool-val">true</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::__from_ordinal_date_unchecked(year, ordinal + <span class="number">1</span>)),
             <span class="comment">// We&#39;re going from a leap year to a common year. Shift dates in January and
             // February by one day.
-            </span>(<span class="bool-val">true</span>, <span class="bool-val">false</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-                value: year &lt;&lt; <span class="number">9 </span>| (ordinal - <span class="number">1</span>) <span class="kw">as </span>i32,
-            }),
+            </span>(<span class="bool-val">true</span>, <span class="bool-val">false</span>) =&gt; <span class="prelude-val">Ok</span>(<span class="self">Self</span>::__from_ordinal_date_unchecked(year, ordinal - <span class="number">1</span>)),
         }
     }
 
     <span class="doccomment">/// Replace the month of the year.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// # use time::Month;
     /// assert_eq!(
     ///     date!(2022 - 02 - 18).replace_month(Month::January),
@@ -1813,7 +1841,7 @@
     <span class="doccomment">/// Replace the day of the month.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert_eq!(
     ///     date!(2022 - 02 - 18).replace_day(1),
     ///     Ok(date!(2022 - 02 - 01))
@@ -1845,7 +1873,7 @@
     /// to midnight.
     ///
     /// ```rust
-    /// # use time::macros::{date, datetime};
+    /// # use time_macros::{date, datetime};
     /// assert_eq!(date!(1970-01-01).midnight(), datetime!(1970-01-01 0:00));
     /// ```
     </span><span class="kw">pub const fn </span>midnight(<span class="self">self</span>) -&gt; PrimitiveDateTime {
@@ -1855,7 +1883,7 @@
     <span class="doccomment">/// Create a [`PrimitiveDateTime`] using the existing date and the provided [`Time`].
     ///
     /// ```rust
-    /// # use time::macros::{date, datetime, time};
+    /// # use time_macros::{date, datetime, time};
     /// assert_eq!(
     ///     date!(1970-01-01).with_time(time!(0:00)),
     ///     datetime!(1970-01-01 0:00),
@@ -1868,7 +1896,7 @@
     <span class="doccomment">/// Attempt to create a [`PrimitiveDateTime`] using the existing date and the provided time.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert!(date!(1970 - 01 - 01).with_hms(0, 0, 0).is_ok());
     /// assert!(date!(1970 - 01 - 01).with_hms(24, 0, 0).is_err());
     /// ```
@@ -1887,7 +1915,7 @@
     <span class="doccomment">/// Attempt to create a [`PrimitiveDateTime`] using the existing date and the provided time.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert!(date!(1970 - 01 - 01).with_hms_milli(0, 0, 0, 0).is_ok());
     /// assert!(date!(1970 - 01 - 01).with_hms_milli(24, 0, 0, 0).is_err());
     /// ```
@@ -1907,7 +1935,7 @@
     <span class="doccomment">/// Attempt to create a [`PrimitiveDateTime`] using the existing date and the provided time.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert!(date!(1970 - 01 - 01).with_hms_micro(0, 0, 0, 0).is_ok());
     /// assert!(date!(1970 - 01 - 01).with_hms_micro(24, 0, 0, 0).is_err());
     /// ```
@@ -1927,7 +1955,7 @@
     <span class="doccomment">/// Attempt to create a [`PrimitiveDateTime`] using the existing date and the provided time.
     ///
     /// ```rust
-    /// # use time::macros::date;
+    /// # use time_macros::date;
     /// assert!(date!(1970 - 01 - 01).with_hms_nano(0, 0, 0, 0).is_ok());
     /// assert!(date!(1970 - 01 - 01).with_hms_nano(24, 0, 0, 0).is_err());
     /// ```
@@ -1961,7 +1989,8 @@
     <span class="doccomment">/// Format the `Date` using the provided [format description](crate::format_description).
     ///
     /// ```rust
-    /// # use time::{format_description, macros::date};
+    /// # use time::{format_description};
+    /// # use time_macros::date;
     /// let format = format_description::parse(&quot;[year]-[month]-[day]&quot;)?;
     /// assert_eq!(date!(2020 - 01 - 02).format(&amp;format)?, &quot;2020-01-02&quot;);
     /// # Ok::&lt;_, time::Error&gt;(())
@@ -1977,8 +2006,9 @@
     /// description](crate::format_description).
     ///
     /// ```rust
-    /// # use time::{format_description, macros::date, Date};
-    /// let format = format_description::parse(&quot;[year]-[month]-[day]&quot;)?;
+    /// # use time::Date;
+    /// # use time_macros::{date, format_description};
+    /// let format = format_description!(&quot;[year]-[month]-[day]&quot;);
     /// assert_eq!(Date::parse(&quot;2020-01-02&quot;, &amp;format)?, date!(2020 - 01 - 02));
     /// # Ok::&lt;_, time::Error&gt;(())
     /// ```
@@ -2010,6 +2040,12 @@
                 width = <span class="number">4 </span>+ (<span class="self">self</span>.year() &lt; <span class="number">0</span>) <span class="kw">as </span>usize
             )
         }
+    }
+}
+
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Date {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), fmt::Error&gt; {
+        fmt::Display::fmt(<span class="self">self</span>, f)
     }
 }
 <span class="comment">// endregion formatting &amp; parsing
@@ -2064,4 +2100,4 @@
 }
 <span class="comment">// endregion trait impls
 </span></code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="time" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="time" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

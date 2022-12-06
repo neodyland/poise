@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/http-0.2.6/src/header/map.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>map.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../http/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/http-0.2.8/src/header/map.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>map.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../http/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3494,30 +3494,6 @@
 <a href="#3494" id="3494">3494</a>
 <a href="#3495" id="3495">3495</a>
 <a href="#3496" id="3496">3496</a>
-<a href="#3497" id="3497">3497</a>
-<a href="#3498" id="3498">3498</a>
-<a href="#3499" id="3499">3499</a>
-<a href="#3500" id="3500">3500</a>
-<a href="#3501" id="3501">3501</a>
-<a href="#3502" id="3502">3502</a>
-<a href="#3503" id="3503">3503</a>
-<a href="#3504" id="3504">3504</a>
-<a href="#3505" id="3505">3505</a>
-<a href="#3506" id="3506">3506</a>
-<a href="#3507" id="3507">3507</a>
-<a href="#3508" id="3508">3508</a>
-<a href="#3509" id="3509">3509</a>
-<a href="#3510" id="3510">3510</a>
-<a href="#3511" id="3511">3511</a>
-<a href="#3512" id="3512">3512</a>
-<a href="#3513" id="3513">3513</a>
-<a href="#3514" id="3514">3514</a>
-<a href="#3515" id="3515">3515</a>
-<a href="#3516" id="3516">3516</a>
-<a href="#3517" id="3517">3517</a>
-<a href="#3518" id="3518">3518</a>
-<a href="#3519" id="3519">3519</a>
-<a href="#3520" id="3520">3520</a>
 </pre><pre class="rust"><code><span class="kw">use </span>std::collections::HashMap;
 <span class="kw">use </span>std::collections::hash_map::RandomState;
 <span class="kw">use </span>std::convert::TryFrom;
@@ -6813,20 +6789,17 @@
     <span class="comment">// ==== impls ====
 
     </span><span class="kw">impl </span>Sealed <span class="kw">for </span>HeaderName {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>insert&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;, val: T) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
             map.insert2(<span class="self">self</span>, val)
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>append&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;, val: T) -&gt; bool {
             map.append2(<span class="self">self</span>, val)
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; Entry&lt;<span class="lifetime">&#39;_</span>, T&gt; {
             map.entry2(<span class="self">self</span>)
         }
@@ -6835,19 +6808,16 @@
     <span class="kw">impl </span>IntoHeaderName <span class="kw">for </span>HeaderName {}
 
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Sealed <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>HeaderName {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>insert&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;, val: T) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
             map.insert2(<span class="self">self</span>, val)
         }
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>append&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;, val: T) -&gt; bool {
             map.append2(<span class="self">self</span>, val)
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; Entry&lt;<span class="lifetime">&#39;_</span>, T&gt; {
             map.entry2(<span class="self">self</span>)
         }
@@ -6856,19 +6826,16 @@
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; IntoHeaderName <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>HeaderName {}
 
     <span class="kw">impl </span>Sealed <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>insert&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;, val: T) -&gt; <span class="prelude-ty">Option</span>&lt;T&gt; {
             HdrName::from_static(<span class="self">self</span>, <span class="kw">move </span>|hdr| map.insert2(hdr, val))
         }
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>append&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;, val: T) -&gt; bool {
             HdrName::from_static(<span class="self">self</span>, <span class="kw">move </span>|hdr| map.append2(hdr, val))
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; Entry&lt;<span class="lifetime">&#39;_</span>, T&gt; {
             HdrName::from_static(<span class="self">self</span>, <span class="kw">move </span>|hdr| map.entry2(hdr))
         }
@@ -6906,20 +6873,17 @@
     <span class="comment">// ==== impls ====
 
     </span><span class="kw">impl </span>Sealed <span class="kw">for </span>HeaderName {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>try_entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Entry&lt;<span class="lifetime">&#39;_</span>, T&gt;, InvalidHeaderName&gt; {
             <span class="prelude-val">Ok</span>(map.entry2(<span class="self">self</span>))
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>find&lt;T&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, map: <span class="kw-2">&amp;</span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;(usize, usize)&gt; {
             map.find(<span class="self">self</span>)
         }
 
-        <span class="attr">#[doc(hidden)]
-        </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
             &lt;HeaderName&gt;::as_str(<span class="self">self</span>)
         }
     }
@@ -6927,20 +6891,17 @@
     <span class="kw">impl </span>AsHeaderName <span class="kw">for </span>HeaderName {}
 
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Sealed <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>HeaderName {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>try_entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Entry&lt;<span class="lifetime">&#39;_</span>, T&gt;, InvalidHeaderName&gt; {
             <span class="prelude-val">Ok</span>(map.entry2(<span class="self">self</span>))
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>find&lt;T&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, map: <span class="kw-2">&amp;</span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;(usize, usize)&gt; {
             map.find(<span class="kw-2">*</span><span class="self">self</span>)
         }
 
-        <span class="attr">#[doc(hidden)]
-        </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
             &lt;HeaderName&gt;::as_str(<span class="kw-2">*</span><span class="self">self</span>)
         }
     }
@@ -6948,20 +6909,17 @@
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AsHeaderName <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>HeaderName {}
 
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Sealed <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>try_entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Entry&lt;<span class="lifetime">&#39;_</span>, T&gt;, InvalidHeaderName&gt; {
             HdrName::from_bytes(<span class="self">self</span>.as_bytes(), <span class="kw">move </span>|hdr| map.entry2(hdr))
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>find&lt;T&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, map: <span class="kw-2">&amp;</span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;(usize, usize)&gt; {
             HdrName::from_bytes(<span class="self">self</span>.as_bytes(), <span class="kw">move </span>|hdr| map.find(<span class="kw-2">&amp;</span>hdr)).unwrap_or(<span class="prelude-val">None</span>)
         }
 
-        <span class="attr">#[doc(hidden)]
-        </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
             <span class="self">self
         </span>}
     }
@@ -6969,20 +6927,17 @@
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AsHeaderName <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {}
 
     <span class="kw">impl </span>Sealed <span class="kw">for </span>String {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>try_entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Entry&lt;<span class="lifetime">&#39;_</span>, T&gt;, InvalidHeaderName&gt; {
             <span class="self">self</span>.as_str().try_entry(map)
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>find&lt;T&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, map: <span class="kw-2">&amp;</span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;(usize, usize)&gt; {
             Sealed::find(<span class="kw-2">&amp;</span><span class="self">self</span>.as_str(), map)
         }
 
-        <span class="attr">#[doc(hidden)]
-        </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
             <span class="self">self
         </span>}
     }
@@ -6990,20 +6945,17 @@
     <span class="kw">impl </span>AsHeaderName <span class="kw">for </span>String {}
 
     <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Sealed <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String {
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>try_entry&lt;T&gt;(<span class="self">self</span>, map: <span class="kw-2">&amp;mut </span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;Entry&lt;<span class="lifetime">&#39;_</span>, T&gt;, InvalidHeaderName&gt; {
             <span class="self">self</span>.as_str().try_entry(map)
         }
 
-        <span class="attr">#[doc(hidden)]
-        #[inline]
+        <span class="attr">#[inline]
         </span><span class="kw">fn </span>find&lt;T&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, map: <span class="kw-2">&amp;</span>HeaderMap&lt;T&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;(usize, usize)&gt; {
             Sealed::find(<span class="kw-2">*</span><span class="self">self</span>, map)
         }
 
-        <span class="attr">#[doc(hidden)]
-        </span><span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="kw">fn </span>as_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
             <span class="kw-2">*</span><span class="self">self
         </span>}
     }
@@ -7039,4 +6991,4 @@
     <span class="macro">assert_eq!</span>(map.keys().count(), map.keys_len());
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="http" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

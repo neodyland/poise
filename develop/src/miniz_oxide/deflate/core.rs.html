@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/miniz_oxide-0.5.1/src/deflate/core.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>core.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../miniz_oxide/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/miniz_oxide-0.6.2/src/deflate/core.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>core.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../miniz_oxide/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2450,6 +2450,17 @@
 <a href="#2450" id="2450">2450</a>
 <a href="#2451" id="2451">2451</a>
 <a href="#2452" id="2452">2452</a>
+<a href="#2453" id="2453">2453</a>
+<a href="#2454" id="2454">2454</a>
+<a href="#2455" id="2455">2455</a>
+<a href="#2456" id="2456">2456</a>
+<a href="#2457" id="2457">2457</a>
+<a href="#2458" id="2458">2458</a>
+<a href="#2459" id="2459">2459</a>
+<a href="#2460" id="2460">2460</a>
+<a href="#2461" id="2461">2461</a>
+<a href="#2462" id="2462">2462</a>
+<a href="#2463" id="2463">2463</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Streaming compression functionality.
 
 </span><span class="kw">use </span>alloc::boxed::Box;
@@ -2928,7 +2939,7 @@
 
     <span class="doccomment">/// Set the compression level of the compressor.
     ///
-    /// Using this to change level after compresson has started is supported.
+    /// Using this to change level after compression has started is supported.
     /// # Notes
     /// The compression strategy will be reset to the default one when this is called.
     </span><span class="kw">pub fn </span>set_compression_level(<span class="kw-2">&amp;mut </span><span class="self">self</span>, level: CompressionLevel) {
@@ -2938,7 +2949,7 @@
 
     <span class="doccomment">/// Set the compression level of the compressor using an integer value.
     ///
-    /// Using this to change level after compresson has started is supported.
+    /// Using this to change level after compression has started is supported.
     /// # Notes
     /// The compression strategy will be reset to the default one when this is called.
     </span><span class="kw">pub fn </span>set_compression_level_raw(<span class="kw-2">&amp;mut </span><span class="self">self</span>, level: u8) {
@@ -2952,7 +2963,7 @@
     /// a corrupted stream.
     ///
     /// # Notes
-    /// This function mainly intented for setting the initial settings after e.g creating with
+    /// This function mainly intended for setting the initial settings after e.g creating with
     /// `default` or after calling `CompressorOxide::reset()`, and behaviour may be changed
     /// to disallow calling it after starting compression in the future.
     </span><span class="kw">pub fn </span>set_format_and_level(<span class="kw-2">&amp;mut </span><span class="self">self</span>, data_format: DataFormat, level: u8) {
@@ -3225,17 +3236,17 @@
 </span><span class="kw">const </span>LITLEN_TABLE: usize = <span class="number">0</span>;
 <span class="doccomment">/// Tables for distances.
 </span><span class="kw">const </span>DIST_TABLE: usize = <span class="number">1</span>;
-<span class="doccomment">/// Tables for the run-length encoded huffman lenghts for literals/lengths/distances.
+<span class="doccomment">/// Tables for the run-length encoded huffman lengths for literals/lengths/distances.
 </span><span class="kw">const </span>HUFF_CODES_TABLE: usize = <span class="number">2</span>;
 
 <span class="doccomment">/// Status of RLE encoding of huffman code lengths.
-</span><span class="kw">struct </span>RLE {
+</span><span class="kw">struct </span>Rle {
     <span class="kw">pub </span>z_count: u32,
     <span class="kw">pub </span>repeat_count: u32,
     <span class="kw">pub </span>prev_code_size: u8,
 }
 
-<span class="kw">impl </span>RLE {
+<span class="kw">impl </span>Rle {
     <span class="kw">fn </span>prev_code_size(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         packed_code_sizes: <span class="kw-2">&amp;mut </span>[u8],
@@ -3325,12 +3336,12 @@
         <span class="kw">let </span><span class="kw-2">mut </span>current_symbols = symbols0;
         <span class="kw">let </span><span class="kw-2">mut </span>new_symbols = symbols1;
 
-        <span class="kw">for </span>pass <span class="kw">in </span><span class="number">0</span>..n_passes {
+        <span class="kw">for </span>(pass, hist_item) <span class="kw">in </span>hist.iter().enumerate().take(n_passes) {
             <span class="kw">let </span><span class="kw-2">mut </span>offsets = [<span class="number">0</span>; <span class="number">256</span>];
             <span class="kw">let </span><span class="kw-2">mut </span>offset = <span class="number">0</span>;
             <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="number">256 </span>{
                 offsets[i] = offset;
-                offset += hist[pass][i];
+                offset += hist_item[i];
             }
 
             <span class="kw">for </span>sym <span class="kw">in </span>current_symbols.iter() {
@@ -3476,8 +3487,13 @@
             memset(<span class="kw-2">&amp;mut </span><span class="self">self</span>.codes[table_num][..], <span class="number">0</span>);
 
             <span class="kw">let </span><span class="kw-2">mut </span>last = num_used_symbols;
-            <span class="kw">for </span>i <span class="kw">in </span><span class="number">1</span>..=code_size_limit {
-                <span class="kw">let </span>first = last - num_codes[i] <span class="kw">as </span>usize;
+            <span class="kw">for </span>(i, <span class="kw-2">&amp;</span>num_item) <span class="kw">in </span>num_codes
+                .iter()
+                .enumerate()
+                .take(code_size_limit + <span class="number">1</span>)
+                .skip(<span class="number">1</span>)
+            {
+                <span class="kw">let </span>first = last - num_item <span class="kw">as </span>usize;
                 <span class="kw">for </span>symbol <span class="kw">in </span><span class="kw-2">&amp;</span>symbols[first..last] {
                     <span class="self">self</span>.code_sizes[table_num][symbol.sym_index <span class="kw">as </span>usize] = i <span class="kw">as </span>u8;
                 }
@@ -3558,7 +3574,7 @@
         code_sizes_to_pack[num_lit_codes..total_code_sizes_to_pack]
             .copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.code_sizes[<span class="number">1</span>][..num_dist_codes]);
 
-        <span class="kw">let </span><span class="kw-2">mut </span>rle = RLE {
+        <span class="kw">let </span><span class="kw-2">mut </span>rle = Rle {
             z_count: <span class="number">0</span>,
             repeat_count: <span class="number">0</span>,
             prev_code_size: <span class="number">0xFF</span>,
@@ -3620,7 +3636,7 @@
             );
         }
 
-        <span class="kw">let </span><span class="kw-2">mut </span>packed_code_size_index = <span class="number">0 </span><span class="kw">as </span>usize;
+        <span class="kw">let </span><span class="kw-2">mut </span>packed_code_size_index = <span class="number">0</span>;
         <span class="kw">while </span>packed_code_size_index &lt; packed_pos {
             <span class="kw">let </span>code = packed_code_sizes[packed_code_size_index] <span class="kw">as </span>usize;
             packed_code_size_index += <span class="number">1</span>;
@@ -4644,7 +4660,13 @@
 ///
 /// The value of `flush` determines if the compressor should attempt to flush all output
 /// and alternatively try to finish the stream.
-/// Should be [`TDEFLFlush::Finish`] on the final call.
+///
+/// Use [`TDEFLFlush::Finish`] on the final call to signal that the stream is finishing.
+///
+/// Note that this function does not keep track of whether a flush marker has been output, so
+/// if called using [`TDEFLFlush::Sync`], the caller needs to ensure there is enough space in the
+/// output buffer if they want to avoid repeated flush markers.
+/// See #105 for details.
 ///
 /// # Returns
 /// Returns a tuple containing the current status of the compressor, the current position
@@ -4778,11 +4800,11 @@
 }
 
 <span class="doccomment">/// Create a set of compression flags using parameters used by zlib and other compressors.
-/// Mainly intented for use with transition from c libraries as it deals with raw integers.
+/// Mainly intended for use with transition from c libraries as it deals with raw integers.
 ///
 /// # Parameters
 /// `level` determines compression level. Clamped to maximum of 10. Negative values result in
-/// `Compressionlevel::DefaultLevel`.
+/// `CompressionLevel::DefaultLevel`.
 /// `window_bits`: Above 0, wraps the stream in a zlib wrapper, 0 or negative for a raw deflate
 /// stream.
 /// `strategy`: Sets the strategy if this conforms to any of the values in `CompressionStrategy`.
@@ -4903,4 +4925,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="miniz_oxide" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="miniz_oxide" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/num-integer-0.1.44/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../num_integer/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/num-integer-0.1.45/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../num_integer/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1341,6 +1341,49 @@
 <a href="#1341" id="1341">1341</a>
 <a href="#1342" id="1342">1342</a>
 <a href="#1343" id="1343">1343</a>
+<a href="#1344" id="1344">1344</a>
+<a href="#1345" id="1345">1345</a>
+<a href="#1346" id="1346">1346</a>
+<a href="#1347" id="1347">1347</a>
+<a href="#1348" id="1348">1348</a>
+<a href="#1349" id="1349">1349</a>
+<a href="#1350" id="1350">1350</a>
+<a href="#1351" id="1351">1351</a>
+<a href="#1352" id="1352">1352</a>
+<a href="#1353" id="1353">1353</a>
+<a href="#1354" id="1354">1354</a>
+<a href="#1355" id="1355">1355</a>
+<a href="#1356" id="1356">1356</a>
+<a href="#1357" id="1357">1357</a>
+<a href="#1358" id="1358">1358</a>
+<a href="#1359" id="1359">1359</a>
+<a href="#1360" id="1360">1360</a>
+<a href="#1361" id="1361">1361</a>
+<a href="#1362" id="1362">1362</a>
+<a href="#1363" id="1363">1363</a>
+<a href="#1364" id="1364">1364</a>
+<a href="#1365" id="1365">1365</a>
+<a href="#1366" id="1366">1366</a>
+<a href="#1367" id="1367">1367</a>
+<a href="#1368" id="1368">1368</a>
+<a href="#1369" id="1369">1369</a>
+<a href="#1370" id="1370">1370</a>
+<a href="#1371" id="1371">1371</a>
+<a href="#1372" id="1372">1372</a>
+<a href="#1373" id="1373">1373</a>
+<a href="#1374" id="1374">1374</a>
+<a href="#1375" id="1375">1375</a>
+<a href="#1376" id="1376">1376</a>
+<a href="#1377" id="1377">1377</a>
+<a href="#1378" id="1378">1378</a>
+<a href="#1379" id="1379">1379</a>
+<a href="#1380" id="1380">1380</a>
+<a href="#1381" id="1381">1381</a>
+<a href="#1382" id="1382">1382</a>
+<a href="#1383" id="1383">1383</a>
+<a href="#1384" id="1384">1384</a>
+<a href="#1385" id="1385">1385</a>
+<a href="#1386" id="1386">1386</a>
 </pre><pre class="rust"><code><span class="comment">// Copyright 2013-2014 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
@@ -1530,14 +1573,12 @@
                 gcd: r.<span class="number">1</span>,
                 x: s.<span class="number">1</span>,
                 y: t.<span class="number">1</span>,
-                _hidden: (),
             }
         } <span class="kw">else </span>{
             ExtendedGcd {
                 gcd: <span class="self">Self</span>::zero() - r.<span class="number">1</span>,
                 x: <span class="self">Self</span>::zero() - s.<span class="number">1</span>,
                 y: <span class="self">Self</span>::zero() - t.<span class="number">1</span>,
-                _hidden: (),
             }
         }
     }
@@ -1699,7 +1740,6 @@
     <span class="kw">pub </span>gcd: A,
     <span class="kw">pub </span>x: A,
     <span class="kw">pub </span>y: A,
-    _hidden: (),
 }
 
 <span class="doccomment">/// Simultaneous integer division and modulus
@@ -1729,7 +1769,7 @@
 }
 
 <span class="doccomment">/// Calculates the Greatest Common Divisor (GCD) of the number and `other`. The
-/// result is always positive.
+/// result is always non-negative.
 </span><span class="attr">#[inline(always)]
 </span><span class="kw">pub fn </span>gcd&lt;T: Integer&gt;(x: T, y: T) -&gt; T {
     x.gcd(<span class="kw-2">&amp;</span>y)
@@ -1800,7 +1840,7 @@
             }
 
             <span class="doccomment">/// Calculates the Greatest Common Divisor (GCD) of the number and
-            /// `other`. The result is always positive.
+            /// `other`. The result is always non-negative.
             </span><span class="attr">#[inline]
             </span><span class="kw">fn </span>gcd(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self </span>{
                 <span class="comment">// Use Stein&#39;s algorithm
@@ -1886,6 +1926,9 @@
             <span class="doccomment">/// Returns `true` if the number is a multiple of `other`.
             </span><span class="attr">#[inline]
             </span><span class="kw">fn </span>is_multiple_of(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; bool {
+                <span class="kw">if </span>other.is_zero() {
+                    <span class="kw">return </span><span class="self">self</span>.is_zero();
+                }
                 <span class="kw-2">*</span><span class="self">self </span>% <span class="kw-2">*</span>other == <span class="number">0
             </span>}
 
@@ -1905,6 +1948,29 @@
             </span><span class="attr">#[inline]
             </span><span class="kw">fn </span>div_rem(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; (<span class="self">Self</span>, <span class="self">Self</span>) {
                 (<span class="kw-2">*</span><span class="self">self </span>/ <span class="kw-2">*</span>other, <span class="kw-2">*</span><span class="self">self </span>% <span class="kw-2">*</span>other)
+            }
+
+            <span class="doccomment">/// Rounds up to nearest multiple of argument.
+            </span><span class="attr">#[inline]
+            </span><span class="kw">fn </span>next_multiple_of(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self </span>{
+                <span class="comment">// Avoid the overflow of `MIN % -1`
+                </span><span class="kw">if </span><span class="kw-2">*</span>other == -<span class="number">1 </span>{
+                    <span class="kw">return </span><span class="kw-2">*</span><span class="self">self</span>;
+                }
+
+                <span class="kw">let </span>m = Integer::mod_floor(<span class="self">self</span>, other);
+                <span class="kw-2">*</span><span class="self">self </span>+ <span class="kw">if </span>m == <span class="number">0 </span>{ <span class="number">0 </span>} <span class="kw">else </span>{ other - m }
+            }
+
+            <span class="doccomment">/// Rounds down to nearest multiple of argument.
+            </span><span class="attr">#[inline]
+            </span><span class="kw">fn </span>prev_multiple_of(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; <span class="self">Self </span>{
+                <span class="comment">// Avoid the overflow of `MIN % -1`
+                </span><span class="kw">if </span><span class="kw-2">*</span>other == -<span class="number">1 </span>{
+                    <span class="kw">return </span><span class="kw-2">*</span><span class="self">self</span>;
+                }
+
+                <span class="kw-2">*</span><span class="self">self </span>- Integer::mod_floor(<span class="self">self</span>, other)
             }
         }
 
@@ -1952,8 +2018,9 @@
             </span><span class="kw">fn </span>test_div_mod_floor() {
                 <span class="kw">fn </span>test_nd_dm(nd: (<span class="macro-nonterminal">$T</span>, <span class="macro-nonterminal">$T</span>), dm: (<span class="macro-nonterminal">$T</span>, <span class="macro-nonterminal">$T</span>)) {
                     <span class="kw">let </span>(n, d) = nd;
-                    <span class="kw">let </span>separate_div_mod_floor = (n.div_floor(<span class="kw-2">&amp;</span>d), n.mod_floor(<span class="kw-2">&amp;</span>d));
-                    <span class="kw">let </span>combined_div_mod_floor = n.div_mod_floor(<span class="kw-2">&amp;</span>d);
+                    <span class="kw">let </span>separate_div_mod_floor =
+                        (Integer::div_floor(<span class="kw-2">&amp;</span>n, <span class="kw-2">&amp;</span>d), Integer::mod_floor(<span class="kw-2">&amp;</span>n, <span class="kw-2">&amp;</span>d));
+                    <span class="kw">let </span>combined_div_mod_floor = Integer::div_mod_floor(<span class="kw-2">&amp;</span>n, <span class="kw-2">&amp;</span>d);
 
                     <span class="macro">assert_eq!</span>(separate_div_mod_floor, dm);
                     <span class="macro">assert_eq!</span>(combined_div_mod_floor, dm);
@@ -2127,6 +2194,16 @@
                 <span class="macro">assert_eq!</span>((<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_odd(), <span class="bool-val">true</span>);
                 <span class="macro">assert_eq!</span>((<span class="number">4 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_odd(), <span class="bool-val">false</span>);
             }
+
+            <span class="attr">#[test]
+            </span><span class="kw">fn </span>test_multiple_of_one_limits() {
+                <span class="kw">for </span>x <span class="kw">in </span><span class="kw-2">&amp;</span>[&lt;<span class="macro-nonterminal">$T</span>&gt;::min_value(), &lt;<span class="macro-nonterminal">$T</span>&gt;::max_value()] {
+                    <span class="kw">for </span>one <span class="kw">in </span><span class="kw-2">&amp;</span>[<span class="number">1</span>, -<span class="number">1</span>] {
+                        <span class="macro">assert_eq!</span>(Integer::next_multiple_of(x, one), <span class="kw-2">*</span>x);
+                        <span class="macro">assert_eq!</span>(Integer::prev_multiple_of(x, one), <span class="kw-2">*</span>x);
+                    }
+                }
+            }
         }
     };
 }
@@ -2227,6 +2304,9 @@
             <span class="doccomment">/// Returns `true` if the number is a multiple of `other`.
             </span><span class="attr">#[inline]
             </span><span class="kw">fn </span>is_multiple_of(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; bool {
+                <span class="kw">if </span>other.is_zero() {
+                    <span class="kw">return </span><span class="self">self</span>.is_zero();
+                }
                 <span class="kw-2">*</span><span class="self">self </span>% <span class="kw-2">*</span>other == <span class="number">0
             </span>}
 
@@ -2256,15 +2336,16 @@
 
             <span class="attr">#[test]
             </span><span class="kw">fn </span>test_div_mod_floor() {
-                <span class="macro">assert_eq!</span>((<span class="number">10 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).div_floor(<span class="kw-2">&amp;</span>(<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), <span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
-                <span class="macro">assert_eq!</span>((<span class="number">10 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).mod_floor(<span class="kw-2">&amp;</span>(<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), <span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
-                <span class="macro">assert_eq!</span>((<span class="number">10 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).div_mod_floor(<span class="kw-2">&amp;</span>(<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), (<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>, <span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>));
-                <span class="macro">assert_eq!</span>((<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).div_floor(<span class="kw-2">&amp;</span>(<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), <span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
-                <span class="macro">assert_eq!</span>((<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).mod_floor(<span class="kw-2">&amp;</span>(<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
-                <span class="macro">assert_eq!</span>((<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).div_mod_floor(<span class="kw-2">&amp;</span>(<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), (<span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>, <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>));
-                <span class="macro">assert_eq!</span>((<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).div_floor(<span class="kw-2">&amp;</span>(<span class="number">7 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
-                <span class="macro">assert_eq!</span>((<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).mod_floor(<span class="kw-2">&amp;</span>(<span class="number">7 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), <span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
-                <span class="macro">assert_eq!</span>((<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).div_mod_floor(<span class="kw-2">&amp;</span>(<span class="number">7 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)), (<span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>, <span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>));
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_floor(<span class="kw-2">&amp;</span><span class="number">10</span>, <span class="kw-2">&amp;</span><span class="number">3</span>), <span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::mod_floor(<span class="kw-2">&amp;</span><span class="number">10</span>, <span class="kw-2">&amp;</span><span class="number">3</span>), <span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_mod_floor(<span class="kw-2">&amp;</span><span class="number">10</span>, <span class="kw-2">&amp;</span><span class="number">3</span>), (<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>, <span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>));
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_floor(<span class="kw-2">&amp;</span><span class="number">5</span>, <span class="kw-2">&amp;</span><span class="number">5</span>), <span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::mod_floor(<span class="kw-2">&amp;</span><span class="number">5</span>, <span class="kw-2">&amp;</span><span class="number">5</span>), <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_mod_floor(<span class="kw-2">&amp;</span><span class="number">5</span>, <span class="kw-2">&amp;</span><span class="number">5</span>), (<span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>, <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>));
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_floor(<span class="kw-2">&amp;</span><span class="number">3</span>, <span class="kw-2">&amp;</span><span class="number">7</span>), <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_floor(<span class="kw-2">&amp;</span><span class="number">3</span>, <span class="kw-2">&amp;</span><span class="number">7</span>), <span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::mod_floor(<span class="kw-2">&amp;</span><span class="number">3</span>, <span class="kw-2">&amp;</span><span class="number">7</span>), <span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>);
+                <span class="macro">assert_eq!</span>(&lt;<span class="macro-nonterminal">$T </span><span class="kw">as </span>Integer&gt;::div_mod_floor(<span class="kw-2">&amp;</span><span class="number">3</span>, <span class="kw-2">&amp;</span><span class="number">7</span>), (<span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>, <span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>));
             }
 
             <span class="attr">#[test]
@@ -2322,9 +2403,14 @@
 
             <span class="attr">#[test]
             </span><span class="kw">fn </span>test_is_multiple_of() {
+                <span class="macro">assert!</span>((<span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
                 <span class="macro">assert!</span>((<span class="number">6 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">6 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
                 <span class="macro">assert!</span>((<span class="number">6 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
                 <span class="macro">assert!</span>((<span class="number">6 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">1 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
+
+                <span class="macro">assert!</span>(!(<span class="number">42 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
+                <span class="macro">assert!</span>(!(<span class="number">5 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">3 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
+                <span class="macro">assert!</span>(!(<span class="number">42 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>).is_multiple_of(<span class="kw-2">&amp;</span>(<span class="number">0 </span><span class="kw">as </span><span class="macro-nonterminal">$T</span>)));
             }
 
             <span class="attr">#[test]
@@ -2685,4 +2771,4 @@
     <span class="macro">check_multinomial!</span>(u64, <span class="kw-2">&amp;</span>[<span class="number">12345</span>], <span class="number">1</span>);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="num_integer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="num_integer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-core-0.1.25/src/field.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>field.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_core/index.html">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-core-0.1.30/src/field.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>field.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_core/index.html">
                         <img src="https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1157,6 +1157,111 @@
 <a href="#1156" id="1156">1156</a>
 <a href="#1157" id="1157">1157</a>
 <a href="#1158" id="1158">1158</a>
+<a href="#1159" id="1159">1159</a>
+<a href="#1160" id="1160">1160</a>
+<a href="#1161" id="1161">1161</a>
+<a href="#1162" id="1162">1162</a>
+<a href="#1163" id="1163">1163</a>
+<a href="#1164" id="1164">1164</a>
+<a href="#1165" id="1165">1165</a>
+<a href="#1166" id="1166">1166</a>
+<a href="#1167" id="1167">1167</a>
+<a href="#1168" id="1168">1168</a>
+<a href="#1169" id="1169">1169</a>
+<a href="#1170" id="1170">1170</a>
+<a href="#1171" id="1171">1171</a>
+<a href="#1172" id="1172">1172</a>
+<a href="#1173" id="1173">1173</a>
+<a href="#1174" id="1174">1174</a>
+<a href="#1175" id="1175">1175</a>
+<a href="#1176" id="1176">1176</a>
+<a href="#1177" id="1177">1177</a>
+<a href="#1178" id="1178">1178</a>
+<a href="#1179" id="1179">1179</a>
+<a href="#1180" id="1180">1180</a>
+<a href="#1181" id="1181">1181</a>
+<a href="#1182" id="1182">1182</a>
+<a href="#1183" id="1183">1183</a>
+<a href="#1184" id="1184">1184</a>
+<a href="#1185" id="1185">1185</a>
+<a href="#1186" id="1186">1186</a>
+<a href="#1187" id="1187">1187</a>
+<a href="#1188" id="1188">1188</a>
+<a href="#1189" id="1189">1189</a>
+<a href="#1190" id="1190">1190</a>
+<a href="#1191" id="1191">1191</a>
+<a href="#1192" id="1192">1192</a>
+<a href="#1193" id="1193">1193</a>
+<a href="#1194" id="1194">1194</a>
+<a href="#1195" id="1195">1195</a>
+<a href="#1196" id="1196">1196</a>
+<a href="#1197" id="1197">1197</a>
+<a href="#1198" id="1198">1198</a>
+<a href="#1199" id="1199">1199</a>
+<a href="#1200" id="1200">1200</a>
+<a href="#1201" id="1201">1201</a>
+<a href="#1202" id="1202">1202</a>
+<a href="#1203" id="1203">1203</a>
+<a href="#1204" id="1204">1204</a>
+<a href="#1205" id="1205">1205</a>
+<a href="#1206" id="1206">1206</a>
+<a href="#1207" id="1207">1207</a>
+<a href="#1208" id="1208">1208</a>
+<a href="#1209" id="1209">1209</a>
+<a href="#1210" id="1210">1210</a>
+<a href="#1211" id="1211">1211</a>
+<a href="#1212" id="1212">1212</a>
+<a href="#1213" id="1213">1213</a>
+<a href="#1214" id="1214">1214</a>
+<a href="#1215" id="1215">1215</a>
+<a href="#1216" id="1216">1216</a>
+<a href="#1217" id="1217">1217</a>
+<a href="#1218" id="1218">1218</a>
+<a href="#1219" id="1219">1219</a>
+<a href="#1220" id="1220">1220</a>
+<a href="#1221" id="1221">1221</a>
+<a href="#1222" id="1222">1222</a>
+<a href="#1223" id="1223">1223</a>
+<a href="#1224" id="1224">1224</a>
+<a href="#1225" id="1225">1225</a>
+<a href="#1226" id="1226">1226</a>
+<a href="#1227" id="1227">1227</a>
+<a href="#1228" id="1228">1228</a>
+<a href="#1229" id="1229">1229</a>
+<a href="#1230" id="1230">1230</a>
+<a href="#1231" id="1231">1231</a>
+<a href="#1232" id="1232">1232</a>
+<a href="#1233" id="1233">1233</a>
+<a href="#1234" id="1234">1234</a>
+<a href="#1235" id="1235">1235</a>
+<a href="#1236" id="1236">1236</a>
+<a href="#1237" id="1237">1237</a>
+<a href="#1238" id="1238">1238</a>
+<a href="#1239" id="1239">1239</a>
+<a href="#1240" id="1240">1240</a>
+<a href="#1241" id="1241">1241</a>
+<a href="#1242" id="1242">1242</a>
+<a href="#1243" id="1243">1243</a>
+<a href="#1244" id="1244">1244</a>
+<a href="#1245" id="1245">1245</a>
+<a href="#1246" id="1246">1246</a>
+<a href="#1247" id="1247">1247</a>
+<a href="#1248" id="1248">1248</a>
+<a href="#1249" id="1249">1249</a>
+<a href="#1250" id="1250">1250</a>
+<a href="#1251" id="1251">1251</a>
+<a href="#1252" id="1252">1252</a>
+<a href="#1253" id="1253">1253</a>
+<a href="#1254" id="1254">1254</a>
+<a href="#1255" id="1255">1255</a>
+<a href="#1256" id="1256">1256</a>
+<a href="#1257" id="1257">1257</a>
+<a href="#1258" id="1258">1258</a>
+<a href="#1259" id="1259">1259</a>
+<a href="#1260" id="1260">1260</a>
+<a href="#1261" id="1261">1261</a>
+<a href="#1262" id="1262">1262</a>
+<a href="#1263" id="1263">1263</a>
 </pre><pre class="rust"><code><span class="doccomment">//! `Span` and `Event` key-value data.
 //!
 //! Spans and events may be annotated with key-value data, referred to as known
@@ -1175,9 +1280,9 @@
 //! will contain any fields attached to each event.
 //!
 //! `tracing` represents values as either one of a set of Rust primitives
-//! (`i64`, `u64`, `f64`, `bool`, and `&amp;str`) or using a `fmt::Display` or
-//! `fmt::Debug` implementation. `Subscriber`s are provided these primitive
-//! value types as `dyn Value` trait objects.
+//! (`i64`, `u64`, `f64`, `i128`, `u128`, `bool`, and `&amp;str`) or using a
+//! `fmt::Display` or `fmt::Debug` implementation. `Subscriber`s are provided
+//! these primitive value types as `dyn Value` trait objects.
 //!
 //! These trait objects can be formatted using `fmt::Debug`, but may also be
 //! recorded as typed data by calling the [`Value::record`] method on these
@@ -1259,17 +1364,15 @@
 //! [`record_value`]: Visit::record_value
 //! [`record_debug`]: Visit::record_debug
 //!
-//! [`Value`]: trait.Value.html
-//! [span]: ../span/
-//! [`Event`]: ../event/struct.Event.html
-//! [`Metadata`]: ../metadata/struct.Metadata.html
-//! [`Attributes`]:  ../span/struct.Attributes.html
-//! [`Record`]: ../span/struct.Record.html
-//! [`new_span`]: ../subscriber/trait.Subscriber.html#method.new_span
-//! [`record`]: ../subscriber/trait.Subscriber.html#method.record
-//! [`event`]:  ../subscriber/trait.Subscriber.html#method.event
-//! [`Value::record`]: trait.Value.html#method.record
-//! [`Visit`]: trait.Visit.html
+//! [span]: super::span
+//! [`Event`]: super::event::Event
+//! [`Metadata`]: super::metadata::Metadata
+//! [`Attributes`]:  super::span::Attributes
+//! [`Record`]: super::span::Record
+//! [`new_span`]: super::subscriber::Subscriber::new_span
+//! [`record`]: super::subscriber::Subscriber::record
+//! [`event`]:  super::subscriber::Subscriber::event
+//! [`Value::record`]: Value::record
 </span><span class="kw">use </span><span class="kw">crate</span>::callsite;
 <span class="kw">use </span><span class="kw">crate</span>::stdlib::{
     borrow::Borrow,
@@ -1277,6 +1380,7 @@
     hash::{Hash, Hasher},
     num,
     ops::Range,
+    string::String,
 };
 
 <span class="kw">use </span><span class="self">self</span>::private::ValidLen;
@@ -1305,6 +1409,16 @@
 </span><span class="kw">pub struct </span>Empty;
 
 <span class="doccomment">/// Describes the fields present on a span.
+///
+/// ## Equality
+///
+/// In well-behaved applications, two `FieldSet`s [initialized] with equal
+/// [callsite identifiers] will have identical fields. Consequently, in release
+/// builds, [`FieldSet::eq`] *only* checks that its arguments have equal
+/// callsites. However, the equality of field names is checked in debug builds.
+///
+/// [initialized]: Self::new
+/// [callsite identifiers]: callsite::Identifier
 </span><span class="kw">pub struct </span>FieldSet {
     <span class="doccomment">/// The names of each field on the described span.
     </span>names: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str],
@@ -1408,13 +1522,11 @@
 /// &lt;code&gt;std::error::Error&lt;/code&gt; trait.
 /// &lt;/pre&gt;&lt;/div&gt;
 ///
-/// [`Value`]: trait.Value.html
-/// [recorded]: trait.Value.html#method.record
-/// [`Subscriber`]: ../subscriber/trait.Subscriber.html
-/// [records an `Event`]: ../subscriber/trait.Subscriber.html#method.event
-/// [set of `Value`s added to a `Span`]: ../subscriber/trait.Subscriber.html#method.record
-/// [`Event`]: ../event/struct.Event.html
-/// [`ValueSet`]: struct.ValueSet.html
+/// [recorded]: Value::record
+/// [`Subscriber`]: super::subscriber::Subscriber
+/// [records an `Event`]: super::subscriber::Subscriber::event
+/// [set of `Value`s added to a `Span`]: super::subscriber::Subscriber::record
+/// [`Event`]: super::event::Event
 </span><span class="kw">pub trait </span>Visit {
     <span class="doccomment">/// Visits an arbitrary type implementing the [`valuable`] crate&#39;s `Valuable` trait.
     ///
@@ -1437,6 +1549,16 @@
 
     <span class="doccomment">/// Visit an unsigned 64-bit integer value.
     </span><span class="kw">fn </span>record_u64(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: u64) {
+        <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span>value)
+    }
+
+    <span class="doccomment">/// Visit a signed 128-bit integer value.
+    </span><span class="kw">fn </span>record_i128(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: i128) {
+        <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span>value)
+    }
+
+    <span class="doccomment">/// Visit an unsigned 128-bit integer value.
+    </span><span class="kw">fn </span>record_u128(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: u128) {
         <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span>value)
     }
 
@@ -1473,7 +1595,7 @@
 /// the [visitor] passed to their `record` method in order to indicate how
 /// their data should be recorded.
 ///
-/// [visitor]: trait.Visit.html
+/// [visitor]: Visit
 </span><span class="kw">pub trait </span>Value: <span class="kw">crate</span>::sealed::Sealed {
     <span class="doccomment">/// Visits this value with the given `Visitor`.
     </span><span class="kw">fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, key: <span class="kw-2">&amp;</span>Field, visitor: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Visit);
@@ -1652,6 +1774,8 @@
     record_u64(usize, u32, u16, u8 <span class="kw">as </span>u64),
     record_i64(i64),
     record_i64(isize, i32, i16, i8 <span class="kw">as </span>i64),
+    record_u128(u128),
+    record_i128(i128),
     record_bool(bool),
     record_f64(f64, f32 <span class="kw">as </span>f64)
 }
@@ -1744,6 +1868,25 @@
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Value <span class="kw">for </span>fmt::Arguments&lt;<span class="lifetime">&#39;a</span>&gt; {
     <span class="kw">fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, key: <span class="kw-2">&amp;</span>Field, visitor: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Visit) {
         visitor.record_debug(key, <span class="self">self</span>)
+    }
+}
+
+<span class="kw">impl</span>&lt;T: <span class="question-mark">?</span>Sized&gt; <span class="kw">crate</span>::sealed::Sealed <span class="kw">for </span><span class="kw">crate</span>::stdlib::boxed::Box&lt;T&gt; <span class="kw">where </span>T: Value {}
+
+<span class="kw">impl</span>&lt;T: <span class="question-mark">?</span>Sized&gt; Value <span class="kw">for </span><span class="kw">crate</span>::stdlib::boxed::Box&lt;T&gt;
+<span class="kw">where
+    </span>T: Value,
+{
+    <span class="attr">#[inline]
+    </span><span class="kw">fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, key: <span class="kw-2">&amp;</span>Field, visitor: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Visit) {
+        <span class="self">self</span>.as_ref().record(key, visitor)
+    }
+}
+
+<span class="kw">impl </span><span class="kw">crate</span>::sealed::Sealed <span class="kw">for </span>String {}
+<span class="kw">impl </span>Value <span class="kw">for </span>String {
+    <span class="kw">fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, key: <span class="kw-2">&amp;</span>Field, visitor: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Visit) {
+        visitor.record_str(key, <span class="self">self</span>.as_str())
     }
 }
 
@@ -1872,8 +2015,8 @@
     <span class="doccomment">/// Returns an [`Identifier`] that uniquely identifies the [`Callsite`]
     /// which defines this field.
     ///
-    /// [`Identifier`]: ../callsite/struct.Identifier.html
-    /// [`Callsite`]: ../callsite/trait.Callsite.html
+    /// [`Identifier`]: super::callsite::Identifier
+    /// [`Callsite`]: super::callsite::Callsite
     </span><span class="attr">#[inline]
     </span><span class="kw">pub fn </span>callsite(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; callsite::Identifier {
         <span class="self">self</span>.fields.callsite()
@@ -1938,15 +2081,15 @@
     <span class="doccomment">/// Returns an [`Identifier`] that uniquely identifies the [`Callsite`]
     /// which defines this set of fields..
     ///
-    /// [`Identifier`]: ../callsite/struct.Identifier.html
-    /// [`Callsite`]: ../callsite/trait.Callsite.html
+    /// [`Identifier`]: super::callsite::Identifier
+    /// [`Callsite`]: super::callsite::Callsite
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>callsite(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; callsite::Identifier {
         callsite::Identifier(<span class="self">self</span>.callsite.<span class="number">0</span>)
     }
 
     <span class="doccomment">/// Returns the [`Field`] named `name`, or `None` if no such field exists.
     ///
-    /// [`Field`]: ../struct.Field.html
+    /// [`Field`]: super::Field
     </span><span class="kw">pub fn </span>field&lt;Q: <span class="question-mark">?</span>Sized&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, name: <span class="kw-2">&amp;</span>Q) -&gt; <span class="prelude-ty">Option</span>&lt;Field&gt;
     <span class="kw">where
         </span>Q: Borrow&lt;str&gt;,
@@ -2042,6 +2185,40 @@
     }
 }
 
+<span class="kw">impl </span>Eq <span class="kw">for </span>FieldSet {}
+
+<span class="kw">impl </span>PartialEq <span class="kw">for </span>FieldSet {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) -&gt; bool {
+        <span class="kw">if </span>core::ptr::eq(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="kw-2">&amp;</span>other) {
+            <span class="bool-val">true
+        </span>} <span class="kw">else if </span><span class="macro">cfg!</span>(not(debug_assertions)) {
+            <span class="comment">// In a well-behaving application, two `FieldSet`s can be assumed to
+            // be totally equal so long as they share the same callsite.
+            </span><span class="self">self</span>.callsite == other.callsite
+        } <span class="kw">else </span>{
+            <span class="comment">// However, when debug-assertions are enabled, do NOT assume that
+            // the application is well-behaving; check every the field names of
+            // each `FieldSet` for equality.
+
+            // `FieldSet` is destructured here to ensure a compile-error if the
+            // fields of `FieldSet` change.
+            </span><span class="kw">let </span><span class="self">Self </span>{
+                names: lhs_names,
+                callsite: lhs_callsite,
+            } = <span class="self">self</span>;
+
+            <span class="kw">let </span><span class="self">Self </span>{
+                names: rhs_names,
+                callsite: rhs_callsite,
+            } = <span class="kw-2">&amp;</span>other;
+
+            <span class="comment">// Check callsite equality first, as it is probably cheaper to do
+            // than str equality.
+            </span>lhs_callsite == rhs_callsite &amp;&amp; lhs_names == rhs_names
+        }
+    }
+}
+
 <span class="comment">// ===== impl Iter =====
 
 </span><span class="kw">impl </span>Iterator <span class="kw">for </span>Iter {
@@ -2064,8 +2241,8 @@
     <span class="doccomment">/// Returns an [`Identifier`] that uniquely identifies the [`Callsite`]
     /// defining the fields this `ValueSet` refers to.
     ///
-    /// [`Identifier`]: ../callsite/struct.Identifier.html
-    /// [`Callsite`]: ../callsite/trait.Callsite.html
+    /// [`Identifier`]: super::callsite::Identifier
+    /// [`Callsite`]: super::callsite::Callsite
     </span><span class="attr">#[inline]
     </span><span class="kw">pub fn </span>callsite(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; callsite::Identifier {
         <span class="self">self</span>.fields.callsite()
@@ -2086,6 +2263,19 @@
         }
     }
 
+    <span class="doccomment">/// Returns the number of fields in this `ValueSet` that would be visited
+    /// by a given [visitor] to the [`ValueSet::record()`] method.
+    ///
+    /// [visitor]: Visit
+    /// [`ValueSet::record()`]: ValueSet::record()
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="kw">let </span>my_callsite = <span class="self">self</span>.callsite();
+        <span class="self">self</span>.values
+            .iter()
+            .filter(|(field, <span class="kw">_</span>)| field.callsite() == my_callsite)
+            .count()
+    }
+
     <span class="doccomment">/// Returns `true` if this `ValueSet` contains a value for the given `Field`.
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>contains(<span class="kw-2">&amp;</span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field) -&gt; bool {
         field.callsite() == <span class="self">self</span>.callsite()
@@ -2096,7 +2286,7 @@
     }
 
     <span class="doccomment">/// Returns true if this `ValueSet` contains _no_ values.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+    </span><span class="kw">pub fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="kw">let </span>my_callsite = <span class="self">self</span>.callsite();
         <span class="self">self</span>.values
             .iter()
@@ -2314,6 +2504,26 @@
         });
         <span class="macro">assert_eq!</span>(result, <span class="string">&quot;123&quot;</span>.to_owned());
     }
+
+    <span class="attr">#[test]
+    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    </span><span class="kw">fn </span>record_error() {
+        <span class="kw">let </span>fields = TEST_META_1.fields();
+        <span class="kw">let </span>err: Box&lt;<span class="kw">dyn </span>std::error::Error + Send + Sync + <span class="lifetime">&#39;static</span>&gt; =
+            std::io::Error::new(std::io::ErrorKind::Other, <span class="string">&quot;lol&quot;</span>).into();
+        <span class="kw">let </span>values = <span class="kw-2">&amp;</span>[
+            (<span class="kw-2">&amp;</span>fields.field(<span class="string">&quot;foo&quot;</span>).unwrap(), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>err <span class="kw">as </span><span class="kw-2">&amp;</span><span class="kw">dyn </span>Value)),
+            (<span class="kw-2">&amp;</span>fields.field(<span class="string">&quot;bar&quot;</span>).unwrap(), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>Empty <span class="kw">as </span><span class="kw-2">&amp;</span><span class="kw">dyn </span>Value)),
+            (<span class="kw-2">&amp;</span>fields.field(<span class="string">&quot;baz&quot;</span>).unwrap(), <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>Empty <span class="kw">as </span><span class="kw-2">&amp;</span><span class="kw">dyn </span>Value)),
+        ];
+        <span class="kw">let </span>valueset = fields.value_set(values);
+        <span class="kw">let </span><span class="kw-2">mut </span>result = String::new();
+        valueset.record(<span class="kw-2">&amp;mut </span>|<span class="kw">_</span>: <span class="kw-2">&amp;</span>Field, value: <span class="kw-2">&amp;</span><span class="kw">dyn </span>fmt::Debug| {
+            <span class="kw">use </span>core::fmt::Write;
+            <span class="macro">write!</span>(<span class="kw-2">&amp;mut </span>result, <span class="string">&quot;{:?}&quot;</span>, value).unwrap();
+        });
+        <span class="macro">assert_eq!</span>(result, <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, err));
+    }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

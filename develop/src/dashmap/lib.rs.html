@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/dashmap-5.2.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../dashmap/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/dashmap-5.4.0/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../dashmap/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1357,10 +1357,75 @@
 <a href="#1357" id="1357">1357</a>
 <a href="#1358" id="1358">1358</a>
 <a href="#1359" id="1359">1359</a>
+<a href="#1360" id="1360">1360</a>
+<a href="#1361" id="1361">1361</a>
+<a href="#1362" id="1362">1362</a>
+<a href="#1363" id="1363">1363</a>
+<a href="#1364" id="1364">1364</a>
+<a href="#1365" id="1365">1365</a>
+<a href="#1366" id="1366">1366</a>
+<a href="#1367" id="1367">1367</a>
+<a href="#1368" id="1368">1368</a>
+<a href="#1369" id="1369">1369</a>
+<a href="#1370" id="1370">1370</a>
+<a href="#1371" id="1371">1371</a>
+<a href="#1372" id="1372">1372</a>
+<a href="#1373" id="1373">1373</a>
+<a href="#1374" id="1374">1374</a>
+<a href="#1375" id="1375">1375</a>
+<a href="#1376" id="1376">1376</a>
+<a href="#1377" id="1377">1377</a>
+<a href="#1378" id="1378">1378</a>
+<a href="#1379" id="1379">1379</a>
+<a href="#1380" id="1380">1380</a>
+<a href="#1381" id="1381">1381</a>
+<a href="#1382" id="1382">1382</a>
+<a href="#1383" id="1383">1383</a>
+<a href="#1384" id="1384">1384</a>
+<a href="#1385" id="1385">1385</a>
+<a href="#1386" id="1386">1386</a>
+<a href="#1387" id="1387">1387</a>
+<a href="#1388" id="1388">1388</a>
+<a href="#1389" id="1389">1389</a>
+<a href="#1390" id="1390">1390</a>
+<a href="#1391" id="1391">1391</a>
+<a href="#1392" id="1392">1392</a>
+<a href="#1393" id="1393">1393</a>
+<a href="#1394" id="1394">1394</a>
+<a href="#1395" id="1395">1395</a>
+<a href="#1396" id="1396">1396</a>
+<a href="#1397" id="1397">1397</a>
+<a href="#1398" id="1398">1398</a>
+<a href="#1399" id="1399">1399</a>
+<a href="#1400" id="1400">1400</a>
+<a href="#1401" id="1401">1401</a>
+<a href="#1402" id="1402">1402</a>
+<a href="#1403" id="1403">1403</a>
+<a href="#1404" id="1404">1404</a>
+<a href="#1405" id="1405">1405</a>
+<a href="#1406" id="1406">1406</a>
+<a href="#1407" id="1407">1407</a>
+<a href="#1408" id="1408">1408</a>
+<a href="#1409" id="1409">1409</a>
+<a href="#1410" id="1410">1410</a>
+<a href="#1411" id="1411">1411</a>
+<a href="#1412" id="1412">1412</a>
+<a href="#1413" id="1413">1413</a>
+<a href="#1414" id="1414">1414</a>
+<a href="#1415" id="1415">1415</a>
+<a href="#1416" id="1416">1416</a>
+<a href="#1417" id="1417">1417</a>
+<a href="#1418" id="1418">1418</a>
+<a href="#1419" id="1419">1419</a>
+<a href="#1420" id="1420">1420</a>
+<a href="#1421" id="1421">1421</a>
+<a href="#1422" id="1422">1422</a>
+<a href="#1423" id="1423">1423</a>
 </pre><pre class="rust"><code><span class="attr">#![allow(clippy::type_complexity)]
 
 </span><span class="kw">pub mod </span>iter;
 <span class="kw">pub mod </span>iter_set;
+<span class="kw">mod </span>lock;
 <span class="kw">pub mod </span>mapref;
 <span class="kw">mod </span>read_only;
 <span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
@@ -1374,8 +1439,15 @@
 <span class="attr">#[cfg(feature = <span class="string">&quot;rayon&quot;</span>)]
 </span><span class="kw">pub mod </span>rayon {
     <span class="kw">pub mod </span>map;
+    <span class="kw">pub mod </span>read_only;
     <span class="kw">pub mod </span>set;
 }
+
+<span class="attr">#[cfg(not(feature = <span class="string">&quot;raw-api&quot;</span>))]
+</span><span class="kw">use </span><span class="kw">crate</span>::lock::{RwLock, RwLockReadGuard, RwLockWriteGuard};
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;raw-api&quot;</span>)]
+</span><span class="kw">pub use </span><span class="kw">crate</span>::lock::{RawRwLock, RwLock, RwLockReadGuard, RwLockWriteGuard};
 
 <span class="kw">use </span>cfg_if::cfg_if;
 <span class="kw">use </span>core::borrow::Borrow;
@@ -1387,7 +1459,7 @@
 <span class="kw">use </span>mapref::entry::{Entry, OccupiedEntry, VacantEntry};
 <span class="kw">use </span>mapref::multiple::RefMulti;
 <span class="kw">use </span>mapref::one::{Ref, RefMut};
-<span class="kw">use </span>parking_lot::{RwLock, RwLockReadGuard, RwLockWriteGuard};
+<span class="kw">use </span>once_cell::sync::OnceCell;
 <span class="kw">pub use </span>read_only::ReadOnlyView;
 <span class="kw">pub use </span>set::DashSet;
 <span class="kw">use </span>std::collections::hash_map::RandomState;
@@ -1402,10 +1474,21 @@
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>HashMap&lt;K, V, S&gt; = std::collections::HashMap&lt;K, SharedValue&lt;V&gt;, S&gt;;
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>HashMap&lt;K, V, S&gt; = hashbrown::HashMap&lt;K, SharedValue&lt;V&gt;, S&gt;;
+
+<span class="comment">// Temporary reimplementation of [`std::collections::TryReserveError`]
+// util [`std::collections::TryReserveError`] stabilises.
+// We cannot easily create `std::collections` error type from `hashbrown` error type
+// without access to `TryReserveError::kind` method.
+</span><span class="attr">#[non_exhaustive]
+#[derive(Clone, PartialEq, Eq, Debug)]
+</span><span class="kw">pub struct </span>TryReserveError {}
 
 <span class="kw">fn </span>default_shard_amount() -&gt; usize {
-    (num_cpus::get() * <span class="number">4</span>).next_power_of_two()
+    <span class="kw">static </span>DEFAULT_SHARD_AMOUNT: OnceCell&lt;usize&gt; = OnceCell::new();
+    <span class="kw-2">*</span>DEFAULT_SHARD_AMOUNT.get_or_init(|| {
+        (std::thread::available_parallelism().map_or(<span class="number">1</span>, usize::from) * <span class="number">4</span>).next_power_of_two()
+    })
 }
 
 <span class="kw">fn </span>ncb(shard_amount: usize) -&gt; usize {
@@ -1418,7 +1501,7 @@
 /// with some slight changes to handle concurrency.
 ///
 /// DashMap tries to be very simple to use and to be a direct replacement for `RwLock&lt;HashMap&lt;K, V, S&gt;&gt;`.
-/// To accomplish these all methods take `&amp;self` instead modifying methods taking `&amp;mut self`.
+/// To accomplish this, all methods take `&amp;self` instead of modifying methods taking `&amp;mut self`.
 /// This allows you to put a DashMap in an `Arc&lt;T&gt;` and share it between threads while being able to modify it.
 ///
 /// Documentation mentioning locking behaviour acts in the reference frame of the calling thread.
@@ -1569,7 +1652,7 @@
 
     <span class="doccomment">/// Creates a new DashMap with a specified hasher and shard amount
     ///
-    /// shard_amount should greater than 0 and be a power of two.
+    /// shard_amount should be greater than 0 and a power of two.
     /// If a shard_amount which is not a power of two is provided, the function will panic.
     ///
     /// # Examples
@@ -2150,6 +2233,24 @@
     </span><span class="kw">pub fn </span>try_entry(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, key: K) -&gt; <span class="prelude-ty">Option</span>&lt;Entry&lt;<span class="lifetime">&#39;a</span>, K, V, S&gt;&gt; {
         <span class="self">self</span>._try_entry(key)
     }
+
+    <span class="doccomment">/// Advanced entry API that tries to mimic `std::collections::HashMap::try_reserve`.
+    /// Tries to reserve capacity for at least `shard * additional`
+    /// and may reserve more space to avoid frequent reallocations.
+    ///
+    /// # Errors
+    ///
+    /// If the capacity overflows, or the allocator reports a failure, then an error is returned.
+    </span><span class="comment">// TODO: return std::collections::TryReserveError once std::collections::TryReserveErrorKind stabilises.
+    </span><span class="kw">pub fn </span>try_reserve(<span class="kw-2">&amp;mut </span><span class="self">self</span>, additional: usize) -&gt; <span class="prelude-ty">Result</span>&lt;(), TryReserveError&gt; {
+        <span class="kw">for </span>shard <span class="kw">in </span><span class="self">self</span>.shards.iter() {
+            shard
+                .write()
+                .try_reserve(additional)
+                .map_err(|<span class="kw">_</span>| TryReserveError {})<span class="question-mark">?</span>;
+        }
+        <span class="prelude-val">Ok</span>(())
+    }
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, K: <span class="lifetime">&#39;a </span>+ Eq + Hash, V: <span class="lifetime">&#39;a</span>, S: <span class="lifetime">&#39;a </span>+ BuildHasher + Clone&gt; Map&lt;<span class="lifetime">&#39;a</span>, K, V, S&gt;
@@ -2232,12 +2333,17 @@
 
         <span class="kw">let </span><span class="kw-2">mut </span>shard = <span class="kw">unsafe </span>{ <span class="self">self</span>._yield_write_shard(idx) };
 
-        <span class="kw">if let </span><span class="prelude-val">Some</span>((k, v)) = shard.get_key_value(key) {
-            <span class="kw">if </span>f(k, v.get()) {
-                shard.remove_entry(key).map(|(k, v)| (k, v.into_inner()))
-            } <span class="kw">else </span>{
-                <span class="prelude-val">None
-            </span>}
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((kptr, vptr)) = shard.get_key_value(key) {
+            <span class="kw">unsafe </span>{
+                <span class="kw">let </span>kptr: <span class="kw-2">*const </span>K = kptr;
+                <span class="kw">let </span>vptr: <span class="kw-2">*mut </span>V = vptr.as_ptr();
+
+                <span class="kw">if </span>f(<span class="kw-2">&amp;*</span>kptr, <span class="kw-2">&amp;mut *</span>vptr) {
+                    shard.remove_entry(key).map(|(k, v)| (k, v.into_inner()))
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">None
+                </span>}
+            }
         } <span class="kw">else </span>{
             <span class="prelude-val">None
         </span>}
@@ -2254,7 +2360,7 @@
 
         <span class="kw">let </span><span class="kw-2">mut </span>shard = <span class="kw">unsafe </span>{ <span class="self">self</span>._yield_write_shard(idx) };
 
-        <span class="kw">if let </span><span class="prelude-val">Some</span>((kptr, vptr)) = shard.get_key_value(<span class="kw-2">&amp;</span>key) {
+        <span class="kw">if let </span><span class="prelude-val">Some</span>((kptr, vptr)) = shard.get_key_value(key) {
             <span class="kw">unsafe </span>{
                 <span class="kw">let </span>kptr: <span class="kw-2">*const </span>K = kptr;
                 <span class="kw">let </span>vptr: <span class="kw-2">*mut </span>V = vptr.as_ptr();
@@ -2715,6 +2821,28 @@
             <span class="macro">assert!</span>(result2.is_locked());
         }
     }
+
+    <span class="attr">#[test]
+    </span><span class="kw">fn </span>test_try_reserve() {
+        <span class="kw">let </span><span class="kw-2">mut </span>map: DashMap&lt;i32, i32&gt; = DashMap::new();
+        <span class="comment">// DashMap is empty and doesn&#39;t allocate memory
+        </span><span class="macro">assert_eq!</span>(map.capacity(), <span class="number">0</span>);
+
+        map.try_reserve(<span class="number">10</span>).unwrap();
+
+        <span class="comment">// And now map can hold at least 10 elements
+        </span><span class="macro">assert!</span>(map.capacity() &gt;= <span class="number">10</span>);
+    }
+
+    <span class="attr">#[test]
+    </span><span class="kw">fn </span>test_try_reserve_errors() {
+        <span class="kw">let </span><span class="kw-2">mut </span>map: DashMap&lt;i32, i32&gt; = DashMap::new();
+
+        <span class="kw">match </span>map.try_reserve(usize::MAX) {
+            <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; {}
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;should have raised CapacityOverflow error&quot;</span>),
+        }
+    }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="dashmap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="dashmap" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

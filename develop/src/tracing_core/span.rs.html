@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-core-0.1.25/src/span.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>span.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_core/index.html">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-core-0.1.30/src/span.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>span.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_core/index.html">
                         <img src="https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -333,6 +333,13 @@
 <a href="#332" id="332">332</a>
 <a href="#333" id="333">333</a>
 <a href="#334" id="334">334</a>
+<a href="#335" id="335">335</a>
+<a href="#336" id="336">336</a>
+<a href="#337" id="337">337</a>
+<a href="#338" id="338">338</a>
+<a href="#339" id="339">339</a>
+<a href="#340" id="340">340</a>
+<a href="#341" id="341">341</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Spans represent periods of time in the execution of a program.
 </span><span class="kw">use </span><span class="kw">crate</span>::field::FieldSet;
 <span class="kw">use </span><span class="kw">crate</span>::parent::Parent;
@@ -345,8 +352,8 @@
 /// the [`new_span`] trait method. See the documentation for that method for
 /// more information on span ID generation.
 ///
-/// [`Subscriber`]: ../subscriber/trait.Subscriber.html
-/// [`new_span`]: ../subscriber/trait.Subscriber.html#method.new_span
+/// [`Subscriber`]: super::subscriber::Subscriber
+/// [`new_span`]: super::subscriber::Subscriber::new_span
 </span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, Hash)]
 </span><span class="kw">pub struct </span>Id(NonZeroU64);
 
@@ -373,9 +380,8 @@
 /// - &quot;none&quot;, indicating that the current context is known to not be in a span,
 /// - &quot;some&quot;, with the current span&#39;s [`Id`] and [`Metadata`].
 ///
-/// [the `Subscriber` considers]: ../subscriber/trait.Subscriber.html#method.current_span
-/// [`Id`]: struct.Id.html
-/// [`Metadata`]: ../metadata/struct.Metadata.html
+/// [the `Subscriber` considers]: super::subscriber::Subscriber::current_span
+/// [`Metadata`]: super::metadata::Metadata
 </span><span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>Current {
     inner: CurrentInner,
@@ -408,7 +414,7 @@
 
     <span class="doccomment">/// Constructs a new span ID from the given `NonZeroU64`.
     ///
-    /// Unlike [`Id::from_u64`](#method.from_u64), this will never panic.
+    /// Unlike [`Id::from_u64`](Id::from_u64()), this will never panic.
     </span><span class="attr">#[inline]
     </span><span class="kw">pub const fn </span>from_non_zero_u64(id: NonZeroU64) -&gt; <span class="self">Self </span>{
         Id(id)
@@ -514,7 +520,7 @@
     <span class="doccomment">/// Records all the fields in this set of `Attributes` with the provided
     /// [Visitor].
     ///
-    /// [visitor]: ../field/trait.Visit.html
+    /// [visitor]: super::field::Visit
     </span><span class="kw">pub fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, visitor: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>field::Visit) {
         <span class="self">self</span>.values.record(visitor)
     }
@@ -556,9 +562,17 @@
 
     <span class="doccomment">/// Records all the fields in this `Record` with the provided [Visitor].
     ///
-    /// [visitor]: ../field/trait.Visit.html
+    /// [visitor]: super::field::Visit
     </span><span class="kw">pub fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, visitor: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>field::Visit) {
         <span class="self">self</span>.values.record(visitor)
+    }
+
+    <span class="doccomment">/// Returns the number of fields that would be visited from this `Record`
+    /// when [`Record::record()`] is called
+    ///
+    /// [`Record::record()`]: Record::record()
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.values.len()
     }
 
     <span class="doccomment">/// Returns `true` if this `Record` contains a value for the given `Field`.
@@ -608,9 +622,9 @@
     /// `None`, but in this case, that is because the subscriber does not keep
     /// track of the currently-entered span.
     ///
-    /// [`id`]: #method.id
-    /// [`metadata`]: #method.metadata
-    /// [`into_inner`]: #method.into_inner
+    /// [`id`]: Current::id()
+    /// [`metadata`]: Current::metadata()
+    /// [`into_inner`]: Current::into_inner()
     </span><span class="kw">pub fn </span>is_known(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         !<span class="macro">matches!</span>(<span class="self">self</span>.inner, CurrentInner::Unknown)
     }
@@ -668,4 +682,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

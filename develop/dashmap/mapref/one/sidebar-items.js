@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":[["Ref",""],["RefMut",""]]};
+window.SIDEBAR_ITEMS = {"struct":[["MappedRef",""],["MappedRefMut",""],["Ref",""],["RefMut",""]]};

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-attributes-0.1.20/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_attributes/index.html">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-attributes-0.1.23/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_attributes/index.html">
                         <img src="https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -612,6 +612,70 @@
 <a href="#611" id="611">611</a>
 <a href="#612" id="612">612</a>
 <a href="#613" id="613">613</a>
+<a href="#614" id="614">614</a>
+<a href="#615" id="615">615</a>
+<a href="#616" id="616">616</a>
+<a href="#617" id="617">617</a>
+<a href="#618" id="618">618</a>
+<a href="#619" id="619">619</a>
+<a href="#620" id="620">620</a>
+<a href="#621" id="621">621</a>
+<a href="#622" id="622">622</a>
+<a href="#623" id="623">623</a>
+<a href="#624" id="624">624</a>
+<a href="#625" id="625">625</a>
+<a href="#626" id="626">626</a>
+<a href="#627" id="627">627</a>
+<a href="#628" id="628">628</a>
+<a href="#629" id="629">629</a>
+<a href="#630" id="630">630</a>
+<a href="#631" id="631">631</a>
+<a href="#632" id="632">632</a>
+<a href="#633" id="633">633</a>
+<a href="#634" id="634">634</a>
+<a href="#635" id="635">635</a>
+<a href="#636" id="636">636</a>
+<a href="#637" id="637">637</a>
+<a href="#638" id="638">638</a>
+<a href="#639" id="639">639</a>
+<a href="#640" id="640">640</a>
+<a href="#641" id="641">641</a>
+<a href="#642" id="642">642</a>
+<a href="#643" id="643">643</a>
+<a href="#644" id="644">644</a>
+<a href="#645" id="645">645</a>
+<a href="#646" id="646">646</a>
+<a href="#647" id="647">647</a>
+<a href="#648" id="648">648</a>
+<a href="#649" id="649">649</a>
+<a href="#650" id="650">650</a>
+<a href="#651" id="651">651</a>
+<a href="#652" id="652">652</a>
+<a href="#653" id="653">653</a>
+<a href="#654" id="654">654</a>
+<a href="#655" id="655">655</a>
+<a href="#656" id="656">656</a>
+<a href="#657" id="657">657</a>
+<a href="#658" id="658">658</a>
+<a href="#659" id="659">659</a>
+<a href="#660" id="660">660</a>
+<a href="#661" id="661">661</a>
+<a href="#662" id="662">662</a>
+<a href="#663" id="663">663</a>
+<a href="#664" id="664">664</a>
+<a href="#665" id="665">665</a>
+<a href="#666" id="666">666</a>
+<a href="#667" id="667">667</a>
+<a href="#668" id="668">668</a>
+<a href="#669" id="669">669</a>
+<a href="#670" id="670">670</a>
+<a href="#671" id="671">671</a>
+<a href="#672" id="672">672</a>
+<a href="#673" id="673">673</a>
+<a href="#674" id="674">674</a>
+<a href="#675" id="675">675</a>
+<a href="#676" id="676">676</a>
+<a href="#677" id="677">677</a>
 </pre><pre class="rust"><code><span class="doccomment">//! A procedural macro attribute for instrumenting functions with [`tracing`].
 //!
 //! [`tracing`] is a framework for instrumenting Rust programs to collect
@@ -630,7 +694,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! tracing-attributes = &quot;0.1.20&quot;
+//! tracing-attributes = &quot;0.1.23&quot;
 //! ```
 //!
 //! The [`#[instrument]`][instrument] attribute can now be added to a function
@@ -650,7 +714,7 @@
 //!
 //! [`tracing`]: https://crates.io/crates/tracing
 //! [span]: https://docs.rs/tracing/latest/tracing/span/index.html
-//! [instrument]: attr.instrument.html
+//! [instrument]: macro@self::instrument
 //!
 //! ## Supported Rust Versions
 //!
@@ -666,7 +730,7 @@
 //! supported compiler version is not considered a semver breaking change as
 //! long as doing so complies with this policy.
 //!
-</span><span class="attr">#![doc(html_root_url = <span class="string">&quot;https://docs.rs/tracing-attributes/0.1.20&quot;</span>)]
+</span><span class="attr">#![doc(html_root_url = <span class="string">&quot;https://docs.rs/tracing-attributes/0.1.23&quot;</span>)]
 #![doc(
     html_logo_url = <span class="string">&quot;https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png&quot;</span>,
     issue_tracker_base_url = <span class="string">&quot;https://github.com/tokio-rs/tracing/issues/&quot;
@@ -700,14 +764,14 @@
 <span class="kw">use </span>proc_macro2::TokenStream;
 <span class="kw">use </span>quote::ToTokens;
 <span class="kw">use </span>syn::parse::{Parse, ParseStream};
-<span class="kw">use </span>syn::{Attribute, Block, ItemFn, Signature, Visibility};
+<span class="kw">use </span>syn::{Attribute, ItemFn, Signature, Visibility};
 
 <span class="kw">mod </span>attr;
 <span class="kw">mod </span>expand;
 <span class="doccomment">/// Instruments a function to create and enter a `tracing` [span] every time
 /// the function is called.
 ///
-/// Unless overriden, a span with `info` level will be generated.
+/// Unless overriden, a span with the [`INFO`] [level] will be generated.
 /// The generated span&#39;s name will be the name of the function.
 /// By default, all arguments to the function are included as fields on the
 /// span. Arguments that are `tracing` [primitive types] implementing the
@@ -959,6 +1023,47 @@
 ///     // ...
 /// }
 /// ```
+/// Overriding the generated span&#39;s parent:
+/// ```
+/// # use tracing_attributes::instrument;
+/// #[instrument(parent = None)]
+/// pub fn my_function() {
+///     // ...
+/// }
+/// ```
+/// ```
+/// # use tracing_attributes::instrument;
+/// // A struct which owns a span handle.
+/// struct MyStruct
+/// {
+///     span: tracing::Span
+/// }
+///
+/// impl MyStruct
+/// {
+///     // Use the struct&#39;s `span` field as the parent span
+///     #[instrument(parent = &amp;self.span, skip(self))]
+///     fn my_method(&amp;self) {}
+/// }
+/// ```
+/// Specifying [`follows_from`] relationships:
+/// ```
+/// # use tracing_attributes::instrument;
+/// #[instrument(follows_from = causes)]
+/// pub fn my_function(causes: &amp;[tracing::Id]) {
+///     // ...
+/// }
+/// ```
+/// Any expression of type `impl IntoIterator&lt;Item = impl Into&lt;Option&lt;Id&gt;&gt;&gt;`
+/// may be provided to `follows_from`; e.g.:
+/// ```
+/// # use tracing_attributes::instrument;
+/// #[instrument(follows_from = [cause])]
+/// pub fn my_function(cause: &amp;tracing::span::EnteredSpan) {
+///     // ...
+/// }
+/// ```
+///
 ///
 /// To skip recording an argument, pass the argument&#39;s name to the `skip`:
 ///
@@ -993,7 +1098,7 @@
 /// }
 /// ```
 /// The return value event will have the same level as the span generated by `#[instrument]`.
-/// By default, this will be `TRACE`, but if the level is overridden, the event will be at the same
+/// By default, this will be [`INFO`], but if the level is overridden, the event will be at the same
 /// level.
 ///
 /// **Note**:  if the function returns a `Result&lt;T, E&gt;`, `ret` will record returned values if and
@@ -1033,6 +1138,9 @@
 ///     Ok(())
 /// }
 /// ```
+///
+/// If a `target` is specified, both the `ret` and `err` arguments will emit outputs to
+/// the declared target (or the default channel if `target` is not specified).
 ///
 /// The `ret` and `err` arguments can be combined in order to record an event if a
 /// function returns [`Result::Ok`] or [`Result::Err`]:
@@ -1115,7 +1223,9 @@
 /// [`INFO`]: https://docs.rs/tracing/latest/tracing/struct.Level.html#associatedconstant.INFO
 /// [empty field]: https://docs.rs/tracing/latest/tracing/field/struct.Empty.html
 /// [field syntax]: https://docs.rs/tracing/latest/tracing/#recording-fields
-/// [`fmt::Debug`]: https://doc.rust-lang.org/std/fmt/trait.Debug.html
+/// [`follows_from`]: https://docs.rs/tracing/latest/tracing/struct.Span.html#method.follows_from
+/// [`tracing`]: https://github.com/tokio-rs/tracing
+/// [`fmt::Debug`]: std::fmt::Debug
 </span><span class="attr">#[proc_macro_attribute]
 </span><span class="kw">pub fn </span>instrument(
     args: proc_macro::TokenStream,
@@ -1155,11 +1265,13 @@
     <span class="comment">// check for async_trait-like patterns in the block, and instrument
     // the future instead of the wrapper
     </span><span class="kw">if let </span><span class="prelude-val">Some</span>(async_like) = expand::AsyncInfo::from_fn(<span class="kw-2">&amp;</span>input) {
-        <span class="kw">return </span><span class="prelude-val">Ok</span>(async_like.gen_async(args, instrumented_function_name.as_str()));
+        <span class="kw">return </span>async_like.gen_async(args, instrumented_function_name.as_str());
     }
 
+    <span class="kw">let </span>input = MaybeItemFn::from(input);
+
     <span class="prelude-val">Ok</span>(expand::gen_function(
-        (<span class="kw-2">&amp;</span>input).into(),
+        input.as_ref(),
         args,
         instrumented_function_name.as_str(),
         <span class="prelude-val">None</span>,
@@ -1171,7 +1283,8 @@
 /// which&#39;s block is just a `TokenStream` (it may contain invalid code).
 </span><span class="attr">#[derive(Debug, Clone)]
 </span><span class="kw">struct </span>MaybeItemFn {
-    attrs: Vec&lt;Attribute&gt;,
+    outer_attrs: Vec&lt;Attribute&gt;,
+    inner_attrs: Vec&lt;Attribute&gt;,
     vis: Visibility,
     sig: Signature,
     block: TokenStream,
@@ -1180,7 +1293,8 @@
 <span class="kw">impl </span>MaybeItemFn {
     <span class="kw">fn </span>as_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; MaybeItemFnRef&lt;<span class="lifetime">&#39;_</span>, TokenStream&gt; {
         MaybeItemFnRef {
-            attrs: <span class="kw-2">&amp;</span><span class="self">self</span>.attrs,
+            outer_attrs: <span class="kw-2">&amp;</span><span class="self">self</span>.outer_attrs,
+            inner_attrs: <span class="kw-2">&amp;</span><span class="self">self</span>.inner_attrs,
             vis: <span class="kw-2">&amp;</span><span class="self">self</span>.vis,
             sig: <span class="kw-2">&amp;</span><span class="self">self</span>.sig,
             block: <span class="kw-2">&amp;</span><span class="self">self</span>.block,
@@ -1192,12 +1306,14 @@
 /// (just like `ItemFn`, but skips parsing the body).
 </span><span class="kw">impl </span>Parse <span class="kw">for </span>MaybeItemFn {
     <span class="kw">fn </span>parse(input: ParseStream&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; syn::Result&lt;<span class="self">Self</span>&gt; {
-        <span class="kw">let </span>attrs = input.call(syn::Attribute::parse_outer)<span class="question-mark">?</span>;
+        <span class="kw">let </span>outer_attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
         <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
         <span class="kw">let </span>sig: Signature = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>inner_attrs = input.call(Attribute::parse_inner)<span class="question-mark">?</span>;
         <span class="kw">let </span>block: TokenStream = input.parse()<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
-            attrs,
+            outer_attrs,
+            inner_attrs,
             vis,
             sig,
             block,
@@ -1205,25 +1321,37 @@
     }
 }
 
+<span class="kw">impl </span>From&lt;ItemFn&gt; <span class="kw">for </span>MaybeItemFn {
+    <span class="kw">fn </span>from(
+        ItemFn {
+            attrs,
+            vis,
+            sig,
+            block,
+        }: ItemFn,
+    ) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span>(outer_attrs, inner_attrs) = attrs
+            .into_iter()
+            .partition(|attr| attr.style == syn::AttrStyle::Outer);
+        <span class="self">Self </span>{
+            outer_attrs,
+            inner_attrs,
+            vis,
+            sig,
+            block: block.to_token_stream(),
+        }
+    }
+}
+
 <span class="doccomment">/// A generic reference type for `MaybeItemFn`,
 /// that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream`, `Block`).
 </span><span class="attr">#[derive(Debug, Clone)]
 </span><span class="kw">struct </span>MaybeItemFnRef&lt;<span class="lifetime">&#39;a</span>, B: ToTokens&gt; {
-    attrs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Vec&lt;Attribute&gt;,
+    outer_attrs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Vec&lt;Attribute&gt;,
+    inner_attrs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Vec&lt;Attribute&gt;,
     vis: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Visibility,
     sig: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Signature,
     block: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>B,
 }
-
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ItemFn&gt; <span class="kw">for </span>MaybeItemFnRef&lt;<span class="lifetime">&#39;a</span>, Box&lt;Block&gt;&gt; {
-    <span class="kw">fn </span>from(val: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ItemFn) -&gt; <span class="self">Self </span>{
-        MaybeItemFnRef {
-            attrs: <span class="kw-2">&amp;</span>val.attrs,
-            vis: <span class="kw-2">&amp;</span>val.vis,
-            sig: <span class="kw-2">&amp;</span>val.sig,
-            block: <span class="kw-2">&amp;</span>val.block,
-        }
-    }
-}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_attributes" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_attributes" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

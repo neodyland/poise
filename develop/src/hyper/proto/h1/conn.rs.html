@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/hyper-0.14.18/src/proto/h1/conn.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>conn.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../hyper/index.html"><img class="rust-logo" src="../../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/hyper-0.14.23/src/proto/h1/conn.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>conn.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../hyper/index.html"><img class="rust-logo" src="../../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1417,12 +1417,6 @@
 <a href="#1417" id="1417">1417</a>
 <a href="#1418" id="1418">1418</a>
 <a href="#1419" id="1419">1419</a>
-<a href="#1420" id="1420">1420</a>
-<a href="#1421" id="1421">1421</a>
-<a href="#1422" id="1422">1422</a>
-<a href="#1423" id="1423">1423</a>
-<a href="#1424" id="1424">1424</a>
-<a href="#1425" id="1425">1425</a>
 </pre><pre class="rust"><code><span class="kw">use </span>std::fmt;
 <span class="kw">use </span>std::io;
 <span class="kw">use </span>std::marker::PhantomData;
@@ -1483,6 +1477,8 @@
                 <span class="attr">#[cfg(all(feature = <span class="string">&quot;server&quot;</span>, feature = <span class="string">&quot;runtime&quot;</span>))]
                 </span>h1_header_read_timeout_running: <span class="bool-val">false</span>,
                 preserve_header_case: <span class="bool-val">false</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                </span>preserve_header_order: <span class="bool-val">false</span>,
                 title_case_headers: <span class="bool-val">false</span>,
                 h09_responses: <span class="bool-val">false</span>,
                 <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
@@ -1536,6 +1532,11 @@
         <span class="self">self</span>.state.preserve_header_case = <span class="bool-val">true</span>;
     }
 
+    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_preserve_header_order(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="self">self</span>.state.preserve_header_order = <span class="bool-val">true</span>;
+    }
+
     <span class="attr">#[cfg(feature = <span class="string">&quot;client&quot;</span>)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_h09_responses(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
         <span class="self">self</span>.state.h09_responses = <span class="bool-val">true</span>;
@@ -1573,19 +1574,15 @@
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>can_read_head(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">match </span><span class="self">self</span>.state.reading {
-            Reading::Init =&gt; {
-                <span class="kw">if </span>T::should_read_first() {
-                    <span class="bool-val">true
-                </span>} <span class="kw">else </span>{
-                    <span class="kw">match </span><span class="self">self</span>.state.writing {
-                        Writing::Init =&gt; <span class="bool-val">false</span>,
-                        <span class="kw">_ </span>=&gt; <span class="bool-val">true</span>,
-                    }
-                }
-            }
-            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
+        <span class="kw">if </span>!<span class="macro">matches!</span>(<span class="self">self</span>.state.reading, Reading::Init) {
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
+
+        <span class="kw">if </span>T::should_read_first() {
+            <span class="kw">return </span><span class="bool-val">true</span>;
+        }
+
+        !<span class="macro">matches!</span>(<span class="self">self</span>.state.writing, Writing::Init)
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>can_read_body(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
@@ -1625,6 +1622,8 @@
                 <span class="attr">#[cfg(all(feature = <span class="string">&quot;server&quot;</span>, feature = <span class="string">&quot;runtime&quot;</span>))]
                 </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="self">self</span>.state.h1_header_read_timeout_running,
                 preserve_header_case: <span class="self">self</span>.state.preserve_header_case,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                </span>preserve_header_order: <span class="self">self</span>.state.preserve_header_order,
                 h09_responses: <span class="self">self</span>.state.h09_responses,
                 <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                 </span>on_informational: <span class="kw-2">&amp;mut </span><span class="self">self</span>.state.on_informational,
@@ -1783,10 +1782,10 @@
     }
 
     <span class="kw">fn </span>is_mid_message(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">match </span>(<span class="kw-2">&amp;</span><span class="self">self</span>.state.reading, <span class="kw-2">&amp;</span><span class="self">self</span>.state.writing) {
-            (<span class="kw-2">&amp;</span>Reading::Init, <span class="kw-2">&amp;</span>Writing::Init) =&gt; <span class="bool-val">false</span>,
-            <span class="kw">_ </span>=&gt; <span class="bool-val">true</span>,
-        }
+        !<span class="macro">matches!</span>(
+            (<span class="kw-2">&amp;</span><span class="self">self</span>.state.reading, <span class="kw-2">&amp;</span><span class="self">self</span>.state.writing),
+            (<span class="kw-2">&amp;</span>Reading::Init, <span class="kw-2">&amp;</span>Writing::Init)
+        )
     }
 
     <span class="comment">// This will check to make sure the io object read is empty.
@@ -1909,11 +1908,10 @@
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>can_write_head(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">if </span>!T::should_read_first() {
-            <span class="kw">if let </span>Reading::Closed = <span class="self">self</span>.state.reading {
-                <span class="kw">return </span><span class="bool-val">false</span>;
-            }
+        <span class="kw">if </span>!T::should_read_first() &amp;&amp; <span class="macro">matches!</span>(<span class="self">self</span>.state.reading, Reading::Closed) {
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
+
         <span class="kw">match </span><span class="self">self</span>.state.writing {
             Writing::Init =&gt; <span class="self">self</span>.io.can_headers_buf(),
             <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
@@ -2007,7 +2005,7 @@
         }
     }
 
-    <span class="comment">// Fix keep-alives when Connection: keep-alive header is not present
+    <span class="comment">// Fix keep-alive when Connection: keep-alive header is not present
     </span><span class="kw">fn </span>fix_keep_alive(<span class="kw-2">&amp;mut </span><span class="self">self</span>, head: <span class="kw-2">&amp;mut </span>MessageHead&lt;T::Outgoing&gt;) {
         <span class="kw">let </span>outgoing_is_keep_alive = head
             .headers
@@ -2057,14 +2055,14 @@
             Writing::Body(<span class="kw-2">ref mut </span>encoder) =&gt; {
                 <span class="self">self</span>.io.buffer(encoder.encode(chunk));
 
-                <span class="kw">if </span>encoder.is_eof() {
-                    <span class="kw">if </span>encoder.is_last() {
-                        Writing::Closed
-                    } <span class="kw">else </span>{
-                        Writing::KeepAlive
-                    }
-                } <span class="kw">else </span>{
+                <span class="kw">if </span>!encoder.is_eof() {
                     <span class="kw">return</span>;
+                }
+
+                <span class="kw">if </span>encoder.is_last() {
+                    Writing::Closed
+                } <span class="kw">else </span>{
+                    Writing::KeepAlive
                 }
             }
             <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;write_body invalid state: {:?}&quot;</span>, <span class="self">self</span>.state.writing),
@@ -2096,32 +2094,31 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>end_body(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::Result&lt;()&gt; {
         <span class="macro">debug_assert!</span>(<span class="self">self</span>.can_write_body());
 
-        <span class="kw">let </span><span class="kw-2">mut </span>res = <span class="prelude-val">Ok</span>(());
-        <span class="kw">let </span>state = <span class="kw">match </span><span class="self">self</span>.state.writing {
-            Writing::Body(<span class="kw-2">ref mut </span>encoder) =&gt; {
-                <span class="comment">// end of stream, that means we should try to eof
-                </span><span class="kw">match </span>encoder.end() {
-                    <span class="prelude-val">Ok</span>(end) =&gt; {
-                        <span class="kw">if let </span><span class="prelude-val">Some</span>(end) = end {
-                            <span class="self">self</span>.io.buffer(end);
-                        }
-                        <span class="kw">if </span>encoder.is_last() || encoder.is_close_delimited() {
-                            Writing::Closed
-                        } <span class="kw">else </span>{
-                            Writing::KeepAlive
-                        }
-                    }
-                    <span class="prelude-val">Err</span>(not_eof) =&gt; {
-                        res = <span class="prelude-val">Err</span>(<span class="kw">crate</span>::Error::new_body_write_aborted().with(not_eof));
-                        Writing::Closed
-                    }
-                }
-            }
+        <span class="kw">let </span>encoder = <span class="kw">match </span><span class="self">self</span>.state.writing {
+            Writing::Body(<span class="kw-2">ref mut </span>enc) =&gt; enc,
             <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(()),
         };
 
-        <span class="self">self</span>.state.writing = state;
-        res
+        <span class="comment">// end of stream, that means we should try to eof
+        </span><span class="kw">match </span>encoder.end() {
+            <span class="prelude-val">Ok</span>(end) =&gt; {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(end) = end {
+                    <span class="self">self</span>.io.buffer(end);
+                }
+
+                <span class="self">self</span>.state.writing = <span class="kw">if </span>encoder.is_last() || encoder.is_close_delimited() {
+                    Writing::Closed
+                } <span class="kw">else </span>{
+                    Writing::KeepAlive
+                };
+
+                <span class="prelude-val">Ok</span>(())
+            }
+            <span class="prelude-val">Err</span>(not_eof) =&gt; {
+                <span class="self">self</span>.state.writing = Writing::Closed;
+                <span class="prelude-val">Err</span>(<span class="kw">crate</span>::Error::new_body_write_aborted().with(not_eof))
+            }
+        }
     }
 
     <span class="comment">// When we get a parse error, depending on what side we are, we might be able
@@ -2174,10 +2171,7 @@
 
         <span class="comment">// If still in Reading::Body, just give up
         </span><span class="kw">match </span><span class="self">self</span>.state.reading {
-            Reading::Init | Reading::KeepAlive =&gt; {
-                <span class="macro">trace!</span>(<span class="string">&quot;body drained&quot;</span>);
-                <span class="kw">return</span>;
-            }
+            Reading::Init | Reading::KeepAlive =&gt; <span class="macro">trace!</span>(<span class="string">&quot;body drained&quot;</span>),
             <span class="kw">_ </span>=&gt; <span class="self">self</span>.close_read(),
         }
     }
@@ -2249,6 +2243,8 @@
     <span class="attr">#[cfg(all(feature = <span class="string">&quot;server&quot;</span>, feature = <span class="string">&quot;runtime&quot;</span>))]
     </span>h1_header_read_timeout_running: bool,
     preserve_header_case: bool,
+    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+    </span>preserve_header_order: bool,
     title_case_headers: bool,
     h09_responses: bool,
     <span class="doccomment">/// If set, called with each 1xx informational response received for
@@ -2426,43 +2422,35 @@
 
         <span class="self">self</span>.method = <span class="prelude-val">None</span>;
         <span class="self">self</span>.keep_alive.idle();
-        <span class="kw">if </span><span class="self">self</span>.is_idle() {
-            <span class="self">self</span>.reading = Reading::Init;
-            <span class="self">self</span>.writing = Writing::Init;
 
-            <span class="comment">// !T::should_read_first() means Client.
-            //
-            // If Client connection has just gone idle, the Dispatcher
-            // should try the poll loop one more time, so as to poll the
-            // pending requests stream.
-            </span><span class="kw">if </span>!T::should_read_first() {
-                <span class="self">self</span>.notify_read = <span class="bool-val">true</span>;
-            }
-        } <span class="kw">else </span>{
+        <span class="kw">if </span>!<span class="self">self</span>.is_idle() {
             <span class="self">self</span>.close();
+            <span class="kw">return</span>;
+        }
+
+        <span class="self">self</span>.reading = Reading::Init;
+        <span class="self">self</span>.writing = Writing::Init;
+
+        <span class="comment">// !T::should_read_first() means Client.
+        //
+        // If Client connection has just gone idle, the Dispatcher
+        // should try the poll loop one more time, so as to poll the
+        // pending requests stream.
+        </span><span class="kw">if </span>!T::should_read_first() {
+            <span class="self">self</span>.notify_read = <span class="bool-val">true</span>;
         }
     }
 
     <span class="kw">fn </span>is_idle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">if let </span>KA::Idle = <span class="self">self</span>.keep_alive.status() {
-            <span class="bool-val">true
-        </span>} <span class="kw">else </span>{
-            <span class="bool-val">false
-        </span>}
+        <span class="macro">matches!</span>(<span class="self">self</span>.keep_alive.status(), KA::Idle)
     }
 
     <span class="kw">fn </span>is_read_closed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">match </span><span class="self">self</span>.reading {
-            Reading::Closed =&gt; <span class="bool-val">true</span>,
-            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
-        }
+        <span class="macro">matches!</span>(<span class="self">self</span>.reading, Reading::Closed)
     }
 
     <span class="kw">fn </span>is_write_closed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-        <span class="kw">match </span><span class="self">self</span>.writing {
-            Writing::Closed =&gt; <span class="bool-val">true</span>,
-            <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
-        }
+        <span class="macro">matches!</span>(<span class="self">self</span>.writing, Writing::Closed)
     }
 
     <span class="kw">fn </span>prepare_upgrade(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::upgrade::OnUpgrade {
@@ -2849,4 +2837,4 @@
     */
 </span>}
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="hyper" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="hyper" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

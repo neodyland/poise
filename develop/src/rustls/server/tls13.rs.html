@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rustls-0.20.4/src/server/tls13.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tls13.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../rustls/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rustls-0.20.7/src/server/tls13.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tls13.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../rustls/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1364,8 +1364,29 @@
 <a href="#1364" id="1364">1364</a>
 <a href="#1365" id="1365">1365</a>
 <a href="#1366" id="1366">1366</a>
+<a href="#1367" id="1367">1367</a>
+<a href="#1368" id="1368">1368</a>
+<a href="#1369" id="1369">1369</a>
+<a href="#1370" id="1370">1370</a>
+<a href="#1371" id="1371">1371</a>
+<a href="#1372" id="1372">1372</a>
+<a href="#1373" id="1373">1373</a>
+<a href="#1374" id="1374">1374</a>
+<a href="#1375" id="1375">1375</a>
+<a href="#1376" id="1376">1376</a>
+<a href="#1377" id="1377">1377</a>
+<a href="#1378" id="1378">1378</a>
+<a href="#1379" id="1379">1379</a>
+<a href="#1380" id="1380">1380</a>
+<a href="#1381" id="1381">1381</a>
+<a href="#1382" id="1382">1382</a>
+<a href="#1383" id="1383">1383</a>
+<a href="#1384" id="1384">1384</a>
+<a href="#1385" id="1385">1385</a>
+<a href="#1386" id="1386">1386</a>
 </pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::check::inappropriate_handshake_message;
 <span class="kw">use </span><span class="kw">crate</span>::conn::{CommonState, ConnectionRandoms, State};
+<span class="kw">use </span><span class="kw">crate</span>::enums::ProtocolVersion;
 <span class="kw">use </span><span class="kw">crate</span>::error::Error;
 <span class="kw">use </span><span class="kw">crate</span>::hash_hs::HandshakeHash;
 <span class="kw">use </span><span class="kw">crate</span>::key::Certificate;
@@ -1373,7 +1394,7 @@
 </span><span class="kw">use </span><span class="kw">crate</span>::log::{debug, trace, warn};
 <span class="kw">use </span><span class="kw">crate</span>::msgs::codec::Codec;
 <span class="kw">use </span><span class="kw">crate</span>::msgs::enums::{AlertDescription, KeyUpdateRequest};
-<span class="kw">use </span><span class="kw">crate</span>::msgs::enums::{ContentType, HandshakeType, ProtocolVersion};
+<span class="kw">use </span><span class="kw">crate</span>::msgs::enums::{ContentType, HandshakeType};
 <span class="kw">use </span><span class="kw">crate</span>::msgs::handshake::HandshakeMessagePayload;
 <span class="kw">use </span><span class="kw">crate</span>::msgs::handshake::HandshakePayload;
 <span class="kw">use </span><span class="kw">crate</span>::msgs::handshake::{NewSessionTicketExtension, NewSessionTicketPayloadTLS13};
@@ -1387,6 +1408,8 @@
 <span class="kw">use </span><span class="kw">crate</span>::verify;
 <span class="attr">#[cfg(feature = <span class="string">&quot;quic&quot;</span>)]
 </span><span class="kw">use crate</span>::{check::inappropriate_message, conn::Protocol};
+<span class="attr">#[cfg(feature = <span class="string">&quot;secret_extraction&quot;</span>)]
+</span><span class="kw">use crate</span>::{conn::Side, suites::PartiallyExtractedSecrets};
 
 <span class="kw">use </span><span class="kw">super</span>::hs::{<span class="self">self</span>, HandshakeHashOrBuffer, ServerContext};
 <span class="kw">use </span><span class="kw">super</span>::server_conn::ServerConnectionData;
@@ -1398,11 +1421,12 @@
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">use </span>client_hello::CompleteClientHelloHandling;
 
 <span class="kw">mod </span>client_hello {
+    <span class="kw">use </span><span class="kw">crate</span>::enums::SignatureScheme;
     <span class="kw">use </span><span class="kw">crate</span>::kx;
     <span class="kw">use </span><span class="kw">crate</span>::msgs::base::{Payload, PayloadU8};
     <span class="kw">use </span><span class="kw">crate</span>::msgs::ccs::ChangeCipherSpecPayload;
+    <span class="kw">use </span><span class="kw">crate</span>::msgs::enums::NamedGroup;
     <span class="kw">use </span><span class="kw">crate</span>::msgs::enums::{Compression, PSKKeyExchangeMode};
-    <span class="kw">use </span><span class="kw">crate</span>::msgs::enums::{NamedGroup, SignatureScheme};
     <span class="kw">use </span><span class="kw">crate</span>::msgs::handshake::CertReqExtension;
     <span class="kw">use </span><span class="kw">crate</span>::msgs::handshake::CertificateEntry;
     <span class="kw">use </span><span class="kw">crate</span>::msgs::handshake::CertificateExtension;
@@ -1468,8 +1492,10 @@
             psk: <span class="kw-2">&amp;</span>[u8],
             binder: <span class="kw-2">&amp;</span>[u8],
         ) -&gt; bool {
-            <span class="kw">let </span>binder_plaintext = <span class="kw">match </span>client_hello.payload {
-                MessagePayload::Handshake(<span class="kw-2">ref </span>hmp) =&gt; hmp.get_encoding_for_binder_signing(),
+            <span class="kw">let </span>binder_plaintext = <span class="kw">match </span><span class="kw-2">&amp;</span>client_hello.payload {
+                MessagePayload::Handshake { parsed, .. } =&gt; {
+                    parsed.get_encoding_for_binder_signing()
+                }
                 <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
             };
 
@@ -1839,7 +1865,7 @@
 
         <span class="kw">let </span>sh = Message {
             version: ProtocolVersion::TLSv1_2,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::ServerHello,
                 payload: HandshakePayload::ServerHello(ServerHelloPayload {
                     legacy_version: ProtocolVersion::TLSv1_2,
@@ -1947,7 +1973,7 @@
 
         <span class="kw">let </span>m = Message {
             version: ProtocolVersion::TLSv1_2,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::HelloRetryRequest,
                 payload: HandshakePayload::HelloRetryRequest(req),
             }),
@@ -2048,7 +2074,7 @@
 
         <span class="kw">let </span>ee = Message {
             version: ProtocolVersion::TLSv1_3,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::EncryptedExtensions,
                 payload: HandshakePayload::EncryptedExtensions(ep.exts),
             }),
@@ -2097,7 +2123,7 @@
 
         <span class="kw">let </span>m = Message {
             version: ProtocolVersion::TLSv1_3,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::CertificateRequest,
                 payload: HandshakePayload::CertificateRequestTLS13(cr),
             }),
@@ -2147,7 +2173,7 @@
         <span class="kw">let </span>cert_body = CertificatePayloadTLS13::new(cert_entries);
         <span class="kw">let </span>c = Message {
             version: ProtocolVersion::TLSv1_3,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::Certificate,
                 payload: HandshakePayload::CertificateTLS13(cert_body),
             }),
@@ -2177,7 +2203,7 @@
 
         <span class="kw">let </span>m = Message {
             version: ProtocolVersion::TLSv1_3,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::CertificateVerify,
                 payload: HandshakePayload::CertificateVerify(cv),
             }),
@@ -2203,7 +2229,7 @@
 
         <span class="kw">let </span>m = Message {
             version: ProtocolVersion::TLSv1_3,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::Finished,
                 payload: HandshakePayload::Finished(verify_data_payload),
             }),
@@ -2414,10 +2440,14 @@
                     }
                 }
             }
-            MessagePayload::Handshake(HandshakeMessagePayload {
-                typ: HandshakeType::EndOfEarlyData,
-                payload: HandshakePayload::EndOfEarlyData,
-            }) =&gt; {
+            MessagePayload::Handshake {
+                parsed:
+                    HandshakeMessagePayload {
+                        typ: HandshakeType::EndOfEarlyData,
+                        payload: HandshakePayload::EndOfEarlyData,
+                    },
+                ..
+            } =&gt; {
                 cx.common
                     .record_layer
                     .set_message_decrypter(
@@ -2533,7 +2563,7 @@
 
         <span class="kw">let </span>m = Message {
             version: ProtocolVersion::TLSv1_3,
-            payload: MessagePayload::Handshake(HandshakeMessagePayload {
+            payload: MessagePayload::handshake(HandshakeMessagePayload {
                 typ: HandshakeType::NewSessionTicket,
                 payload: HandshakePayload::NewSessionTicketTLS13(payload),
             }),
@@ -2666,10 +2696,14 @@
             MessagePayload::ApplicationData(payload) =&gt; cx
                 .common
                 .take_received_plaintext(payload),
-            MessagePayload::Handshake(HandshakeMessagePayload {
-                payload: HandshakePayload::KeyUpdate(key_update),
+            MessagePayload::Handshake {
+                parsed:
+                    HandshakeMessagePayload {
+                        payload: HandshakePayload::KeyUpdate(key_update),
+                        ..
+                    },
                 ..
-            }) =&gt; <span class="self">self</span>.handle_key_update(cx.common, <span class="kw-2">&amp;</span>key_update)<span class="question-mark">?</span>,
+            } =&gt; <span class="self">self</span>.handle_key_update(cx.common, <span class="kw-2">&amp;</span>key_update)<span class="question-mark">?</span>,
             payload =&gt; {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(inappropriate_handshake_message(
                     <span class="kw-2">&amp;</span>payload,
@@ -2705,6 +2739,12 @@
                 .set_message_encrypter(<span class="self">self</span>.suite.derive_encrypter(<span class="kw-2">&amp;</span>write_key));
         }
     }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;secret_extraction&quot;</span>)]
+    </span><span class="kw">fn </span>extract_secrets(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;PartiallyExtractedSecrets, Error&gt; {
+        <span class="self">self</span>.key_schedule
+            .extract_secrets(<span class="self">self</span>.suite.common.aead_algorithm, Side::Server)
+    }
 }
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;quic&quot;</span>)]
@@ -2731,4 +2771,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="rustls" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="rustls" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

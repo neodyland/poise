@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/hyper-0.14.18/src/proto/h1/role.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>role.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../hyper/index.html"><img class="rust-logo" src="../../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/hyper-0.14.23/src/proto/h1/role.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>role.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../../hyper/index.html"><img class="rust-logo" src="../../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2716,18 +2716,146 @@
 <a href="#2716" id="2716">2716</a>
 <a href="#2717" id="2717">2717</a>
 <a href="#2718" id="2718">2718</a>
+<a href="#2719" id="2719">2719</a>
+<a href="#2720" id="2720">2720</a>
+<a href="#2721" id="2721">2721</a>
+<a href="#2722" id="2722">2722</a>
+<a href="#2723" id="2723">2723</a>
+<a href="#2724" id="2724">2724</a>
+<a href="#2725" id="2725">2725</a>
+<a href="#2726" id="2726">2726</a>
+<a href="#2727" id="2727">2727</a>
+<a href="#2728" id="2728">2728</a>
+<a href="#2729" id="2729">2729</a>
+<a href="#2730" id="2730">2730</a>
+<a href="#2731" id="2731">2731</a>
+<a href="#2732" id="2732">2732</a>
+<a href="#2733" id="2733">2733</a>
+<a href="#2734" id="2734">2734</a>
+<a href="#2735" id="2735">2735</a>
+<a href="#2736" id="2736">2736</a>
+<a href="#2737" id="2737">2737</a>
+<a href="#2738" id="2738">2738</a>
+<a href="#2739" id="2739">2739</a>
+<a href="#2740" id="2740">2740</a>
+<a href="#2741" id="2741">2741</a>
+<a href="#2742" id="2742">2742</a>
+<a href="#2743" id="2743">2743</a>
+<a href="#2744" id="2744">2744</a>
+<a href="#2745" id="2745">2745</a>
+<a href="#2746" id="2746">2746</a>
+<a href="#2747" id="2747">2747</a>
+<a href="#2748" id="2748">2748</a>
+<a href="#2749" id="2749">2749</a>
+<a href="#2750" id="2750">2750</a>
+<a href="#2751" id="2751">2751</a>
+<a href="#2752" id="2752">2752</a>
+<a href="#2753" id="2753">2753</a>
+<a href="#2754" id="2754">2754</a>
+<a href="#2755" id="2755">2755</a>
+<a href="#2756" id="2756">2756</a>
+<a href="#2757" id="2757">2757</a>
+<a href="#2758" id="2758">2758</a>
+<a href="#2759" id="2759">2759</a>
+<a href="#2760" id="2760">2760</a>
+<a href="#2761" id="2761">2761</a>
+<a href="#2762" id="2762">2762</a>
+<a href="#2763" id="2763">2763</a>
+<a href="#2764" id="2764">2764</a>
+<a href="#2765" id="2765">2765</a>
+<a href="#2766" id="2766">2766</a>
+<a href="#2767" id="2767">2767</a>
+<a href="#2768" id="2768">2768</a>
+<a href="#2769" id="2769">2769</a>
+<a href="#2770" id="2770">2770</a>
+<a href="#2771" id="2771">2771</a>
+<a href="#2772" id="2772">2772</a>
+<a href="#2773" id="2773">2773</a>
+<a href="#2774" id="2774">2774</a>
+<a href="#2775" id="2775">2775</a>
+<a href="#2776" id="2776">2776</a>
+<a href="#2777" id="2777">2777</a>
+<a href="#2778" id="2778">2778</a>
+<a href="#2779" id="2779">2779</a>
+<a href="#2780" id="2780">2780</a>
+<a href="#2781" id="2781">2781</a>
+<a href="#2782" id="2782">2782</a>
+<a href="#2783" id="2783">2783</a>
+<a href="#2784" id="2784">2784</a>
+<a href="#2785" id="2785">2785</a>
+<a href="#2786" id="2786">2786</a>
+<a href="#2787" id="2787">2787</a>
+<a href="#2788" id="2788">2788</a>
+<a href="#2789" id="2789">2789</a>
+<a href="#2790" id="2790">2790</a>
+<a href="#2791" id="2791">2791</a>
+<a href="#2792" id="2792">2792</a>
+<a href="#2793" id="2793">2793</a>
+<a href="#2794" id="2794">2794</a>
+<a href="#2795" id="2795">2795</a>
+<a href="#2796" id="2796">2796</a>
+<a href="#2797" id="2797">2797</a>
+<a href="#2798" id="2798">2798</a>
+<a href="#2799" id="2799">2799</a>
+<a href="#2800" id="2800">2800</a>
+<a href="#2801" id="2801">2801</a>
+<a href="#2802" id="2802">2802</a>
+<a href="#2803" id="2803">2803</a>
+<a href="#2804" id="2804">2804</a>
+<a href="#2805" id="2805">2805</a>
+<a href="#2806" id="2806">2806</a>
+<a href="#2807" id="2807">2807</a>
+<a href="#2808" id="2808">2808</a>
+<a href="#2809" id="2809">2809</a>
+<a href="#2810" id="2810">2810</a>
+<a href="#2811" id="2811">2811</a>
+<a href="#2812" id="2812">2812</a>
+<a href="#2813" id="2813">2813</a>
+<a href="#2814" id="2814">2814</a>
+<a href="#2815" id="2815">2815</a>
+<a href="#2816" id="2816">2816</a>
+<a href="#2817" id="2817">2817</a>
+<a href="#2818" id="2818">2818</a>
+<a href="#2819" id="2819">2819</a>
+<a href="#2820" id="2820">2820</a>
+<a href="#2821" id="2821">2821</a>
+<a href="#2822" id="2822">2822</a>
+<a href="#2823" id="2823">2823</a>
+<a href="#2824" id="2824">2824</a>
+<a href="#2825" id="2825">2825</a>
+<a href="#2826" id="2826">2826</a>
+<a href="#2827" id="2827">2827</a>
+<a href="#2828" id="2828">2828</a>
+<a href="#2829" id="2829">2829</a>
+<a href="#2830" id="2830">2830</a>
+<a href="#2831" id="2831">2831</a>
+<a href="#2832" id="2832">2832</a>
+<a href="#2833" id="2833">2833</a>
+<a href="#2834" id="2834">2834</a>
+<a href="#2835" id="2835">2835</a>
+<a href="#2836" id="2836">2836</a>
+<a href="#2837" id="2837">2837</a>
+<a href="#2838" id="2838">2838</a>
+<a href="#2839" id="2839">2839</a>
+<a href="#2840" id="2840">2840</a>
+<a href="#2841" id="2841">2841</a>
+<a href="#2842" id="2842">2842</a>
+<a href="#2843" id="2843">2843</a>
+<a href="#2844" id="2844">2844</a>
+<a href="#2845" id="2845">2845</a>
+<a href="#2846" id="2846">2846</a>
+<a href="#2847" id="2847">2847</a>
 </pre><pre class="rust"><code><span class="kw">use </span>std::fmt::{<span class="self">self</span>, Write};
 <span class="kw">use </span>std::mem::MaybeUninit;
 
-<span class="attr">#[cfg(all(feature = <span class="string">&quot;server&quot;</span>, feature = <span class="string">&quot;runtime&quot;</span>))]
-</span><span class="kw">use </span>tokio::time::Instant;
-<span class="attr">#[cfg(any(test, feature = <span class="string">&quot;server&quot;</span>, feature = <span class="string">&quot;ffi&quot;</span>))]
-</span><span class="kw">use </span>bytes::Bytes;
+<span class="kw">use </span>bytes::Bytes;
 <span class="kw">use </span>bytes::BytesMut;
 <span class="attr">#[cfg(feature = <span class="string">&quot;server&quot;</span>)]
 </span><span class="kw">use </span>http::header::ValueIter;
 <span class="kw">use </span>http::header::{<span class="self">self</span>, Entry, HeaderName, HeaderValue};
 <span class="kw">use </span>http::{HeaderMap, Method, StatusCode, Version};
+<span class="attr">#[cfg(all(feature = <span class="string">&quot;server&quot;</span>, feature = <span class="string">&quot;runtime&quot;</span>))]
+</span><span class="kw">use </span>tokio::time::Instant;
 <span class="kw">use </span>tracing::{debug, error, trace, trace_span, warn};
 
 <span class="kw">use </span><span class="kw">crate</span>::body::DecodedLength;
@@ -2735,6 +2863,8 @@
 </span><span class="kw">use </span><span class="kw">crate</span>::common::date;
 <span class="kw">use </span><span class="kw">crate</span>::error::Parse;
 <span class="kw">use </span><span class="kw">crate</span>::ext::HeaderCaseMap;
+<span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::ext::OriginalHeaderOrder;
 <span class="kw">use </span><span class="kw">crate</span>::headers;
 <span class="kw">use </span><span class="kw">crate</span>::proto::h1::{
     Encode, Encoder, Http1Transaction, ParseContext, ParseResult, ParsedMessage,
@@ -2796,7 +2926,7 @@
     </span><span class="kw">if </span>!<span class="kw-2">*</span>ctx.h1_header_read_timeout_running {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(h1_header_read_timeout) = ctx.h1_header_read_timeout {
             <span class="kw">let </span>deadline = Instant::now() + h1_header_read_timeout;
-
+            <span class="kw-2">*</span>ctx.h1_header_read_timeout_running = <span class="bool-val">true</span>;
             <span class="kw">match </span>ctx.h1_header_read_timeout_fut {
                 <span class="prelude-val">Some</span>(h1_header_read_timeout_fut) =&gt; {
                     <span class="macro">debug!</span>(<span class="string">&quot;resetting h1 header read timeout timer&quot;</span>);
@@ -2932,6 +3062,13 @@
             <span class="prelude-val">None
         </span>};
 
+        <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+        </span><span class="kw">let </span><span class="kw-2">mut </span>header_order = <span class="kw">if </span>ctx.preserve_header_order {
+            <span class="prelude-val">Some</span>(OriginalHeaderOrder::default())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">None
+        </span>};
+
         <span class="kw">let </span><span class="kw-2">mut </span>headers = ctx.cached_headers.take().unwrap_or_else(HeaderMap::new);
 
         headers.reserve(headers_len);
@@ -3008,6 +3145,11 @@
                 header_case_map.append(<span class="kw-2">&amp;</span>name, slice.slice(header.name.<span class="number">0</span>..header.name.<span class="number">1</span>));
             }
 
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref mut </span>header_order) = header_order {
+                header_order.append(<span class="kw-2">&amp;</span>name);
+            }
+
             headers.append(name, value);
         }
 
@@ -3020,6 +3162,11 @@
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(header_case_map) = header_case_map {
             extensions.insert(header_case_map);
+        }
+
+        <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(header_order) = header_order {
+            extensions.insert(header_order);
         }
 
         <span class="kw-2">*</span>ctx.req_method = <span class="prelude-val">Some</span>(subject.<span class="number">0</span>.clone());
@@ -3076,7 +3223,13 @@
 
         <span class="kw">let </span>init_cap = <span class="number">30 </span>+ msg.head.headers.len() * AVERAGE_HEADER_SIZE;
         dst.reserve(init_cap);
-        <span class="kw">if </span>msg.head.version == Version::HTTP_11 &amp;&amp; msg.head.subject == StatusCode::OK {
+
+        <span class="kw">let </span>custom_reason_phrase = msg.head.extensions.get::&lt;<span class="kw">crate</span>::ext::ReasonPhrase&gt;();
+
+        <span class="kw">if </span>msg.head.version == Version::HTTP_11
+            &amp;&amp; msg.head.subject == StatusCode::OK
+            &amp;&amp; custom_reason_phrase.is_none()
+        {
             extend(dst, <span class="string">b&quot;HTTP/1.1 200 OK\r\n&quot;</span>);
         } <span class="kw">else </span>{
             <span class="kw">match </span>msg.head.version {
@@ -3091,15 +3244,21 @@
 
             extend(dst, msg.head.subject.as_str().as_bytes());
             extend(dst, <span class="string">b&quot; &quot;</span>);
-            <span class="comment">// a reason MUST be written, as many parsers will expect it.
-            </span>extend(
-                dst,
-                msg.head
-                    .subject
-                    .canonical_reason()
-                    .unwrap_or(<span class="string">&quot;&lt;none&gt;&quot;</span>)
-                    .as_bytes(),
-            );
+
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = custom_reason_phrase {
+                extend(dst, reason.as_bytes());
+            } <span class="kw">else </span>{
+                <span class="comment">// a reason MUST be written, as many parsers will expect it.
+                </span>extend(
+                    dst,
+                    msg.head
+                        .subject
+                        .canonical_reason()
+                        .unwrap_or(<span class="string">&quot;&lt;none&gt;&quot;</span>)
+                        .as_bytes(),
+                );
+            }
+
             extend(dst, <span class="string">b&quot;\r\n&quot;</span>);
         }
 
@@ -3184,6 +3343,10 @@
                 <span class="kw">_ </span>=&gt; <span class="bool-val">true</span>,
             }
         }
+    }
+
+    <span class="kw">fn </span>can_have_implicit_zero_content_length(method: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span>&lt;Method&gt;, status: StatusCode) -&gt; bool {
+        Server::can_have_content_length(method, status) &amp;&amp; method != <span class="kw-2">&amp;</span><span class="prelude-val">Some</span>(Method::HEAD)
     }
 
     <span class="kw">fn </span>encode_headers_with_lower_case(
@@ -3538,7 +3701,10 @@
                     }
                 }
                 <span class="prelude-val">None </span>| <span class="prelude-val">Some</span>(BodyLength::Known(<span class="number">0</span>)) =&gt; {
-                    <span class="kw">if </span>Server::can_have_content_length(msg.req_method, msg.head.subject) {
+                    <span class="kw">if </span>Server::can_have_implicit_zero_content_length(
+                        msg.req_method,
+                        msg.head.subject,
+                    ) {
                         header_name_writer.write_full_header_line(
                             dst,
                             <span class="string">&quot;content-length: 0\r\n&quot;</span>,
@@ -3636,12 +3802,9 @@
                         <span class="macro">trace!</span>(<span class="string">&quot;Response.parse Complete({})&quot;</span>, len);
                         <span class="kw">let </span>status = StatusCode::from_u16(res.code.unwrap())<span class="question-mark">?</span>;
 
-                        <span class="attr">#[cfg(not(feature = <span class="string">&quot;ffi&quot;</span>))]
-                        </span><span class="kw">let </span>reason = ();
-                        <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
-                        </span><span class="kw">let </span>reason = {
+                        <span class="kw">let </span>reason = {
                             <span class="kw">let </span>reason = res.reason.unwrap();
-                            <span class="comment">// Only save the reason phrase if it isnt the canonical reason
+                            <span class="comment">// Only save the reason phrase if it isn&#39;t the canonical reason
                             </span><span class="kw">if </span><span class="prelude-val">Some</span>(reason) != status.canonical_reason() {
                                 <span class="prelude-val">Some</span>(Bytes::copy_from_slice(reason.as_bytes()))
                             } <span class="kw">else </span>{
@@ -3662,12 +3825,7 @@
                     <span class="prelude-val">Err</span>(httparse::Error::Version) <span class="kw">if </span>ctx.h09_responses =&gt; {
                         <span class="macro">trace!</span>(<span class="string">&quot;Response.parse accepted HTTP/0.9 response&quot;</span>);
 
-                        <span class="attr">#[cfg(not(feature = <span class="string">&quot;ffi&quot;</span>))]
-                        </span><span class="kw">let </span>reason = ();
-                        <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
-                        </span><span class="kw">let </span>reason = <span class="prelude-val">None</span>;
-
-                        (<span class="number">0</span>, StatusCode::OK, reason, Version::HTTP_09, <span class="number">0</span>)
+                        (<span class="number">0</span>, StatusCode::OK, <span class="prelude-val">None</span>, Version::HTTP_09, <span class="number">0</span>)
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e.into()),
                 }
@@ -3675,7 +3833,10 @@
 
             <span class="kw">let </span><span class="kw-2">mut </span>slice = buf.split_to(len);
 
-            <span class="kw">if </span>ctx.h1_parser_config.obsolete_multiline_headers_in_responses_are_allowed() {
+            <span class="kw">if </span>ctx
+                .h1_parser_config
+                .obsolete_multiline_headers_in_responses_are_allowed()
+            {
                 <span class="kw">for </span>header <span class="kw">in </span><span class="kw-2">&amp;</span>headers_indices[..headers_len] {
                     <span class="comment">// SAFETY: array is valid up to `headers_len`
                     </span><span class="kw">let </span>header = <span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span>header.as_ptr() };
@@ -3695,6 +3856,13 @@
 
             <span class="kw">let </span><span class="kw-2">mut </span>header_case_map = <span class="kw">if </span>ctx.preserve_header_case {
                 <span class="prelude-val">Some</span>(HeaderCaseMap::default())
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>};
+
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span><span class="kw">let </span><span class="kw-2">mut </span>header_order = <span class="kw">if </span>ctx.preserve_header_order {
+                <span class="prelude-val">Some</span>(OriginalHeaderOrder::default())
             } <span class="kw">else </span>{
                 <span class="prelude-val">None
             </span>};
@@ -3721,6 +3889,11 @@
                     header_case_map.append(<span class="kw-2">&amp;</span>name, slice.slice(header.name.<span class="number">0</span>..header.name.<span class="number">1</span>));
                 }
 
+                <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref mut </span>header_order) = header_order {
+                    header_order.append(<span class="kw-2">&amp;</span>name);
+                }
+
                 headers.append(name, value);
             }
 
@@ -3731,11 +3904,16 @@
             }
 
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
-            </span><span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = reason {
-                extensions.insert(<span class="kw">crate</span>::ffi::ReasonPhrase(reason));
+            </span><span class="kw">if let </span><span class="prelude-val">Some</span>(header_order) = header_order {
+                extensions.insert(header_order);
             }
-            <span class="attr">#[cfg(not(feature = <span class="string">&quot;ffi&quot;</span>))]
-            </span>drop(reason);
+
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(reason) = reason {
+                <span class="comment">// Safety: httparse ensures that only valid reason phrase bytes are present in this
+                // field.
+                </span><span class="kw">let </span>reason = <span class="kw">unsafe </span>{ <span class="kw">crate</span>::ext::ReasonPhrase::from_bytes_unchecked(reason) };
+                extensions.insert(reason);
+            }
 
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span><span class="kw">if </span>ctx.raw_headers {
@@ -4192,10 +4370,15 @@
                 cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                 req_method: <span class="kw-2">&amp;mut </span>method,
                 h1_parser_config: Default::default(),
-                h1_header_read_timeout: <span class="prelude-val">None</span>,
-                h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                 preserve_header_case: <span class="bool-val">false</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                </span>preserve_header_order: <span class="bool-val">false</span>,
                 h09_responses: <span class="bool-val">false</span>,
                 <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                 </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4222,10 +4405,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(<span class="kw">crate</span>::Method::GET),
             h1_parser_config: Default::default(),
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">false</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4247,10 +4435,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             h1_parser_config: Default::default(),
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">false</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4270,10 +4463,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(<span class="kw">crate</span>::Method::GET),
             h1_parser_config: Default::default(),
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">true</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4295,10 +4493,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(<span class="kw">crate</span>::Method::GET),
             h1_parser_config: Default::default(),
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">false</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4324,10 +4527,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(<span class="kw">crate</span>::Method::GET),
             h1_parser_config,
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">false</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4350,10 +4558,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(<span class="kw">crate</span>::Method::GET),
             h1_parser_config: Default::default(),
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">false</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4371,10 +4584,15 @@
             cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
             h1_parser_config: Default::default(),
-            h1_header_read_timeout: <span class="prelude-val">None</span>,
-            h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-            h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+            </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
             preserve_header_case: <span class="bool-val">true</span>,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+            </span>preserve_header_order: <span class="bool-val">false</span>,
             h09_responses: <span class="bool-val">false</span>,
             <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
             </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4413,10 +4631,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4436,10 +4659,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4668,10 +4896,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(Method::GET),
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4691,10 +4924,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(m),
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -4714,10 +4952,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(Method::GET),
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -5214,10 +5457,15 @@
                 cached_headers: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                 req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">Some</span>(Method::GET),
                 h1_parser_config: Default::default(),
-                h1_header_read_timeout: <span class="prelude-val">None</span>,
-                h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                 preserve_header_case: <span class="bool-val">false</span>,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                </span>preserve_header_order: <span class="bool-val">false</span>,
                 h09_responses: <span class="bool-val">false</span>,
                 <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                 </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -5301,10 +5549,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span>headers,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -5344,10 +5597,15 @@
                     cached_headers: <span class="kw-2">&amp;mut </span>headers,
                     req_method: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
                     h1_parser_config: Default::default(),
-                    h1_header_read_timeout: <span class="prelude-val">None</span>,
-                    h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
-                    h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout: <span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_fut: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;runtime&quot;</span>)]
+                    </span>h1_header_read_timeout_running: <span class="kw-2">&amp;mut </span><span class="bool-val">false</span>,
                     preserve_header_case: <span class="bool-val">false</span>,
+                    <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
+                    </span>preserve_header_order: <span class="bool-val">false</span>,
                     h09_responses: <span class="bool-val">false</span>,
                     <span class="attr">#[cfg(feature = <span class="string">&quot;ffi&quot;</span>)]
                     </span>on_informational: <span class="kw-2">&amp;mut </span><span class="prelude-val">None</span>,
@@ -5435,4 +5693,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="hyper" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="hyper" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

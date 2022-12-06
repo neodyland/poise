@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.33/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing/index.html">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-0.1.37/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing/index.html">
                         <img src="https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -1114,56 +1114,6 @@
 <a href="#1113" id="1113">1113</a>
 <a href="#1114" id="1114">1114</a>
 <a href="#1115" id="1115">1115</a>
-<a href="#1116" id="1116">1116</a>
-<a href="#1117" id="1117">1117</a>
-<a href="#1118" id="1118">1118</a>
-<a href="#1119" id="1119">1119</a>
-<a href="#1120" id="1120">1120</a>
-<a href="#1121" id="1121">1121</a>
-<a href="#1122" id="1122">1122</a>
-<a href="#1123" id="1123">1123</a>
-<a href="#1124" id="1124">1124</a>
-<a href="#1125" id="1125">1125</a>
-<a href="#1126" id="1126">1126</a>
-<a href="#1127" id="1127">1127</a>
-<a href="#1128" id="1128">1128</a>
-<a href="#1129" id="1129">1129</a>
-<a href="#1130" id="1130">1130</a>
-<a href="#1131" id="1131">1131</a>
-<a href="#1132" id="1132">1132</a>
-<a href="#1133" id="1133">1133</a>
-<a href="#1134" id="1134">1134</a>
-<a href="#1135" id="1135">1135</a>
-<a href="#1136" id="1136">1136</a>
-<a href="#1137" id="1137">1137</a>
-<a href="#1138" id="1138">1138</a>
-<a href="#1139" id="1139">1139</a>
-<a href="#1140" id="1140">1140</a>
-<a href="#1141" id="1141">1141</a>
-<a href="#1142" id="1142">1142</a>
-<a href="#1143" id="1143">1143</a>
-<a href="#1144" id="1144">1144</a>
-<a href="#1145" id="1145">1145</a>
-<a href="#1146" id="1146">1146</a>
-<a href="#1147" id="1147">1147</a>
-<a href="#1148" id="1148">1148</a>
-<a href="#1149" id="1149">1149</a>
-<a href="#1150" id="1150">1150</a>
-<a href="#1151" id="1151">1151</a>
-<a href="#1152" id="1152">1152</a>
-<a href="#1153" id="1153">1153</a>
-<a href="#1154" id="1154">1154</a>
-<a href="#1155" id="1155">1155</a>
-<a href="#1156" id="1156">1156</a>
-<a href="#1157" id="1157">1157</a>
-<a href="#1158" id="1158">1158</a>
-<a href="#1159" id="1159">1159</a>
-<a href="#1160" id="1160">1160</a>
-<a href="#1161" id="1161">1161</a>
-<a href="#1162" id="1162">1162</a>
-<a href="#1163" id="1163">1163</a>
-<a href="#1164" id="1164">1164</a>
-<a href="#1165" id="1165">1165</a>
 </pre><pre class="rust"><code><span class="doccomment">//! A scoped, structured logging and diagnostics system.
 //!
 //! # Overview
@@ -1284,8 +1234,6 @@
 //! [dependencies]
 //! tracing = &quot;0.1&quot;
 //! ```
-//!
-//! *Compiler support: [requires `rustc` 1.42+][msrv]*
 //!
 //! ## Recording Spans and Events
 //!
@@ -1600,13 +1548,13 @@
 //! Specifying a formatted message in this manner does not allocate by default.
 //!
 //! [struct initializers]: https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-the-field-init-shorthand-when-variables-and-fields-have-the-same-name
-//! [target]: struct.Metadata.html#method.target
-//! [parent span]: span/struct.Attributes.html#method.parent
-//! [determined contextually]: span/struct.Attributes.html#method.is_contextual
-//! [`fmt::Debug`]: https://doc.rust-lang.org/std/fmt/trait.Debug.html
-//! [`fmt::Display`]: https://doc.rust-lang.org/std/fmt/trait.Display.html
-//! [fmt]: https://doc.rust-lang.org/std/fmt/#usage
-//! [`Empty`]: field/struct.Empty.html
+//! [target]: Metadata::target
+//! [parent span]: span::Attributes::parent
+//! [determined contextually]: span::Attributes::is_contextual
+//! [`fmt::Debug`]: std::fmt::Debug
+//! [`fmt::Display`]: std::fmt::Display
+//! [fmt]: std::fmt#usage
+//! [`Empty`]: field::Empty
 //!
 //! ### Shorthand Macros
 //!
@@ -1620,19 +1568,18 @@
 //! These are intended both as a shorthand, and for compatibility with the [`log`]
 //! crate (see the next section).
 //!
-//! [`span!`]: macro.span.html
-//! [`event!`]: macro.event.html
-//! [`trace!`]: macro.trace.html
-//! [`debug!`]: macro.debug.html
-//! [`info!`]: macro.info.html
-//! [`warn!`]: macro.warn.html
-//! [`error!`]: macro.error.html
-//! [`trace_span!`]: macro.trace_span.html
-//! [`debug_span!`]: macro.debug_span.html
-//! [`info_span!`]: macro.info_span.html
-//! [`warn_span!`]: macro.warn_span.html
-//! [`error_span!`]: macro.error_span.html
-//! [`Level`]: struct.Level.html
+//! [`span!`]: span!
+//! [`event!`]: event!
+//! [`trace!`]: trace!
+//! [`debug!`]: debug!
+//! [`info!`]: info!
+//! [`warn!`]: warn!
+//! [`error!`]: error!
+//! [`trace_span!`]: trace_span!
+//! [`debug_span!`]: debug_span!
+//! [`info_span!`]: info_span!
+//! [`warn_span!`]: warn_span!
+//! [`error_span!`]: error_span!
 //!
 //! ### For `log` Users
 //!
@@ -1896,6 +1843,8 @@
 //!    in [bunyan] format, enriched with timing information.
 //!  - [`tracing-wasm`] provides a `Subscriber`/`Layer` implementation that reports
 //!    events and spans via browser `console.log` and [User Timing API (`window.performance`)].
+//!  - [`tracing-web`] provides a layer implementation of level-aware logging of events
+//!    to web browsers&#39; `console.*` and span events to the [User Timing API (`window.performance`)].
 //!  - [`tide-tracing`] provides a [tide] middleware to trace all incoming requests and responses.
 //!  - [`test-log`] takes care of initializing `tracing` for tests, based on
 //!    environment variables with an `env_logger` compatible syntax.
@@ -1912,6 +1861,8 @@
 //!  - [`tracing-forest`] provides a subscriber that preserves contextual coherence by
 //!    grouping together logs from the same spans during writing.
 //!  - [`tracing-loki`] provides a layer for shipping logs to [Grafana Loki].
+//!  - [`tracing-logfmt`] provides a layer that formats events and spans into the logfmt format.
+//!  - [`reqwest-tracing`] provides a middleware to trace [`reqwest`] HTTP requests.
 //!
 //! If you&#39;re the maintainer of a `tracing` ecosystem crate not listed above,
 //! please let us know! We&#39;d love to add your project to the list!
@@ -1929,6 +1880,7 @@
 //! [`tracing-bunyan-formatter`]: https://crates.io/crates/tracing-bunyan-formatter
 //! [bunyan]: https://github.com/trentm/node-bunyan
 //! [`tracing-wasm`]: https://docs.rs/tracing-wasm
+//! [`tracing-web`]: https://docs.rs/tracing-web
 //! [User Timing API (`window.performance`)]: https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 //! [`tide-tracing`]: https://crates.io/crates/tide-tracing
 //! [tide]: https://crates.io/crates/tide
@@ -1948,6 +1900,9 @@
 //! [`tracing-forest`]: https://crates.io/crates/tracing-forest
 //! [`tracing-loki`]: https://crates.io/crates/tracing-loki
 //! [Grafana Loki]: https://grafana.com/oss/loki/
+//! [`tracing-logfmt`]: https://crates.io/crates/tracing-logfmt
+//! [`reqwest-tracing`]: https://crates.io/crates/reqwest-tracing
+//! [`reqwest`]: https://crates.io/crates/reqwest
 //!
 //! &lt;pre class=&quot;ignore&quot; style=&quot;white-space:normal;font:inherit;&quot;&gt;
 //!     &lt;strong&gt;Note&lt;/strong&gt;: Some of these ecosystem crates are currently
@@ -1978,7 +1933,7 @@
 //!
 //!   ```toml
 //!   [dependencies]
-//!   tracing = { version = &quot;0.1.33&quot;, default-features = false }
+//!   tracing = { version = &quot;0.1.37&quot;, default-features = false }
 //!   ```
 //!
 //! &lt;pre class=&quot;ignore&quot; style=&quot;white-space:normal;font:inherit;&quot;&gt;
@@ -2056,12 +2011,12 @@
 //! [`tracing-appender`]: https://crates.io/crates/tracing-appender
 //! [`env_logger`]: https://crates.io/crates/env_logger
 //! [`FmtSubscriber`]: https://docs.rs/tracing-subscriber/latest/tracing_subscriber/fmt/struct.Subscriber.html
-//! [static verbosity level]: level_filters/index.html#compile-time-filters
+//! [static verbosity level]: level_filters#compile-time-filters
 //! [instrument]: https://docs.rs/tracing-attributes/latest/tracing_attributes/attr.instrument.html
 //! [flags]: #crate-feature-flags
 </span><span class="attr">#![cfg_attr(not(feature = <span class="string">&quot;std&quot;</span>), no_std)]
 #![cfg_attr(docsrs, feature(doc_cfg), deny(rustdoc::broken_intra_doc_links))]
-#![doc(html_root_url = <span class="string">&quot;https://docs.rs/tracing/0.1.33&quot;</span>)]
+#![doc(html_root_url = <span class="string">&quot;https://docs.rs/tracing/0.1.37&quot;</span>)]
 #![doc(
     html_logo_url = <span class="string">&quot;https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png&quot;</span>,
     issue_tracker_base_url = <span class="string">&quot;https://github.com/tokio-rs/tracing/issues/&quot;
@@ -2091,10 +2046,6 @@
 
 #[cfg(not(feature = <span class="string">&quot;std&quot;</span>))]
 </span><span class="kw">extern crate </span>alloc;
-
-<span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-#[doc(hidden)]
-</span><span class="kw">pub use </span>log;
 
 <span class="comment">// Somehow this `use` statement is necessary for us to re-export the `core`
 // macros on Rust 1.26.0. I&#39;m not sure how this makes it work, but it does.
@@ -2138,13 +2089,8 @@
 <span class="attr">#[doc(hidden)]
 </span><span class="kw">pub mod </span>__macro_support {
     <span class="kw">pub use </span><span class="kw">crate</span>::callsite::Callsite;
-    <span class="kw">use </span><span class="kw">crate</span>::stdlib::{
-        fmt,
-        sync::atomic::{AtomicUsize, Ordering},
-    };
     <span class="kw">use crate</span>::{subscriber::Interest, Metadata};
     <span class="kw">pub use </span>core::concat;
-    <span class="kw">use </span>tracing_core::Once;
 
     <span class="doccomment">/// Callsite implementation used by macro-generated code.
     ///
@@ -2154,174 +2100,128 @@
     /// by the `tracing` macros, but it is not part of the stable versioned API.
     /// Breaking changes to this module may occur in small-numbered versions
     /// without warning.
-    </span><span class="kw">pub struct </span>MacroCallsite {
-        interest: AtomicUsize,
-        meta: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;,
-        registration: Once,
+    </span><span class="kw">pub use </span>tracing_core::callsite::DefaultCallsite <span class="kw">as </span>MacroCallsite;
+
+    <span class="doccomment">/// /!\ WARNING: This is *not* a stable API! /!\
+    /// This function, and all code contained in the `__macro_support` module, is
+    /// a *private* API of `tracing`. It is exposed publicly because it is used
+    /// by the `tracing` macros, but it is not part of the stable versioned API.
+    /// Breaking changes to this module may occur in small-numbered versions
+    /// without warning.
+    </span><span class="kw">pub fn </span>__is_enabled(meta: <span class="kw-2">&amp;</span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;, interest: Interest) -&gt; bool {
+        interest.is_always() || <span class="kw">crate</span>::dispatcher::get_default(|default| default.enabled(meta))
     }
 
-    <span class="kw">impl </span>MacroCallsite {
-        <span class="doccomment">/// Returns a new `MacroCallsite` with the specified `Metadata`.
-        ///
-        /// /!\ WARNING: This is *not* a stable API! /!\
-        /// This method, and all code contained in the `__macro_support` module, is
-        /// a *private* API of `tracing`. It is exposed publicly because it is used
-        /// by the `tracing` macros, but it is not part of the stable versioned API.
-        /// Breaking changes to this module may occur in small-numbered versions
-        /// without warning.
-        </span><span class="kw">pub const fn </span>new(meta: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; <span class="self">Self </span>{
-            <span class="self">Self </span>{
-                interest: AtomicUsize::new(<span class="number">0xDEAD</span>),
-                meta,
-                registration: Once::new(),
-            }
-        }
-
-        <span class="doccomment">/// Registers this callsite with the global callsite registry.
-        ///
-        /// If the callsite is already registered, this does nothing.
-        ///
-        /// /!\ WARNING: This is *not* a stable API! /!\
-        /// This method, and all code contained in the `__macro_support` module, is
-        /// a *private* API of `tracing`. It is exposed publicly because it is used
-        /// by the `tracing` macros, but it is not part of the stable versioned API.
-        /// Breaking changes to this module may occur in small-numbered versions
-        /// without warning.
-        </span><span class="attr">#[inline(never)]
-        </span><span class="comment">// This only happens once (or if the cached interest value was corrupted).
-        </span><span class="attr">#[cold]
-        </span><span class="kw">pub fn </span>register(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span><span class="self">self</span>) -&gt; Interest {
-            <span class="self">self</span>.registration
-                .call_once(|| <span class="kw">crate</span>::callsite::register(<span class="self">self</span>));
-            <span class="kw">match </span><span class="self">self</span>.interest.load(Ordering::Relaxed) {
-                <span class="number">0 </span>=&gt; Interest::never(),
-                <span class="number">2 </span>=&gt; Interest::always(),
-                <span class="kw">_ </span>=&gt; Interest::sometimes(),
-            }
-        }
-
-        <span class="doccomment">/// Returns the callsite&#39;s cached Interest, or registers it for the
-        /// first time if it has not yet been registered.
-        ///
-        /// /!\ WARNING: This is *not* a stable API! /!\
-        /// This method, and all code contained in the `__macro_support` module, is
-        /// a *private* API of `tracing`. It is exposed publicly because it is used
-        /// by the `tracing` macros, but it is not part of the stable versioned API.
-        /// Breaking changes to this module may occur in small-numbered versions
-        /// without warning.
-        </span><span class="attr">#[inline]
-        </span><span class="kw">pub fn </span>interest(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span><span class="self">self</span>) -&gt; Interest {
-            <span class="kw">match </span><span class="self">self</span>.interest.load(Ordering::Relaxed) {
-                <span class="number">0 </span>=&gt; Interest::never(),
-                <span class="number">1 </span>=&gt; Interest::sometimes(),
-                <span class="number">2 </span>=&gt; Interest::always(),
-                <span class="kw">_ </span>=&gt; <span class="self">self</span>.register(),
-            }
-        }
-
-        <span class="kw">pub fn </span>is_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, interest: Interest) -&gt; bool {
-            interest.is_always()
-                || <span class="kw">crate</span>::dispatcher::get_default(|default| default.enabled(<span class="self">self</span>.meta))
-        }
-
-        <span class="attr">#[inline]
-        #[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-        </span><span class="kw">pub fn </span>disabled_span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::Span {
-            <span class="kw">crate</span>::Span::new_disabled(<span class="self">self</span>.meta)
-        }
-
-        <span class="attr">#[inline]
-        #[cfg(not(feature = <span class="string">&quot;log&quot;</span>))]
-        </span><span class="kw">pub fn </span>disabled_span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">crate</span>::Span {
-            <span class="kw">crate</span>::Span::none()
-        }
+    <span class="doccomment">/// /!\ WARNING: This is *not* a stable API! /!\
+    /// This function, and all code contained in the `__macro_support` module, is
+    /// a *private* API of `tracing`. It is exposed publicly because it is used
+    /// by the `tracing` macros, but it is not part of the stable versioned API.
+    /// Breaking changes to this module may occur in small-numbered versions
+    /// without warning.
+    </span><span class="attr">#[inline]
+    #[cfg(feature = <span class="string">&quot;log&quot;</span>)]
+    </span><span class="kw">pub fn </span>__disabled_span(meta: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; <span class="kw">crate</span>::Span {
+        <span class="kw">crate</span>::Span::new_disabled(meta)
     }
 
-    <span class="kw">impl </span>Callsite <span class="kw">for </span>MacroCallsite {
-        <span class="kw">fn </span>set_interest(<span class="kw-2">&amp;</span><span class="self">self</span>, interest: Interest) {
-            <span class="kw">let </span>interest = <span class="kw">match </span>() {
-                <span class="kw">_ if </span>interest.is_never() =&gt; <span class="number">0</span>,
-                <span class="kw">_ if </span>interest.is_always() =&gt; <span class="number">2</span>,
-                <span class="kw">_ </span>=&gt; <span class="number">1</span>,
-            };
-            <span class="self">self</span>.interest.store(interest, Ordering::SeqCst);
-        }
-
-        <span class="attr">#[inline(always)]
-        </span><span class="kw">fn </span>metadata(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt; {
-            <span class="self">self</span>.meta
-        }
+    <span class="doccomment">/// /!\ WARNING: This is *not* a stable API! /!\
+    /// This function, and all code contained in the `__macro_support` module, is
+    /// a *private* API of `tracing`. It is exposed publicly because it is used
+    /// by the `tracing` macros, but it is not part of the stable versioned API.
+    /// Breaking changes to this module may occur in small-numbered versions
+    /// without warning.
+    </span><span class="attr">#[inline]
+    #[cfg(not(feature = <span class="string">&quot;log&quot;</span>))]
+    </span><span class="kw">pub fn </span>__disabled_span(<span class="kw">_</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; <span class="kw">crate</span>::Span {
+        <span class="kw">crate</span>::Span::none()
     }
 
-    <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>MacroCallsite {
-        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-            f.debug_struct(<span class="string">&quot;MacroCallsite&quot;</span>)
-                .field(<span class="string">&quot;interest&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.interest)
-                .field(<span class="string">&quot;meta&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.meta)
-                .field(<span class="string">&quot;registration&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.registration)
-                .finish()
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-    </span><span class="kw">use </span>tracing_core::field::{Field, ValueSet, Visit};
-
-    <span class="doccomment">/// Utility to format [`ValueSet`] for logging, used by macro-generated code.
-    ///
-    /// /!\ WARNING: This is *not* a stable API! /!\
-    /// This type, and all code contained in the `__macro_support` module, is
+    <span class="doccomment">/// /!\ WARNING: This is *not* a stable API! /!\
+    /// This function, and all code contained in the `__macro_support` module, is
     /// a *private* API of `tracing`. It is exposed publicly because it is used
     /// by the `tracing` macros, but it is not part of the stable versioned API.
     /// Breaking changes to this module may occur in small-numbered versions
     /// without warning.
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-    #[allow(missing_debug_implementations)]
-    </span><span class="kw">pub struct </span>LogValueSet&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw">pub </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ValueSet&lt;<span class="lifetime">&#39;a</span>&gt;);
+    </span><span class="kw">pub fn </span>__tracing_log(
+        meta: <span class="kw-2">&amp;</span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;,
+        logger: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span><span class="kw">dyn </span>log::Log,
+        log_meta: log::Metadata&lt;<span class="lifetime">&#39;_</span>&gt;,
+        values: <span class="kw-2">&amp;</span>tracing_core::field::ValueSet&lt;<span class="lifetime">&#39;_</span>&gt;,
+    ) {
+        logger.log(
+            <span class="kw-2">&amp;</span><span class="kw">crate</span>::log::Record::builder()
+                .file(meta.file())
+                .module_path(meta.module_path())
+                .line(meta.line())
+                .metadata(log_meta)
+                .args(<span class="macro">format_args!</span>(
+                    <span class="string">&quot;{}&quot;</span>,
+                    <span class="kw">crate</span>::log::LogValueSet {
+                        values,
+                        is_first: <span class="bool-val">true
+                    </span>}
+                ))
+                .build(),
+        );
+    }
+}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-    </span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Display <span class="kw">for </span>LogValueSet&lt;<span class="lifetime">&#39;a</span>&gt; {
-        <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+<span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
+#[doc(hidden)]
+</span><span class="kw">pub mod </span>log {
+    <span class="kw">use </span>core::fmt;
+    <span class="kw">pub use </span>log::<span class="kw-2">*</span>;
+    <span class="kw">use </span>tracing_core::field::{Field, ValueSet, Visit};
+
+    <span class="doccomment">/// Utility to format [`ValueSet`]s for logging.
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>LogValueSet&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="kw">pub</span>(<span class="kw">crate</span>) values: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>ValueSet&lt;<span class="lifetime">&#39;a</span>&gt;,
+        <span class="kw">pub</span>(<span class="kw">crate</span>) is_first: bool,
+    }
+
+    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Display <span class="kw">for </span>LogValueSet&lt;<span class="lifetime">&#39;a</span>&gt; {
+        <span class="attr">#[inline]
+        </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+            <span class="kw">struct </span>LogVisitor&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; {
+                f: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;b</span>&gt;,
+                is_first: bool,
+                result: fmt::Result,
+            }
+
+            <span class="kw">impl </span>Visit <span class="kw">for </span>LogVisitor&lt;<span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span>&gt; {
+                <span class="kw">fn </span>record_debug(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: <span class="kw-2">&amp;</span><span class="kw">dyn </span>fmt::Debug) {
+                    <span class="kw">let </span>res = <span class="kw">if </span><span class="self">self</span>.is_first {
+                        <span class="self">self</span>.is_first = <span class="bool-val">false</span>;
+                        <span class="kw">if </span>field.name() == <span class="string">&quot;message&quot; </span>{
+                            <span class="macro">write!</span>(<span class="self">self</span>.f, <span class="string">&quot;{:?}&quot;</span>, value)
+                        } <span class="kw">else </span>{
+                            <span class="macro">write!</span>(<span class="self">self</span>.f, <span class="string">&quot;{}={:?}&quot;</span>, field.name(), value)
+                        }
+                    } <span class="kw">else </span>{
+                        <span class="macro">write!</span>(<span class="self">self</span>.f, <span class="string">&quot; {}={:?}&quot;</span>, field.name(), value)
+                    };
+                    <span class="kw">if let </span><span class="prelude-val">Err</span>(err) = res {
+                        <span class="self">self</span>.result = <span class="self">self</span>.result.and(<span class="prelude-val">Err</span>(err));
+                    }
+                }
+
+                <span class="kw">fn </span>record_str(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: <span class="kw-2">&amp;</span>str) {
+                    <span class="kw">if </span>field.name() == <span class="string">&quot;message&quot; </span>{
+                        <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, value))
+                    } <span class="kw">else </span>{
+                        <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span>value)
+                    }
+                }
+            }
+
             <span class="kw">let </span><span class="kw-2">mut </span>visit = LogVisitor {
                 f,
-                is_first: <span class="bool-val">true</span>,
+                is_first: <span class="self">self</span>.is_first,
                 result: <span class="prelude-val">Ok</span>(()),
             };
-            <span class="self">self</span>.<span class="number">0</span>.record(<span class="kw-2">&amp;mut </span>visit);
+            <span class="self">self</span>.values.record(<span class="kw-2">&amp;mut </span>visit);
             visit.result
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-    </span><span class="kw">struct </span>LogVisitor&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>&gt; {
-        f: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;b</span>&gt;,
-        is_first: bool,
-        result: fmt::Result,
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-    </span><span class="kw">impl </span>Visit <span class="kw">for </span>LogVisitor&lt;<span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span>&gt; {
-        <span class="kw">fn </span>record_debug(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: <span class="kw-2">&amp;</span><span class="kw">dyn </span>fmt::Debug) {
-            <span class="kw">let </span>res = <span class="kw">if </span><span class="self">self</span>.is_first {
-                <span class="self">self</span>.is_first = <span class="bool-val">false</span>;
-                <span class="kw">if </span>field.name() == <span class="string">&quot;message&quot; </span>{
-                    <span class="macro">write!</span>(<span class="self">self</span>.f, <span class="string">&quot;{:?}&quot;</span>, value)
-                } <span class="kw">else </span>{
-                    <span class="macro">write!</span>(<span class="self">self</span>.f, <span class="string">&quot;{}={:?}&quot;</span>, field.name(), value)
-                }
-            } <span class="kw">else </span>{
-                <span class="macro">write!</span>(<span class="self">self</span>.f, <span class="string">&quot; {}={:?}&quot;</span>, field.name(), value)
-            };
-            <span class="kw">if let </span><span class="prelude-val">Err</span>(err) = res {
-                <span class="self">self</span>.result = <span class="self">self</span>.result.and(<span class="prelude-val">Err</span>(err));
-            }
-        }
-
-        <span class="kw">fn </span>record_str(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span>Field, value: <span class="kw-2">&amp;</span>str) {
-            <span class="kw">if </span>field.name() == <span class="string">&quot;message&quot; </span>{
-                <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, value))
-            } <span class="kw">else </span>{
-                <span class="self">self</span>.record_debug(field, <span class="kw-2">&amp;</span>value)
-            }
         }
     }
 }
@@ -2330,4 +2230,4 @@
     <span class="kw">pub trait </span>Sealed {}
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

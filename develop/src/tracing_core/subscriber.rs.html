@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-core-0.1.25/src/subscriber.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>subscriber.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_core/index.html">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tracing-core-0.1.30/src/subscriber.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>subscriber.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../tracing_core/index.html">
                         <img src="https://raw.githubusercontent.com/tokio-rs/tracing/master/assets/logo-type.png" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -749,8 +749,128 @@
 <a href="#748" id="748">748</a>
 <a href="#749" id="749">749</a>
 <a href="#750" id="750">750</a>
-</pre><pre class="rust"><code><span class="doccomment">//! Subscribers collect and record trace data.
-</span><span class="kw">use crate</span>::{span, Event, LevelFilter, Metadata};
+<a href="#751" id="751">751</a>
+<a href="#752" id="752">752</a>
+<a href="#753" id="753">753</a>
+<a href="#754" id="754">754</a>
+<a href="#755" id="755">755</a>
+<a href="#756" id="756">756</a>
+<a href="#757" id="757">757</a>
+<a href="#758" id="758">758</a>
+<a href="#759" id="759">759</a>
+<a href="#760" id="760">760</a>
+<a href="#761" id="761">761</a>
+<a href="#762" id="762">762</a>
+<a href="#763" id="763">763</a>
+<a href="#764" id="764">764</a>
+<a href="#765" id="765">765</a>
+<a href="#766" id="766">766</a>
+<a href="#767" id="767">767</a>
+<a href="#768" id="768">768</a>
+<a href="#769" id="769">769</a>
+<a href="#770" id="770">770</a>
+<a href="#771" id="771">771</a>
+<a href="#772" id="772">772</a>
+<a href="#773" id="773">773</a>
+<a href="#774" id="774">774</a>
+<a href="#775" id="775">775</a>
+<a href="#776" id="776">776</a>
+<a href="#777" id="777">777</a>
+<a href="#778" id="778">778</a>
+<a href="#779" id="779">779</a>
+<a href="#780" id="780">780</a>
+<a href="#781" id="781">781</a>
+<a href="#782" id="782">782</a>
+<a href="#783" id="783">783</a>
+<a href="#784" id="784">784</a>
+<a href="#785" id="785">785</a>
+<a href="#786" id="786">786</a>
+<a href="#787" id="787">787</a>
+<a href="#788" id="788">788</a>
+<a href="#789" id="789">789</a>
+<a href="#790" id="790">790</a>
+<a href="#791" id="791">791</a>
+<a href="#792" id="792">792</a>
+<a href="#793" id="793">793</a>
+<a href="#794" id="794">794</a>
+<a href="#795" id="795">795</a>
+<a href="#796" id="796">796</a>
+<a href="#797" id="797">797</a>
+<a href="#798" id="798">798</a>
+<a href="#799" id="799">799</a>
+<a href="#800" id="800">800</a>
+<a href="#801" id="801">801</a>
+<a href="#802" id="802">802</a>
+<a href="#803" id="803">803</a>
+<a href="#804" id="804">804</a>
+<a href="#805" id="805">805</a>
+<a href="#806" id="806">806</a>
+<a href="#807" id="807">807</a>
+<a href="#808" id="808">808</a>
+<a href="#809" id="809">809</a>
+<a href="#810" id="810">810</a>
+<a href="#811" id="811">811</a>
+<a href="#812" id="812">812</a>
+<a href="#813" id="813">813</a>
+<a href="#814" id="814">814</a>
+<a href="#815" id="815">815</a>
+<a href="#816" id="816">816</a>
+<a href="#817" id="817">817</a>
+<a href="#818" id="818">818</a>
+<a href="#819" id="819">819</a>
+<a href="#820" id="820">820</a>
+<a href="#821" id="821">821</a>
+<a href="#822" id="822">822</a>
+<a href="#823" id="823">823</a>
+<a href="#824" id="824">824</a>
+<a href="#825" id="825">825</a>
+<a href="#826" id="826">826</a>
+<a href="#827" id="827">827</a>
+<a href="#828" id="828">828</a>
+<a href="#829" id="829">829</a>
+<a href="#830" id="830">830</a>
+<a href="#831" id="831">831</a>
+<a href="#832" id="832">832</a>
+<a href="#833" id="833">833</a>
+<a href="#834" id="834">834</a>
+<a href="#835" id="835">835</a>
+<a href="#836" id="836">836</a>
+<a href="#837" id="837">837</a>
+<a href="#838" id="838">838</a>
+<a href="#839" id="839">839</a>
+<a href="#840" id="840">840</a>
+<a href="#841" id="841">841</a>
+<a href="#842" id="842">842</a>
+<a href="#843" id="843">843</a>
+<a href="#844" id="844">844</a>
+<a href="#845" id="845">845</a>
+<a href="#846" id="846">846</a>
+<a href="#847" id="847">847</a>
+<a href="#848" id="848">848</a>
+<a href="#849" id="849">849</a>
+<a href="#850" id="850">850</a>
+<a href="#851" id="851">851</a>
+<a href="#852" id="852">852</a>
+<a href="#853" id="853">853</a>
+<a href="#854" id="854">854</a>
+<a href="#855" id="855">855</a>
+<a href="#856" id="856">856</a>
+<a href="#857" id="857">857</a>
+<a href="#858" id="858">858</a>
+<a href="#859" id="859">859</a>
+<a href="#860" id="860">860</a>
+<a href="#861" id="861">861</a>
+<a href="#862" id="862">862</a>
+<a href="#863" id="863">863</a>
+<a href="#864" id="864">864</a>
+<a href="#865" id="865">865</a>
+<a href="#866" id="866">866</a>
+<a href="#867" id="867">867</a>
+<a href="#868" id="868">868</a>
+<a href="#869" id="869">869</a>
+<a href="#870" id="870">870</a>
+</pre><pre class="rust"><code><span class="doccomment">//! Collectors collect and record trace data.
+</span><span class="kw">use crate</span>::{span, Dispatch, Event, LevelFilter, Metadata};
 
 <span class="kw">use </span><span class="kw">crate</span>::stdlib::{
     any::{Any, TypeId},
@@ -807,6 +927,13 @@
 ///   Additionally, subscribers which wish to perform a behaviour once for each
 ///   callsite, such as allocating storage for data related to that callsite,
 ///   can perform it in `register_callsite`.
+///
+///   See also the [documentation on the callsite registry][cs-reg] for details
+///   on [`register_callsite`].
+///
+/// - [`event_enabled`] is called once before every call to the [`event`]
+///   method. This can be used to implement filtering on events once their field
+///   values are known, but before any processing is done in the `event` method.
 /// - [`clone_span`] is called every time a span ID is cloned, and [`try_close`]
 ///   is called when a span ID is dropped. By default, these functions do
 ///   nothing. However, they can be used to implement reference counting for
@@ -815,17 +942,40 @@
 ///   Subscribers which store per-span data or which need to track span closures
 ///   should override these functions together.
 ///
-/// [ID]: ../span/struct.Id.html
-/// [`new_span`]: trait.Subscriber.html#method.new_span
-/// [`register_callsite`]: trait.Subscriber.html#method.register_callsite
-/// [`Interest`]: struct.Interest.html
-/// [`enabled`]: trait.Subscriber.html#method.enabled
-/// [`clone_span`]: trait.Subscriber.html#method.clone_span
-/// [`try_close`]: trait.Subscriber.html#method.try_close
+/// [ID]: super::span::Id
+/// [`new_span`]: Subscriber::new_span
+/// [`register_callsite`]: Subscriber::register_callsite
+/// [`enabled`]: Subscriber::enabled
+/// [`clone_span`]: Subscriber::clone_span
+/// [`try_close`]: Subscriber::try_close
+/// [cs-reg]: crate::callsite#registering-callsites
+/// [`event`]: Subscriber::event
+/// [`event_enabled`]: Subscriber::event_enabled
 </span><span class="kw">pub trait </span>Subscriber: <span class="lifetime">&#39;static </span>{
-    <span class="comment">// === Span registry methods ==============================================
+    <span class="doccomment">/// Invoked when this subscriber becomes a [`Dispatch`].
+    ///
+    /// ## Avoiding Memory Leaks
+    ///
+    /// `Subscriber`s should not store their own [`Dispatch`]. Because the
+    /// `Dispatch` owns the `Subscriber`, storing the `Dispatch` within the
+    /// `Subscriber` will create a reference count cycle, preventing the `Dispatch`
+    /// from ever being dropped.
+    ///
+    /// Instead, when it is necessary to store a cyclical reference to the
+    /// `Dispatch` within a `Subscriber`, use [`Dispatch::downgrade`] to convert a
+    /// `Dispatch` into a [`WeakDispatch`]. This type is analogous to
+    /// [`std::sync::Weak`], and does not create a reference count cycle. A
+    /// [`WeakDispatch`] can be stored within a `Subscriber` without causing a
+    /// memory leak, and can be [upgraded] into a `Dispatch` temporarily when
+    /// the `Dispatch` must be accessed by the `Subscriber`.
+    ///
+    /// [`WeakDispatch`]: crate::dispatcher::WeakDispatch
+    /// [upgraded]: crate::dispatcher::WeakDispatch::upgrade
+    </span><span class="kw">fn </span>on_register_dispatch(<span class="kw-2">&amp;</span><span class="self">self</span>, subscriber: <span class="kw-2">&amp;</span>Dispatch) {
+        <span class="kw">let _ </span>= subscriber;
+    }
 
-    </span><span class="doccomment">/// Registers a new callsite with this subscriber, returning whether or not
+    <span class="doccomment">/// Registers a new [callsite] with this subscriber, returning whether or not
     /// the subscriber is interested in being notified about the callsite.
     ///
     /// By default, this function assumes that the subscriber&#39;s [filter]
@@ -879,6 +1029,9 @@
     /// return `Interest::Never`, as a new subscriber may be added that _is_
     /// interested.
     ///
+    /// See the [documentation on the callsite registry][cs-reg] for more
+    /// details on how and when the `register_callsite` method is called.
+    ///
     /// # Notes
     /// This function may be called again when a new subscriber is created or
     /// when the registry is invalidated.
@@ -887,11 +1040,12 @@
     /// _may_ still see spans and events originating from that callsite, if
     /// another subscriber expressed interest in it.
     ///
-    /// [filter]: #method.enabled
-    /// [metadata]: ../metadata/struct.Metadata.html
-    /// [`Interest`]: struct.Interest.html
-    /// [`enabled`]: #method.enabled
-    /// [`rebuild_interest_cache`]: ../callsite/fn.rebuild_interest_cache.html
+    /// [callsite]: crate::callsite
+    /// [filter]: Self::enabled
+    /// [metadata]: super::metadata::Metadata
+    /// [`enabled`]: Subscriber::enabled()
+    /// [`rebuild_interest_cache`]: super::callsite::rebuild_interest_cache
+    /// [cs-reg]: crate::callsite#registering-callsites
     </span><span class="kw">fn </span>register_callsite(<span class="kw-2">&amp;</span><span class="self">self</span>, metadata: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; Interest {
         <span class="kw">if </span><span class="self">self</span>.enabled(metadata) {
             Interest::always()
@@ -916,10 +1070,10 @@
     /// [`Interest::sometimes`]. In that case, this function will be called every
     /// time that span or event occurs.
     ///
-    /// [metadata]: ../metadata/struct.Metadata.html
-    /// [interested]: struct.Interest.html
-    /// [`Interest::sometimes`]: struct.Interest.html#method.sometimes
-    /// [`register_callsite`]: #method.register_callsite
+    /// [metadata]: super::metadata::Metadata
+    /// [interested]: Interest
+    /// [`Interest::sometimes`]: Interest::sometimes
+    /// [`register_callsite`]: Subscriber::register_callsite()
     </span><span class="kw">fn </span>enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, metadata: <span class="kw-2">&amp;</span>Metadata&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; bool;
 
     <span class="doccomment">/// Returns the highest [verbosity level][level] that this `Subscriber` will
@@ -942,9 +1096,8 @@
     /// [`rebuild_interest_cache`][rebuild] is called after the value of the max
     /// level changes.
     ///
-    /// [level]: ../struct.Level.html
-    /// [`Interest`]: struct.Interest.html
-    /// [rebuild]: ../callsite/fn.rebuild_interest_cache.html
+    /// [level]: super::Level
+    /// [rebuild]: super::callsite::rebuild_interest_cache
     </span><span class="kw">fn </span>max_level_hint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;LevelFilter&gt; {
         <span class="prelude-val">None
     </span>}
@@ -969,10 +1122,10 @@
     /// scheme it sees fit. Any guarantees about uniqueness, ordering, or ID
     /// reuse are left up to the subscriber implementation to determine.
     ///
-    /// [span ID]: ../span/struct.Id.html
-    /// [`Attributes`]: ../span/struct.Attributes.html
-    /// [visitor]: ../field/trait.Visit.html
-    /// [`record` method]: ../span/struct.Attributes.html#method.record
+    /// [span ID]: super::span::Id
+    /// [`Attributes`]: super::span::Attributes
+    /// [visitor]: super::field::Visit
+    /// [`record` method]: super::span::Attributes::record
     </span><span class="kw">fn </span>new_span(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Attributes&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; span::Id;
 
     <span class="comment">// === Notification methods ===============================================
@@ -1010,9 +1163,9 @@
     /// span.record(&quot;baz&quot;, &amp;&quot;a string&quot;);
     /// ```
     ///
-    /// [visitor]: ../field/trait.Visit.html
-    /// [`record`]: ../span/struct.Attributes.html#method.record
-    /// [`record` method]: ../span/struct.Record.html#method.record
+    /// [visitor]: super::field::Visit
+    /// [`record`]: super::span::Attributes::record
+    /// [`record` method]: super::span::Record::record
     </span><span class="kw">fn </span>record(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Id, values: <span class="kw-2">&amp;</span>span::Record&lt;<span class="lifetime">&#39;_</span>&gt;);
 
     <span class="doccomment">/// Adds an indication that `span` follows from the span with the id
@@ -1035,6 +1188,17 @@
     /// follow from _b_), it may silently do nothing.
     </span><span class="kw">fn </span>record_follows_from(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Id, follows: <span class="kw-2">&amp;</span>span::Id);
 
+    <span class="doccomment">/// Determine if an [`Event`] should be recorded.
+    ///
+    /// By default, this returns `true` and `Subscriber`s can filter events in
+    /// [`event`][Self::event] without any penalty. However, when `event` is
+    /// more complicated, this can be used to determine if `event` should be
+    /// called at all, separating out the decision from the processing.
+    </span><span class="kw">fn </span>event_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, event: <span class="kw-2">&amp;</span>Event&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; bool {
+        <span class="kw">let _ </span>= event;
+        <span class="bool-val">true
+    </span>}
+
     <span class="doccomment">/// Records that an [`Event`] has occurred.
     ///
     /// This method will be invoked when an Event is constructed by
@@ -1049,10 +1213,10 @@
     /// event. The subscriber may pass a [visitor] to the `Event`&#39;s
     /// [`record` method] to record these values.
     ///
-    /// [`Event`]: ../event/struct.Event.html
-    /// [visitor]: ../field/trait.Visit.html
-    /// [`record` method]: ../event/struct.Event.html#method.record
-    /// [`dispatch` method]: ../event/struct.Event.html#method.dispatch
+    /// [`Event`]: super::event::Event
+    /// [visitor]: super::field::Visit
+    /// [`record` method]: super::event::Event::record
+    /// [`dispatch` method]: super::event::Event::dispatch
     </span><span class="kw">fn </span>event(<span class="kw-2">&amp;</span><span class="self">self</span>, event: <span class="kw-2">&amp;</span>Event&lt;<span class="lifetime">&#39;_</span>&gt;);
 
     <span class="doccomment">/// Records that a span has been entered.
@@ -1062,7 +1226,7 @@
     /// [span ID] of the entered span, and should update any internal state
     /// tracking the current span accordingly.
     ///
-    /// [span ID]: ../span/struct.Id.html
+    /// [span ID]: super::span::Id
     </span><span class="kw">fn </span>enter(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Id);
 
     <span class="doccomment">/// Records that a span has been exited.
@@ -1074,7 +1238,7 @@
     ///
     /// Exiting a span does not imply that the span will not be re-entered.
     ///
-    /// [span ID]: ../span/struct.Id.html
+    /// [span ID]: super::span::Id
     </span><span class="kw">fn </span>exit(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Id);
 
     <span class="doccomment">/// Notifies the subscriber that a [span ID] has been cloned.
@@ -1095,8 +1259,8 @@
     /// kind this can be used as a hook to &quot;clone&quot; the pointer, depending on
     /// what that means for the specified pointer.
     ///
-    /// [span ID]: ../span/struct.Id.html
-    /// [`try_close`]: trait.Subscriber.html#method.try_close
+    /// [span ID]: super::span::Id
+    /// [`try_close`]: Subscriber::try_close
     </span><span class="kw">fn </span>clone_span(<span class="kw-2">&amp;</span><span class="self">self</span>, id: <span class="kw-2">&amp;</span>span::Id) -&gt; span::Id {
         id.clone()
     }
@@ -1109,7 +1273,7 @@
     ///
     /// The default implementation of this function does nothing.
     ///
-    /// [`try_close`]: trait.Subscriber.html#method.try_close
+    /// [`try_close`]: Subscriber::try_close
     </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.1.2&quot;</span>, note = <span class="string">&quot;use `Subscriber::try_close` instead&quot;</span>)]
     </span><span class="kw">fn </span>drop_span(<span class="kw-2">&amp;</span><span class="self">self</span>, _id: span::Id) {}
 
@@ -1146,9 +1310,9 @@
     /// inside of a `try_close` function may cause a double panic, if the span
     /// was dropped due to a thread unwinding.
     ///
-    /// [span ID]: ../span/struct.Id.html
-    /// [`clone_span`]: trait.Subscriber.html#method.clone_span
-    /// [`drop_span`]: trait.Subscriber.html#method.drop_span
+    /// [span ID]: super::span::Id
+    /// [`clone_span`]: Subscriber::clone_span
+    /// [`drop_span`]: Subscriber::drop_span
     </span><span class="kw">fn </span>try_close(<span class="kw-2">&amp;</span><span class="self">self</span>, id: span::Id) -&gt; bool {
         <span class="attr">#[allow(deprecated)]
         </span><span class="self">self</span>.drop_span(id);
@@ -1166,8 +1330,8 @@
     /// does **not** track what span is current. If the subscriber does not
     /// implement a current span, it should not override this method.
     ///
-    /// [`Current::new`]: ../span/struct.Current.html#tymethod.new
-    /// [`Current::none`]: ../span/struct.Current.html#tymethod.none
+    /// [`Current::new`]: super::span::Current#tymethod.new
+    /// [`Current::none`]: super::span::Current#tymethod.none
     </span><span class="kw">fn </span>current_span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; span::Current {
         span::Current::unknown()
     }
@@ -1228,13 +1392,73 @@
     }
 }
 
+<span class="kw">impl dyn </span>Subscriber + Send {
+    <span class="doccomment">/// Returns `true` if this [`Subscriber`] is the same type as `T`.
+    </span><span class="kw">pub fn </span>is&lt;T: Any&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.downcast_ref::&lt;T&gt;().is_some()
+    }
+
+    <span class="doccomment">/// Returns some reference to this [`Subscriber`] value if it is of type `T`,
+    /// or `None` if it isn&#39;t.
+    </span><span class="kw">pub fn </span>downcast_ref&lt;T: Any&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>T&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>raw = <span class="self">self</span>.downcast_raw(TypeId::of::&lt;T&gt;())<span class="question-mark">?</span>;
+            <span class="kw">if </span>raw.is_null() {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(<span class="kw-2">&amp;*</span>(raw <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>))
+            }
+        }
+    }
+}
+
+<span class="kw">impl dyn </span>Subscriber + Sync {
+    <span class="doccomment">/// Returns `true` if this [`Subscriber`] is the same type as `T`.
+    </span><span class="kw">pub fn </span>is&lt;T: Any&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.downcast_ref::&lt;T&gt;().is_some()
+    }
+
+    <span class="doccomment">/// Returns some reference to this `[`Subscriber`] value if it is of type `T`,
+    /// or `None` if it isn&#39;t.
+    </span><span class="kw">pub fn </span>downcast_ref&lt;T: Any&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>T&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>raw = <span class="self">self</span>.downcast_raw(TypeId::of::&lt;T&gt;())<span class="question-mark">?</span>;
+            <span class="kw">if </span>raw.is_null() {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(<span class="kw-2">&amp;*</span>(raw <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>))
+            }
+        }
+    }
+}
+
+<span class="kw">impl dyn </span>Subscriber + Send + Sync {
+    <span class="doccomment">/// Returns `true` if this [`Subscriber`] is the same type as `T`.
+    </span><span class="kw">pub fn </span>is&lt;T: Any&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.downcast_ref::&lt;T&gt;().is_some()
+    }
+
+    <span class="doccomment">/// Returns some reference to this [`Subscriber`] value if it is of type `T`,
+    /// or `None` if it isn&#39;t.
+    </span><span class="kw">pub fn </span>downcast_ref&lt;T: Any&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>T&gt; {
+        <span class="kw">unsafe </span>{
+            <span class="kw">let </span>raw = <span class="self">self</span>.downcast_raw(TypeId::of::&lt;T&gt;())<span class="question-mark">?</span>;
+            <span class="kw">if </span>raw.is_null() {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                <span class="prelude-val">Some</span>(<span class="kw-2">&amp;*</span>(raw <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>))
+            }
+        }
+    }
+}
+
 <span class="doccomment">/// Indicates a [`Subscriber`]&#39;s interest in a particular callsite.
 ///
 /// `Subscriber`s return an `Interest` from their [`register_callsite`] methods
 /// in order to determine whether that span should be enabled or disabled.
 ///
-/// [`Subscriber`]: ../trait.Subscriber.html
-/// [`register_callsite`]: ../trait.Subscriber.html#method.register_callsite
+/// [`Subscriber`]: super::Subscriber
+/// [`register_callsite`]: super::Subscriber::register_callsite
 </span><span class="attr">#[derive(Clone, Debug)]
 </span><span class="kw">pub struct </span>Interest(InterestKind);
 
@@ -1346,7 +1570,10 @@
     <span class="kw">fn </span>exit(<span class="kw-2">&amp;</span><span class="self">self</span>, _span: <span class="kw-2">&amp;</span>span::Id) {}
 }
 
-<span class="kw">impl </span>Subscriber <span class="kw">for </span>Box&lt;<span class="kw">dyn </span>Subscriber + Send + Sync + <span class="lifetime">&#39;static</span>&gt; {
+<span class="kw">impl</span>&lt;S&gt; Subscriber <span class="kw">for </span>Box&lt;S&gt;
+<span class="kw">where
+    </span>S: Subscriber + <span class="question-mark">?</span>Sized,
+{
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>register_callsite(<span class="kw-2">&amp;</span><span class="self">self</span>, metadata: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; Interest {
         <span class="self">self</span>.as_ref().register_callsite(metadata)
@@ -1375,6 +1602,11 @@
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>record_follows_from(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Id, follows: <span class="kw-2">&amp;</span>span::Id) {
         <span class="self">self</span>.as_ref().record_follows_from(span, follows)
+    }
+
+    <span class="attr">#[inline]
+    </span><span class="kw">fn </span>event_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, event: <span class="kw-2">&amp;</span>Event&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; bool {
+        <span class="self">self</span>.as_ref().event_enabled(event)
     }
 
     <span class="attr">#[inline]
@@ -1423,7 +1655,10 @@
     }
 }
 
-<span class="kw">impl </span>Subscriber <span class="kw">for </span>Arc&lt;<span class="kw">dyn </span>Subscriber + Send + Sync + <span class="lifetime">&#39;static</span>&gt; {
+<span class="kw">impl</span>&lt;S&gt; Subscriber <span class="kw">for </span>Arc&lt;S&gt;
+<span class="kw">where
+    </span>S: Subscriber + <span class="question-mark">?</span>Sized,
+{
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>register_callsite(<span class="kw-2">&amp;</span><span class="self">self</span>, metadata: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Metadata&lt;<span class="lifetime">&#39;static</span>&gt;) -&gt; Interest {
         <span class="self">self</span>.as_ref().register_callsite(metadata)
@@ -1452,6 +1687,11 @@
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>record_follows_from(<span class="kw-2">&amp;</span><span class="self">self</span>, span: <span class="kw-2">&amp;</span>span::Id, follows: <span class="kw-2">&amp;</span>span::Id) {
         <span class="self">self</span>.as_ref().record_follows_from(span, follows)
+    }
+
+    <span class="attr">#[inline]
+    </span><span class="kw">fn </span>event_enabled(<span class="kw-2">&amp;</span><span class="self">self</span>, event: <span class="kw-2">&amp;</span>Event&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; bool {
+        <span class="self">self</span>.as_ref().event_enabled(event)
     }
 
     <span class="attr">#[inline]
@@ -1500,4 +1740,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

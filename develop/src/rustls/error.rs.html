@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rustls-0.20.4/src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rustls/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/rustls-0.20.7/src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e963ab4a0d0c903e.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-046227e470cd3629.css"><link rel="stylesheet" disabled href="../../static.files/dark-800f2ee593c8e6f7.css"><link rel="stylesheet" disabled href="../../static.files/ayu-9edae3c387f5a5b3.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-287cecec4dbb45b0.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../rustls/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -355,7 +355,7 @@
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>Error {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
-            Error::InappropriateMessage {
+            <span class="self">Self</span>::InappropriateMessage {
                 <span class="kw-2">ref </span>expect_types,
                 <span class="kw-2">ref </span>got_type,
             } =&gt; <span class="macro">write!</span>(
@@ -364,7 +364,7 @@
                 got_type,
                 join::&lt;ContentType&gt;(expect_types)
             ),
-            Error::InappropriateHandshakeMessage {
+            <span class="self">Self</span>::InappropriateHandshakeMessage {
                 <span class="kw-2">ref </span>expect_types,
                 <span class="kw-2">ref </span>got_type,
             } =&gt; <span class="macro">write!</span>(
@@ -373,39 +373,39 @@
                 got_type,
                 join::&lt;HandshakeType&gt;(expect_types)
             ),
-            Error::CorruptMessagePayload(<span class="kw-2">ref </span>typ) =&gt; {
+            <span class="self">Self</span>::CorruptMessagePayload(<span class="kw-2">ref </span>typ) =&gt; {
                 <span class="macro">write!</span>(f, <span class="string">&quot;received corrupt message of type {:?}&quot;</span>, typ)
             }
-            Error::PeerIncompatibleError(<span class="kw-2">ref </span>why) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer is incompatible: {}&quot;</span>, why),
-            Error::PeerMisbehavedError(<span class="kw-2">ref </span>why) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer misbehaved: {}&quot;</span>, why),
-            Error::AlertReceived(<span class="kw-2">ref </span>alert) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;received fatal alert: {:?}&quot;</span>, alert),
-            Error::InvalidCertificateEncoding =&gt; {
+            <span class="self">Self</span>::PeerIncompatibleError(<span class="kw-2">ref </span>why) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer is incompatible: {}&quot;</span>, why),
+            <span class="self">Self</span>::PeerMisbehavedError(<span class="kw-2">ref </span>why) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer misbehaved: {}&quot;</span>, why),
+            <span class="self">Self</span>::AlertReceived(<span class="kw-2">ref </span>alert) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;received fatal alert: {:?}&quot;</span>, alert),
+            <span class="self">Self</span>::InvalidCertificateEncoding =&gt; {
                 <span class="macro">write!</span>(f, <span class="string">&quot;invalid peer certificate encoding&quot;</span>)
             }
-            Error::InvalidCertificateSignatureType =&gt; {
+            <span class="self">Self</span>::InvalidCertificateSignatureType =&gt; {
                 <span class="macro">write!</span>(f, <span class="string">&quot;invalid peer certificate signature type&quot;</span>)
             }
-            Error::InvalidCertificateSignature =&gt; {
+            <span class="self">Self</span>::InvalidCertificateSignature =&gt; {
                 <span class="macro">write!</span>(f, <span class="string">&quot;invalid peer certificate signature&quot;</span>)
             }
-            Error::InvalidCertificateData(<span class="kw-2">ref </span>reason) =&gt; {
+            <span class="self">Self</span>::InvalidCertificateData(<span class="kw-2">ref </span>reason) =&gt; {
                 <span class="macro">write!</span>(f, <span class="string">&quot;invalid peer certificate contents: {}&quot;</span>, reason)
             }
-            Error::CorruptMessage =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;received corrupt message&quot;</span>),
-            Error::NoCertificatesPresented =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer sent no certificates&quot;</span>),
-            Error::UnsupportedNameType =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;presented server name type wasn&#39;t supported&quot;</span>),
-            Error::DecryptError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;cannot decrypt peer&#39;s message&quot;</span>),
-            Error::EncryptError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;cannot encrypt message&quot;</span>),
-            Error::PeerSentOversizedRecord =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer sent excess record size&quot;</span>),
-            Error::HandshakeNotComplete =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;handshake not complete&quot;</span>),
-            Error::NoApplicationProtocol =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer doesn&#39;t support any known protocol&quot;</span>),
-            Error::InvalidSct(<span class="kw-2">ref </span>err) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;invalid certificate timestamp: {:?}&quot;</span>, err),
-            Error::FailedToGetCurrentTime =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;failed to get current time&quot;</span>),
-            Error::FailedToGetRandomBytes =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;failed to get random bytes&quot;</span>),
-            Error::BadMaxFragmentSize =&gt; {
+            <span class="self">Self</span>::CorruptMessage =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;received corrupt message&quot;</span>),
+            <span class="self">Self</span>::NoCertificatesPresented =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer sent no certificates&quot;</span>),
+            <span class="self">Self</span>::UnsupportedNameType =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;presented server name type wasn&#39;t supported&quot;</span>),
+            <span class="self">Self</span>::DecryptError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;cannot decrypt peer&#39;s message&quot;</span>),
+            <span class="self">Self</span>::EncryptError =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;cannot encrypt message&quot;</span>),
+            <span class="self">Self</span>::PeerSentOversizedRecord =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer sent excess record size&quot;</span>),
+            <span class="self">Self</span>::HandshakeNotComplete =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;handshake not complete&quot;</span>),
+            <span class="self">Self</span>::NoApplicationProtocol =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;peer doesn&#39;t support any known protocol&quot;</span>),
+            <span class="self">Self</span>::InvalidSct(<span class="kw-2">ref </span>err) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;invalid certificate timestamp: {:?}&quot;</span>, err),
+            <span class="self">Self</span>::FailedToGetCurrentTime =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;failed to get current time&quot;</span>),
+            <span class="self">Self</span>::FailedToGetRandomBytes =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;failed to get random bytes&quot;</span>),
+            <span class="self">Self</span>::BadMaxFragmentSize =&gt; {
                 <span class="macro">write!</span>(f, <span class="string">&quot;the supplied max_fragment_size was too small or large&quot;</span>)
             }
-            Error::General(<span class="kw-2">ref </span>err) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;unexpected error: {}&quot;</span>, err),
+            <span class="self">Self</span>::General(<span class="kw-2">ref </span>err) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;unexpected error: {}&quot;</span>, err),
         }
     }
 }
@@ -489,4 +489,4 @@
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rustls" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (53e4b9dd7 2022-12-04)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="rustls" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.0-nightly (e1d819583 2022-12-05)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
