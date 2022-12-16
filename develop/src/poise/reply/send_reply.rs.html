@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/reply/send_reply.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>send_reply.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-918aaffdca2f1bdb.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-94f39d4346842c1e.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-a211dbb005fb8161.js"></script><script defer src="../../../static.files/scrape-examples-ef1e698c1d417c0c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../poise/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/reply/send_reply.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>send_reply.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-06d53869768b7c80.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../../static.files/light-b500e95a81de8901.css"><link rel="stylesheet" disabled href="../../../static.files/dark-8e2401c021b2439b.css"><link rel="stylesheet" disabled href="../../../static.files/ayu-0c8cf6c01af981d0.css"><script id="default-settings" ></script><script src="../../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-a211dbb005fb8161.js"></script><script defer src="../../../static.files/scrape-examples-ef1e698c1d417c0c.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../../poise/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -193,6 +193,11 @@
 <a href="#193" id="193">193</a>
 <a href="#194" id="194">194</a>
 <a href="#195" id="195">195</a>
+<a href="#196" id="196">196</a>
+<a href="#197" id="197">197</a>
+<a href="#198" id="198">198</a>
+<a href="#199" id="199">199</a>
+<a href="#200" id="200">200</a>
 </pre><pre class="rust"><code><span class="doccomment">//! All functions to actually send a reply
 
 </span><span class="kw">use </span><span class="kw">crate</span>::serenity_prelude <span class="kw">as </span>serenity;
@@ -336,18 +341,20 @@
     <span class="comment">// This must only return None when we _actually_ want to reuse the existing response! There are
     // no checks later
     </span><span class="kw">let </span>lock_edit_tracker = || {
-        <span class="kw">if </span>ctx.command.reuse_response {
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(edit_tracker) = <span class="kw-2">&amp;</span>ctx.framework.options().prefix_options.edit_tracker {
-                <span class="kw">return </span><span class="prelude-val">Some</span>(edit_tracker.write().unwrap());
-            }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(edit_tracker) = <span class="kw-2">&amp;</span>ctx.framework.options().prefix_options.edit_tracker {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(edit_tracker.write().unwrap());
         }
         <span class="prelude-val">None
     </span>};
 
-    <span class="kw">let </span>existing_response = lock_edit_tracker()
-        .as_mut()
-        .and_then(|t| t.find_bot_response(ctx.msg.id))
-        .cloned();
+    <span class="kw">let </span>existing_response = <span class="kw">if </span>ctx.command.reuse_response {
+        lock_edit_tracker()
+            .as_mut()
+            .and_then(|t| t.find_bot_response(ctx.msg.id))
+            .cloned()
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>};
 
     <span class="prelude-val">Ok</span>(Box::new(<span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>response) = existing_response {
         response
@@ -367,8 +374,9 @@
             .<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="comment">// If the entry still exists after the await, update it to the new contents
+        // We don&#39;t check ctx.command.reuse_response because it&#39;s true anyways in this branch
         </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>edit_tracker) = lock_edit_tracker() {
-            edit_tracker.set_bot_response(ctx.msg, response.clone());
+            edit_tracker.set_bot_response(ctx.msg, response.clone(), ctx.command.track_deletion);
         }
 
         response
@@ -381,12 +389,14 @@
                 m
             })
             .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(track_edits) = <span class="kw-2">&amp;mut </span>lock_edit_tracker() {
-            track_edits.set_bot_response(ctx.msg, new_response.clone());
+        <span class="comment">// We don&#39;t check ctx.command.reuse_response because we need to store bot responses for
+        // track_deletion too
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(track_edits) = <span class="kw-2">&amp;mut </span>lock_edit_tracker() {
+            track_edits.set_bot_response(ctx.msg, new_response.clone(), ctx.command.track_deletion);
         }
 
         new_response
     }))
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (b70baa4f9 2022-12-14)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (ec56537c4 2022-12-15)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A view into data stored by [`crate::Framework`]"><meta name="keywords" content="rust, rustlang, rust-lang, FrameworkContext"><title>FrameworkContext in poise::dispatch - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-918aaffdca2f1bdb.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../static.files/ayu-94f39d4346842c1e.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-a211dbb005fb8161.js"></script><script defer src="../../static.files/scrape-examples-ef1e698c1d417c0c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">FrameworkContext</a></h2><div class="sidebar-elems"><section><h3><a href="#fields">Fields</a></h3><ul class="block"><li><a href="#structfield.bot_id">bot_id</a></li><li><a href="#structfield.options">options</a></li><li><a href="#structfield.shard_manager">shard_manager</a></li><li><a href="#structfield.user_data">user_data</a></li></ul><h3><a href="#implementations">Methods</a></h3><ul class="block"><li><a href="#method.options">options</a></li><li><a href="#method.shard_manager">shard_manager</a></li><li><a href="#method.user_data">user_data</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block"><li><a href="#impl-Clone-for-FrameworkContext%3C%27_%2C%20U%2C%20E%3E">Clone</a></li><li><a href="#impl-Copy-for-FrameworkContext%3C%27_%2C%20U%2C%20E%3E">Copy</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block"><li><a href="#impl-RefUnwindSafe-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">!RefUnwindSafe</a></li><li><a href="#impl-Send-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Send</a></li><li><a href="#impl-Sync-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Sync</a></li><li><a href="#impl-Unpin-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Unpin</a></li><li><a href="#impl-UnwindSafe-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">!UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block"><li><a href="#impl-Any-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">From&lt;T&gt;</a></li><li><a href="#impl-Instrument-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Into&lt;U&gt;</a></li><li><a href="#impl-Same%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Same&lt;T&gt;</a></li><li><a href="#impl-ToOwned-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">TryInto&lt;U&gt;</a></li><li><a href="#impl-VZip%3CV%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">VZip&lt;V&gt;</a></li><li><a href="#impl-WithSubscriber-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">WithSubscriber</a></li></ul></section><h2><a href="index.html">In poise::dispatch</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Struct <a href="../index.html">poise</a>::<wbr><a href="index.html">dispatch</a>::<wbr><a class="struct" href="#">FrameworkContext</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/poise/dispatch/mod.rs.html#16-27">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust struct"><code>pub struct FrameworkContext&lt;'a, U, E&gt; {
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="A view into data stored by [`crate::Framework`]"><meta name="keywords" content="rust, rustlang, rust-lang, FrameworkContext"><title>FrameworkContext in poise::dispatch - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-06d53869768b7c80.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-b500e95a81de8901.css"><link rel="stylesheet" disabled href="../../static.files/dark-8e2401c021b2439b.css"><link rel="stylesheet" disabled href="../../static.files/ayu-0c8cf6c01af981d0.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../static.files/main-a211dbb005fb8161.js"></script><script defer src="../../static.files/scrape-examples-ef1e698c1d417c0c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../poise/index.html"><div class="logo-container"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></div></a><h2 class="location"><a href="#">FrameworkContext</a></h2><div class="sidebar-elems"><section><h3><a href="#fields">Fields</a></h3><ul class="block"><li><a href="#structfield.bot_id">bot_id</a></li><li><a href="#structfield.options">options</a></li><li><a href="#structfield.shard_manager">shard_manager</a></li><li><a href="#structfield.user_data">user_data</a></li></ul><h3><a href="#implementations">Methods</a></h3><ul class="block"><li><a href="#method.options">options</a></li><li><a href="#method.shard_manager">shard_manager</a></li><li><a href="#method.user_data">user_data</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block"><li><a href="#impl-Clone-for-FrameworkContext%3C%27_%2C%20U%2C%20E%3E">Clone</a></li><li><a href="#impl-Copy-for-FrameworkContext%3C%27_%2C%20U%2C%20E%3E">Copy</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block"><li><a href="#impl-RefUnwindSafe-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">!RefUnwindSafe</a></li><li><a href="#impl-Send-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Send</a></li><li><a href="#impl-Sync-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Sync</a></li><li><a href="#impl-Unpin-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Unpin</a></li><li><a href="#impl-UnwindSafe-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">!UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block"><li><a href="#impl-Any-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">From&lt;T&gt;</a></li><li><a href="#impl-Instrument-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Instrument</a></li><li><a href="#impl-Into%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Into&lt;U&gt;</a></li><li><a href="#impl-Same%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">Same&lt;T&gt;</a></li><li><a href="#impl-ToOwned-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">TryInto&lt;U&gt;</a></li><li><a href="#impl-VZip%3CV%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">VZip&lt;V&gt;</a></li><li><a href="#impl-WithSubscriber-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E">WithSubscriber</a></li></ul></section><h2><a href="index.html">In poise::dispatch</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1 class="fqn">Struct <a href="../index.html">poise</a>::<wbr><a href="index.html">dispatch</a>::<wbr><a class="struct" href="#">FrameworkContext</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../../src/poise/dispatch/mod.rs.html#16-27">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><div class="item-decl"><pre class="rust struct"><code>pub struct FrameworkContext&lt;'a, U, E&gt; {
     pub bot_id: <a class="struct" href="../../serenity/model/id/struct.UserId.html" title="struct serenity::model::id::UserId">UserId</a>,
     pub options: &amp;'a <a class="struct" href="../structs/struct.FrameworkOptions.html" title="struct poise::structs::FrameworkOptions">FrameworkOptions</a>&lt;U, E&gt;,
     pub user_data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;'a </a>U,
@@ -207,7 +207,7 @@
 
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,6],&quot;../../src/poise/reply/send_reply.rs.html#59&quot;,&quot;line 59&quot;],[[25,25],&quot;../../src/poise/reply/send_reply.rs.html#78&quot;,&quot;line 78&quot;],[[72,72],&quot;../../src/poise/reply/send_reply.rs.html#125&quot;,&quot;line 125&quot;],[[84,84],&quot;../../src/poise/reply/send_reply.rs.html#137&quot;,&quot;line 137&quot;],[[92,92],&quot;../../src/poise/reply/send_reply.rs.html#145&quot;,&quot;line 145&quot;]]"><div class="scraped-example-title">src/reply/send_reply.rs (<a href="../../src/poise/reply/send_reply.rs.html#59">line 59</a>)</div><div class="code-wrapper"><button class="prev">&pr;</button> <button class="next">&sc;</button><div class="example-wrap"><pre class="src-line-numbers"><span>53</span>
+</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example " data-locs="[[[6,6],&quot;../../src/poise/reply/send_reply.rs.html#59&quot;,&quot;line 59&quot;],[[25,25],&quot;../../src/poise/reply/send_reply.rs.html#78&quot;,&quot;line 78&quot;],[[72,72],&quot;../../src/poise/reply/send_reply.rs.html#125&quot;,&quot;line 125&quot;],[[84,84],&quot;../../src/poise/reply/send_reply.rs.html#137&quot;,&quot;line 137&quot;],[[91,91],&quot;../../src/poise/reply/send_reply.rs.html#144&quot;,&quot;line 144&quot;]]"><div class="scraped-example-title">src/reply/send_reply.rs (<a href="../../src/poise/reply/send_reply.rs.html#59">line 59</a>)</div><div class="code-wrapper"><button class="prev">&pr;</button> <button class="next">&sc;</button><div class="example-wrap"><pre class="src-line-numbers"><span>53</span>
 <span>54</span>
 <span>55</span>
 <span>56</span>
@@ -350,6 +350,11 @@
 <span>193</span>
 <span>194</span>
 <span>195</span>
+<span>196</span>
+<span>197</span>
+<span>198</span>
+<span>199</span>
+<span>200</span>
 </pre><pre class="rust"><code><button class="expand">&varr;</button><span class="kw">pub async fn </span>send_application_reply&lt;<span class="lifetime">&#39;att</span>, U, E&gt;(
     ctx: <span class="kw">crate</span>::ApplicationContext&lt;<span class="lifetime">&#39;_</span>, U, E&gt;,
     builder: <span class="kw">impl for</span>&lt;<span class="lifetime">&#39;a</span>&gt; FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span><span class="kw">crate</span>::CreateReply&lt;<span class="lifetime">&#39;att</span>&gt;) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span><span class="kw">crate</span>::CreateReply&lt;<span class="lifetime">&#39;att</span>&gt;,
@@ -441,18 +446,20 @@
     <span class="comment">// This must only return None when we _actually_ want to reuse the existing response! There are
     // no checks later
     </span><span class="kw">let </span>lock_edit_tracker = || {
-        <span class="kw">if </span>ctx.command.reuse_response {
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(edit_tracker) = <span class="kw-2">&amp;</span>ctx.framework.<span class="highlight">options</span>().prefix_options.edit_tracker {
-                <span class="kw">return </span><span class="prelude-val">Some</span>(edit_tracker.write().unwrap());
-            }
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(edit_tracker) = <span class="kw-2">&amp;</span>ctx.framework.<span class="highlight">options</span>().prefix_options.edit_tracker {
+            <span class="kw">return </span><span class="prelude-val">Some</span>(edit_tracker.write().unwrap());
         }
         <span class="prelude-val">None
     </span>};
 
-    <span class="kw">let </span>existing_response = lock_edit_tracker()
-        .as_mut()
-        .and_then(|t| t.find_bot_response(ctx.msg.id))
-        .cloned();
+    <span class="kw">let </span>existing_response = <span class="kw">if </span>ctx.command.reuse_response {
+        lock_edit_tracker()
+            .as_mut()
+            .and_then(|t| t.find_bot_response(ctx.msg.id))
+            .cloned()
+    } <span class="kw">else </span>{
+        <span class="prelude-val">None
+    </span>};
 
     <span class="prelude-val">Ok</span>(Box::new(<span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>response) = existing_response {
         response
@@ -472,8 +479,9 @@
             .<span class="kw">await</span><span class="question-mark">?</span>;
 
         <span class="comment">// If the entry still exists after the await, update it to the new contents
+        // We don&#39;t check ctx.command.reuse_response because it&#39;s true anyways in this branch
         </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>edit_tracker) = lock_edit_tracker() {
-            edit_tracker.set_bot_response(ctx.msg, response.clone());
+            edit_tracker.set_bot_response(ctx.msg, response.clone(), ctx.command.track_deletion);
         }
 
         response
@@ -486,8 +494,10 @@
                 m
             })
             .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(track_edits) = <span class="kw-2">&amp;mut </span>lock_edit_tracker() {
-            track_edits.set_bot_response(ctx.msg, new_response.clone());
+        <span class="comment">// We don&#39;t check ctx.command.reuse_response because we need to store bot responses for
+        // track_deletion too
+        </span><span class="kw">if let </span><span class="prelude-val">Some</span>(track_edits) = <span class="kw-2">&amp;mut </span>lock_edit_tracker() {
+            track_edits.set_bot_response(ctx.msg, new_response.clone(), ctx.command.track_deletion);
         }
 
         new_response
@@ -1257,10 +1267,7 @@
         }
         <span class="prelude-val">Ok</span>(())
     }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[28,28],&quot;../../src/poise/dispatch/mod.rs.html#80&quot;,&quot;line 80&quot;]]"><div class="scraped-example-title">src/dispatch/mod.rs (<a href="../../src/poise/dispatch/mod.rs.html#80">line 80</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>52</span>
-<span>53</span>
-<span>54</span>
-<span>55</span>
+</div></div><div class="scraped-example " data-locs="[[[6,6],&quot;../../src/poise/dispatch/common.rs.html#61&quot;,&quot;line 61&quot;],[[11,11],&quot;../../src/poise/dispatch/common.rs.html#66&quot;,&quot;line 66&quot;],[[20,20],&quot;../../src/poise/dispatch/common.rs.html#75&quot;,&quot;line 75&quot;],[[84,84],&quot;../../src/poise/dispatch/common.rs.html#139&quot;,&quot;line 139&quot;],[[99,99],&quot;../../src/poise/dispatch/common.rs.html#154&quot;,&quot;line 154&quot;]]"><div class="scraped-example-title">src/dispatch/common.rs (<a href="../../src/poise/dispatch/common.rs.html#61">line 61</a>)</div><div class="code-wrapper"><button class="prev">&pr;</button> <button class="next">&sc;</button><div class="example-wrap"><pre class="src-line-numbers"><span>55</span>
 <span>56</span>
 <span>57</span>
 <span>58</span>
@@ -1365,115 +1372,126 @@
 <span>157</span>
 <span>158</span>
 <span>159</span>
-</pre><pre class="rust"><code><button class="expand">&varr;</button><span class="kw">pub async fn </span>dispatch_event&lt;U: Send + Sync, E&gt;(
-    framework: <span class="kw">crate</span>::FrameworkContext&lt;<span class="lifetime">&#39;_</span>, U, E&gt;,
-    ctx: <span class="kw-2">&amp;</span>serenity::Context,
-    event: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Event&lt;<span class="lifetime">&#39;_</span>&gt;,
-) {
-    <span class="kw">match </span>event {
-        <span class="kw">crate</span>::Event::Message { new_message } =&gt; {
-            <span class="kw">let </span>invocation_data = tokio::sync::Mutex::new(Box::new(()) <span class="kw">as _</span>);
-            <span class="kw">let </span><span class="kw-2">mut </span>parent_commands = Vec::new();
-            <span class="kw">let </span>trigger = <span class="kw">crate</span>::MessageDispatchTrigger::MessageCreate;
-            <span class="kw">if let </span><span class="prelude-val">Err</span>(error) = prefix::dispatch_message(
-                framework,
-                ctx,
-                new_message,
-                trigger,
-                <span class="kw-2">&amp;</span>invocation_data,
-                <span class="kw-2">&amp;mut </span>parent_commands,
-            )
-            .<span class="kw">await
-            </span>{
-                error.handle(framework.options).<span class="kw">await</span>;
-            }
-        }
-        <span class="kw">crate</span>::Event::MessageUpdate { event, .. } =&gt; {
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(edit_tracker) = <span class="kw-2">&amp;</span>framework.options.prefix_options.edit_tracker {
-                <span class="kw">let </span>msg = edit_tracker.write().unwrap().process_message_update(
-                    event,
-                    framework
-                        .<span class="highlight focus">options</span>()
-                        .prefix_options
-                        .ignore_edits_if_not_yet_responded,
-                );
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+</pre><pre class="rust"><code><button class="expand">&varr;</button><span class="kw">async fn </span>check_permissions_and_cooldown_single&lt;<span class="lifetime">&#39;a</span>, U, E&gt;(
+    ctx: <span class="kw">crate</span>::Context&lt;<span class="lifetime">&#39;a</span>, U, E&gt;,
+    cmd: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw">crate</span>::Command&lt;U, E&gt;,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), <span class="kw">crate</span>::FrameworkError&lt;<span class="lifetime">&#39;a</span>, U, E&gt;&gt; {
+    <span class="comment">// Skip command checks if `FrameworkOptions::skip_checks_for_owners` is set to true
+    </span><span class="kw">if </span>ctx.framework().options.skip_checks_for_owners
+        &amp;&amp; ctx.framework().<span class="highlight focus">options</span>().owners.contains(<span class="kw-2">&amp;</span>ctx.author().id)
+    {
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(());
+    }
 
-                <span class="kw">if let </span><span class="prelude-val">Some</span>((msg, previously_tracked)) = msg {
-                    <span class="kw">let </span>invocation_data = tokio::sync::Mutex::new(Box::new(()) <span class="kw">as _</span>);
-                    <span class="kw">let </span><span class="kw-2">mut </span>parent_commands = Vec::new();
-                    <span class="kw">let </span>trigger = <span class="kw">match </span>previously_tracked {
-                        <span class="bool-val">true </span>=&gt; <span class="kw">crate</span>::MessageDispatchTrigger::MessageEditFromInvalid,
-                        <span class="bool-val">false </span>=&gt; <span class="kw">crate</span>::MessageDispatchTrigger::MessageEdit,
-                    };
-                    <span class="kw">if let </span><span class="prelude-val">Err</span>(error) = prefix::dispatch_message(
-                        framework,
-                        ctx,
-                        <span class="kw-2">&amp;</span>msg,
-                        trigger,
-                        <span class="kw-2">&amp;</span>invocation_data,
-                        <span class="kw-2">&amp;mut </span>parent_commands,
-                    )
-                    .<span class="kw">await
-                    </span>{
-                        error.handle(framework.options).<span class="kw">await</span>;
-                    }
+    <span class="kw">if </span>cmd.owners_only &amp;&amp; !ctx.framework().<span class="highlight">options</span>().owners.contains(<span class="kw-2">&amp;</span>ctx.author().id) {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::NotAnOwner { ctx });
+    }
+
+    <span class="kw">if </span>cmd.guild_only {
+        <span class="kw">match </span>ctx.guild_id() {
+            <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::GuildOnly { ctx }),
+            <span class="prelude-val">Some</span>(guild_id) =&gt; {
+                <span class="attr">#[cfg(feature = <span class="string">&quot;cache&quot;</span>)]
+                </span><span class="kw">if </span>ctx.framework().<span class="highlight">options</span>().require_cache_for_guild_check
+                    &amp;&amp; ctx.sc().cache.guild_field(guild_id, |<span class="kw">_</span>| ()).is_none()
+                {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::GuildOnly { ctx });
                 }
+                <span class="attr">#[cfg(not(feature = <span class="string">&quot;cache&quot;</span>))]
+                </span><span class="kw">let _ </span>= guild_id;
             }
         }
-        <span class="kw">crate</span>::Event::InteractionCreate {
-            interaction: serenity::Interaction::ApplicationCommand(interaction),
-        } =&gt; {
-            <span class="kw">let </span>invocation_data = tokio::sync::Mutex::new(Box::new(()) <span class="kw">as _</span>);
-            <span class="kw">let </span><span class="kw-2">mut </span>parent_commands = Vec::new();
-            <span class="kw">if let </span><span class="prelude-val">Err</span>(error) = slash::dispatch_interaction(
-                framework,
-                ctx,
-                interaction,
-                <span class="kw-2">&amp;</span>std::sync::atomic::AtomicBool::new(<span class="bool-val">false</span>),
-                <span class="kw-2">&amp;</span>invocation_data,
-                <span class="kw-2">&amp;mut </span>parent_commands,
-            )
-            .<span class="kw">await
-            </span>{
-                error.handle(framework.options).<span class="kw">await</span>;
-            }
-        }
-        <span class="kw">crate</span>::Event::InteractionCreate {
-            interaction: serenity::Interaction::Autocomplete(interaction),
-        } =&gt; {
-            <span class="kw">let </span>invocation_data = tokio::sync::Mutex::new(Box::new(()) <span class="kw">as _</span>);
-            <span class="kw">let </span><span class="kw-2">mut </span>parent_commands = Vec::new();
-            <span class="kw">if let </span><span class="prelude-val">Err</span>(error) = slash::dispatch_autocomplete(
-                framework,
-                ctx,
-                interaction,
-                <span class="kw-2">&amp;</span>std::sync::atomic::AtomicBool::new(<span class="bool-val">false</span>),
-                <span class="kw-2">&amp;</span>invocation_data,
-                <span class="kw-2">&amp;mut </span>parent_commands,
-            )
-            .<span class="kw">await
-            </span>{
-                error.handle(framework.options).<span class="kw">await</span>;
-            }
-        }
-        <span class="kw">_ </span>=&gt; {}
     }
 
-    <span class="comment">// Do this after the framework&#39;s Ready handling, so that get_user_data() doesnt
-    // potentially block infinitely
-    </span><span class="kw">if let </span><span class="prelude-val">Err</span>(error) =
-        (framework.options.event_handler)(ctx, event, framework, framework.user_data().<span class="kw">await</span>).<span class="kw">await
-    </span>{
-        <span class="kw">let </span>error = <span class="kw">crate</span>::FrameworkError::EventHandler {
-            ctx,
-            error,
-            event,
-            framework,
-        };
-        (framework.options.on_error)(error).<span class="kw">await</span>;
+    <span class="kw">if </span>cmd.dm_only &amp;&amp; ctx.guild_id().is_some() {
+        <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::DmOnly { ctx });
     }
+
+    <span class="kw">if </span>cmd.nsfw_only {
+        <span class="kw">let </span>channel = <span class="kw">match </span>ctx.channel_id().to_channel(ctx.sc()).<span class="kw">await </span>{
+            <span class="prelude-val">Ok</span>(channel) =&gt; channel,
+            <span class="prelude-val">Err</span>(e) =&gt; {
+                <span class="macro">log::warn!</span>(<span class="string">&quot;Error when getting channel: {}&quot;</span>, e);
+
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::NsfwOnly { ctx });
+            }
+        };
+
+        <span class="kw">if </span>!channel.is_nsfw() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::NsfwOnly { ctx });
+        }
+    }
+
+    <span class="comment">// Make sure that user has required permissions
+    </span><span class="kw">match </span>missing_permissions(ctx, ctx.author().id, cmd.required_permissions).<span class="kw">await </span>{
+        <span class="prelude-val">Some</span>(missing_permissions) <span class="kw">if </span>missing_permissions.is_empty() =&gt; {}
+        <span class="prelude-val">Some</span>(missing_permissions) =&gt; {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::MissingUserPermissions {
+                ctx,
+                missing_permissions: <span class="prelude-val">Some</span>(missing_permissions),
+            })
+        }
+        <span class="comment">// Better safe than sorry: when perms are unknown, restrict access
+        </span><span class="prelude-val">None </span>=&gt; {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::MissingUserPermissions {
+                ctx,
+                missing_permissions: <span class="prelude-val">None</span>,
+            })
+        }
+    }
+
+    <span class="comment">// Before running any pre-command checks, make sure the bot has the permissions it needs
+    </span><span class="kw">match </span>missing_permissions(ctx, ctx.framework().bot_id, cmd.required_bot_permissions).<span class="kw">await </span>{
+        <span class="prelude-val">Some</span>(missing_permissions) <span class="kw">if </span>missing_permissions.is_empty() =&gt; {}
+        <span class="prelude-val">Some</span>(missing_permissions) =&gt; {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::MissingBotPermissions {
+                ctx,
+                missing_permissions,
+            })
+        }
+        <span class="comment">// When in doubt, just let it run. Not getting fancy missing permissions errors is better
+        // than the command not executing at all
+        </span><span class="prelude-val">None </span>=&gt; {}
+    }
+
+    <span class="comment">// Only continue if command checks returns true
+    // First perform global checks, then command checks (if necessary)
+    </span><span class="kw">for </span>check <span class="kw">in </span>Option::iter(<span class="kw-2">&amp;</span>ctx.framework().<span class="highlight">options</span>().command_check).chain(<span class="kw-2">&amp;</span>cmd.checks) {
+        <span class="kw">match </span>check(ctx).<span class="kw">await </span>{
+            <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>) =&gt; {}
+            <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>) =&gt; {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::CommandCheckFailed { ctx, error: <span class="prelude-val">None </span>})
+            }
+            <span class="prelude-val">Err</span>(error) =&gt; {
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::CommandCheckFailed {
+                    error: <span class="prelude-val">Some</span>(error),
+                    ctx,
+                })
+            }
+        }
+    }
+
+    <span class="kw">if </span>!ctx.framework().<span class="highlight">options</span>().manual_cooldowns {
+        <span class="kw">let </span>cooldowns = <span class="kw-2">&amp;</span>cmd.cooldowns;
+        <span class="kw">let </span>remaining_cooldown = cooldowns.lock().unwrap().remaining_cooldown(ctx);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(remaining_cooldown) = remaining_cooldown {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::FrameworkError::CooldownHit {
+                ctx,
+                remaining_cooldown,
+            });
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/poise/dispatch/common.rs.html#61">src/dispatch/common.rs</a></li></ul></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.shard_manager" class="method has-srclink"><a class="srclink rightside" href="../../src/poise/dispatch/mod.rs.html#41-43">source</a><h4 class="code-header">pub fn <a href="#method.shard_manager" class="fn">shard_manager</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="../../tokio/sync/mutex/struct.Mutex.html" title="struct tokio::sync::mutex::Mutex">Mutex</a>&lt;<a class="struct" href="../../serenity/client/bridge/gateway/shard_manager/struct.ShardManager.html" title="struct serenity::client::bridge::gateway::shard_manager::ShardManager">ShardManager</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Returns the serenity’s client shard manager.</p>
+</div></div><div class="example-links">Additional examples can be found in:<br><ul><li><a href="../../src/poise/dispatch/mod.rs.html#80">src/dispatch/mod.rs</a></li></ul></div></div></div></details></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.shard_manager" class="method has-srclink"><a class="srclink rightside" href="../../src/poise/dispatch/mod.rs.html#41-43">source</a><h4 class="code-header">pub fn <a href="#method.shard_manager" class="fn">shard_manager</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/sync/struct.Arc.html" title="struct alloc::sync::Arc">Arc</a>&lt;<a class="struct" href="../../tokio/sync/mutex/struct.Mutex.html" title="struct tokio::sync::mutex::Mutex">Mutex</a>&lt;<a class="struct" href="../../serenity/client/bridge/gateway/shard_manager/struct.ShardManager.html" title="struct serenity::client::bridge::gateway::shard_manager::ShardManager">ShardManager</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Returns the serenity’s client shard manager.</p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.user_data" class="method has-srclink"><a class="srclink rightside" href="../../src/poise/dispatch/mod.rs.html#46-48">source</a><h4 class="code-header">pub async fn <a href="#method.user_data" class="fn">user_data</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;'a </a>U</h4></section></summary><div class="docblock"><p>Retrieves user data</p>
 </div><div class="docblock scraped-example-list"><span></span><h5 id="scraped-examples-1"><a href="#scraped-examples-1">Examples found in repository</a><a class="scrape-help" href="../../scrape-examples-help.html">?</a></h5><div class="scraped-example " data-locs="[[[22,22],&quot;../../src/poise/dispatch/slash.rs.html#58&quot;,&quot;line 58&quot;]]"><div class="scraped-example-title">src/dispatch/slash.rs (<a href="../../src/poise/dispatch/slash.rs.html#58">line 58</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>36</span>
 <span>37</span>
@@ -2087,7 +2105,7 @@
         __non_exhaustive: (),
     }))
 }</code></pre></div>
-</div></div><div class="scraped-example " data-locs="[[[97,97],&quot;../../src/poise/dispatch/mod.rs.html#149&quot;,&quot;line 149&quot;]]"><div class="scraped-example-title">src/dispatch/mod.rs (<a href="../../src/poise/dispatch/mod.rs.html#149">line 149</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>52</span>
+</div></div><div class="scraped-example " data-locs="[[[112,112],&quot;../../src/poise/dispatch/mod.rs.html#164&quot;,&quot;line 164&quot;]]"><div class="scraped-example-title">src/dispatch/mod.rs (<a href="../../src/poise/dispatch/mod.rs.html#164">line 164</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>52</span>
 <span>53</span>
 <span>54</span>
 <span>55</span>
@@ -2195,6 +2213,21 @@
 <span>157</span>
 <span>158</span>
 <span>159</span>
+<span>160</span>
+<span>161</span>
+<span>162</span>
+<span>163</span>
+<span>164</span>
+<span>165</span>
+<span>166</span>
+<span>167</span>
+<span>168</span>
+<span>169</span>
+<span>170</span>
+<span>171</span>
+<span>172</span>
+<span>173</span>
+<span>174</span>
 </pre><pre class="rust"><code><button class="expand">&varr;</button><span class="kw">pub async fn </span>dispatch_event&lt;U: Send + Sync, E&gt;(
     framework: <span class="kw">crate</span>::FrameworkContext&lt;<span class="lifetime">&#39;_</span>, U, E&gt;,
     ctx: <span class="kw-2">&amp;</span>serenity::Context,
@@ -2232,8 +2265,8 @@
                     <span class="kw">let </span>invocation_data = tokio::sync::Mutex::new(Box::new(()) <span class="kw">as _</span>);
                     <span class="kw">let </span><span class="kw-2">mut </span>parent_commands = Vec::new();
                     <span class="kw">let </span>trigger = <span class="kw">match </span>previously_tracked {
-                        <span class="bool-val">true </span>=&gt; <span class="kw">crate</span>::MessageDispatchTrigger::MessageEditFromInvalid,
-                        <span class="bool-val">false </span>=&gt; <span class="kw">crate</span>::MessageDispatchTrigger::MessageEdit,
+                        <span class="bool-val">true </span>=&gt; <span class="kw">crate</span>::MessageDispatchTrigger::MessageEdit,
+                        <span class="bool-val">false </span>=&gt; <span class="kw">crate</span>::MessageDispatchTrigger::MessageEditFromInvalid,
                     };
                     <span class="kw">if let </span><span class="prelude-val">Err</span>(error) = prefix::dispatch_message(
                         framework,
@@ -2246,6 +2279,21 @@
                     .<span class="kw">await
                     </span>{
                         error.handle(framework.options).<span class="kw">await</span>;
+                    }
+                }
+            }
+        }
+        <span class="kw">crate</span>::Event::MessageDelete {
+            deleted_message_id, ..
+        } =&gt; {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(edit_tracker) = <span class="kw-2">&amp;</span>framework.options.prefix_options.edit_tracker {
+                <span class="kw">let </span>bot_response = edit_tracker
+                    .write()
+                    .unwrap()
+                    .process_message_delete(<span class="kw-2">*</span>deleted_message_id);
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(bot_response) = bot_response {
+                    <span class="kw">if let </span><span class="prelude-val">Err</span>(e) = bot_response.delete(ctx).<span class="kw">await </span>{
+                        <span class="macro">log::warn!</span>(<span class="string">&quot;failed to delete bot response: {}&quot;</span>, e);
                     }
                 }
             }
@@ -2309,6 +2357,6 @@
 <code>Instrumented</code> wrapper. <a href="../../tracing/instrument/trait.Instrument.html#method.in_current_span">Read more</a></div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#717">source</a><a href="#impl-Into%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;U&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#725">source</a></span><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html#tymethod.into" class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
 <p>That is, this conversion is whatever the implementation of
 <code><a href="https://doc.rust-lang.org/nightly/core/convert/trait.From.html" title="From">From</a>&lt;T&gt; for U</code> chooses to do.</p>
-</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Same%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="../../src/typenum/type_operators.rs.html#34">source</a><a href="#impl-Same%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="../../typenum/type_operators/trait.Same.html" title="trait typenum::type_operators::Same">Same</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Output" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Output" class="anchor">§</a><h4 class="code-header">type <a href="../../typenum/type_operators/trait.Same.html#associatedtype.Output" class="associatedtype">Output</a> = T</h4></section></summary><div class='docblock'>Should always be <code>Self</code></div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-ToOwned-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#82">source</a><a href="#impl-ToOwned-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html" title="trait alloc::borrow::ToOwned">ToOwned</a> for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Owned" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Owned" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#associatedtype.Owned" class="associatedtype">Owned</a> = T</h4></section></summary><div class='docblock'>The resulting type after obtaining ownership.</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_owned" class="method trait-impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#87">source</a><a href="#method.to_owned" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned" class="fn">to_owned</a>(&amp;self) -&gt; T</h4></section></summary><div class='docblock'>Creates owned data from borrowed data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned">Read more</a></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_into" class="method trait-impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#91">source</a><a href="#method.clone_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into" class="fn">clone_into</a>(&amp;self, target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T)</h4></section></summary><div class='docblock'>Uses borrowed data to replace owned data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into">Read more</a></div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#775">source</a><a href="#impl-TryFrom%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" class="associatedtype">Error</a> = <a class="enum" href="https://doc.rust-lang.org/nightly/core/convert/enum.Infallible.html" title="enum core::convert::Infallible">Infallible</a></h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#781">source</a></span><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fn">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#760">source</a><a href="#impl-TryInto%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#766">source</a></span><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fn">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-VZip%3CV%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="../../src/ppv_lite86/types.rs.html#221">source</a><a href="#impl-VZip%3CV%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;V, T&gt; <a class="trait" href="../../ppv_lite86/types/trait.VZip.html" title="trait ppv_lite86::types::VZip">VZip</a>&lt;V&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;V: <a class="trait" href="../../ppv_lite86/types/trait.MultiLane.html" title="trait ppv_lite86::types::MultiLane">MultiLane</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><section id="method.vzip" class="method trait-impl has-srclink"><a class="srclink rightside" href="../../src/ppv_lite86/types.rs.html#226">source</a><a href="#method.vzip" class="anchor">§</a><h4 class="code-header">fn <a href="../../ppv_lite86/types/trait.VZip.html#tymethod.vzip" class="fn">vzip</a>(self) -&gt; V</h4></section></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-WithSubscriber-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="../../src/tracing/instrument.rs.html#334">source</a><a href="#impl-WithSubscriber-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="../../tracing/instrument/trait.WithSubscriber.html" title="trait tracing::instrument::WithSubscriber">WithSubscriber</a> for T</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_subscriber" class="method trait-impl has-srclink"><a class="srclink rightside" href="../../src/tracing/instrument.rs.html#169-171">source</a><a href="#method.with_subscriber" class="anchor">§</a><h4 class="code-header">fn <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber" class="fn">with_subscriber</a>&lt;S&gt;(self, subscriber: S) -&gt; <a class="struct" href="../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;S: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="../../tracing_core/dispatcher/struct.Dispatch.html" title="struct tracing_core::dispatcher::Dispatch">Dispatch</a>&gt;,</span></h4></section></summary><div class='docblock'>Attaches the provided <a href="../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Same%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="../../src/typenum/type_operators.rs.html#34">source</a><a href="#impl-Same%3CT%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="../../typenum/type_operators/trait.Same.html" title="trait typenum::type_operators::Same">Same</a>&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Output" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Output" class="anchor">§</a><h4 class="code-header">type <a href="../../typenum/type_operators/trait.Same.html#associatedtype.Output" class="associatedtype">Output</a> = T</h4></section></summary><div class='docblock'>Should always be <code>Self</code></div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-ToOwned-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#82">source</a><a href="#impl-ToOwned-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html" title="trait alloc::borrow::ToOwned">ToOwned</a> for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a>,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Owned" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Owned" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#associatedtype.Owned" class="associatedtype">Owned</a> = T</h4></section></summary><div class='docblock'>The resulting type after obtaining ownership.</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.to_owned" class="method trait-impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#87">source</a><a href="#method.to_owned" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned" class="fn">to_owned</a>(&amp;self) -&gt; T</h4></section></summary><div class='docblock'>Creates owned data from borrowed data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#tymethod.to_owned">Read more</a></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.clone_into" class="method trait-impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/alloc/borrow.rs.html#91">source</a><a href="#method.clone_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into" class="fn">clone_into</a>(&amp;self, target: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;mut </a>T)</h4></section></summary><div class='docblock'>Uses borrowed data to replace owned data, usually by cloning. <a href="https://doc.rust-lang.org/nightly/alloc/borrow/trait.ToOwned.html#method.clone_into">Read more</a></div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#775">source</a><a href="#impl-TryFrom%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" class="associatedtype">Error</a> = <a class="enum" href="https://doc.rust-lang.org/nightly/core/convert/enum.Infallible.html" title="enum core::convert::Infallible">Infallible</a></h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#781">source</a></span><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#tymethod.try_from" class="fn">try_from</a>(value: U) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;T, &lt;T as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;U&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#760">source</a><a href="#impl-TryInto%3CU%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html" title="trait core::convert::TryInto">TryInto</a>&lt;U&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#associatedtype.Error" class="associatedtype">Error</a> = &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a></h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span> · <a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/convert/mod.rs.html#766">source</a></span><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.TryInto.html#tymethod.try_into" class="fn">try_into</a>(self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;U, &lt;U as <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html" title="trait core::convert::TryFrom">TryFrom</a>&lt;T&gt;&gt;::<a class="associatedtype" href="https://doc.rust-lang.org/nightly/core/convert/trait.TryFrom.html#associatedtype.Error" title="type core::convert::TryFrom::Error">Error</a>&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-VZip%3CV%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="../../src/ppv_lite86/types.rs.html#221">source</a><a href="#impl-VZip%3CV%3E-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;V, T&gt; <a class="trait" href="../../ppv_lite86/types/trait.VZip.html" title="trait ppv_lite86::types::VZip">VZip</a>&lt;V&gt; for T<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;V: <a class="trait" href="../../ppv_lite86/types/trait.MultiLane.html" title="trait ppv_lite86::types::MultiLane">MultiLane</a>&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><section id="method.vzip" class="method trait-impl has-srclink"><a class="srclink rightside" href="../../src/ppv_lite86/types.rs.html#226">source</a><a href="#method.vzip" class="anchor">§</a><h4 class="code-header">fn <a href="../../ppv_lite86/types/trait.VZip.html#tymethod.vzip" class="fn">vzip</a>(self) -&gt; V</h4></section></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-WithSubscriber-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="impl has-srclink"><a class="srclink rightside" href="../../src/tracing/instrument.rs.html#334">source</a><a href="#impl-WithSubscriber-for-FrameworkContext%3C%27a%2C%20U%2C%20E%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; <a class="trait" href="../../tracing/instrument/trait.WithSubscriber.html" title="trait tracing::instrument::WithSubscriber">WithSubscriber</a> for T</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_subscriber" class="method trait-impl has-srclink"><a class="srclink rightside" href="../../src/tracing/instrument.rs.html#169-171">source</a><a href="#method.with_subscriber" class="anchor">§</a><h4 class="code-header">fn <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber" class="fn">with_subscriber</a>&lt;S&gt;(self, subscriber: S) -&gt; <a class="struct" href="../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;<span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;S: <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.Into.html" title="trait core::convert::Into">Into</a>&lt;<a class="struct" href="../../tracing_core/dispatcher/struct.Dispatch.html" title="struct tracing_core::dispatcher::Dispatch">Dispatch</a>&gt;,</span></h4></section></summary><div class='docblock'>Attaches the provided <a href="../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
 <a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_subscriber">Read more</a></div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.with_current_subscriber" class="method trait-impl has-srclink"><a class="srclink rightside" href="../../src/tracing/instrument.rs.html#221">source</a><a href="#method.with_current_subscriber" class="anchor">§</a><h4 class="code-header">fn <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber" class="fn">with_current_subscriber</a>(self) -&gt; <a class="struct" href="../../tracing/instrument/struct.WithDispatch.html" title="struct tracing::instrument::WithDispatch">WithDispatch</a>&lt;Self&gt;</h4></section></summary><div class='docblock'>Attaches the current <a href="../../tracing/dispatcher/index.html#setting-the-default-subscriber">default</a> <a href="../../tracing_core/subscriber/trait.Subscriber.html"><code>Subscriber</code></a> to this type, returning a
-<a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (b70baa4f9 2022-12-14)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+<a href="../../tracing/instrument/struct.WithDispatch.html" title="WithDispatch"><code>WithDispatch</code></a> wrapper. <a href="../../tracing/instrument/trait.WithSubscriber.html#method.with_current_subscriber">Read more</a></div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (ec56537c4 2022-12-15)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
