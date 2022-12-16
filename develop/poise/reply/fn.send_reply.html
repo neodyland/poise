@@ -23,20 +23,4 @@ if application command.</p>
 ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw">crate</span>::ReplyHandle&lt;<span class="lifetime">&#39;_</span>&gt;, serenity::Error&gt; {
     <span class="highlight focus">send_reply</span>(ctx, |m| m.content(text.into())).<span class="kw">await
 </span>}</code></pre></div>
-</div></div><details class="rustdoc-toggle more-examples-toggle"><summary class="hideme"><span>More examples</span></summary><div class="hide-more">Hide additional examples</div><div class="more-scraped-examples"><div class="toggle-line"><div class="toggle-line-inner"></div></div><div class="more-scraped-examples-inner"><div class="scraped-example expanded" data-locs="[[[6,6],&quot;../../src/poise/structs/context.rs.html#107&quot;,&quot;line 107&quot;]]"><div class="scraped-example-title">src/structs/context.rs (<a href="../../src/poise/structs/context.rs.html#107">line 107</a>)</div><div class="code-wrapper"><div class="example-wrap"><pre class="src-line-numbers"><span>101</span>
-<span>102</span>
-<span>103</span>
-<span>104</span>
-<span>105</span>
-<span>106</span>
-<span>107</span>
-<span>108</span>
-</pre><pre class="rust"><code>    <span class="kw">pub async fn </span>send&lt;<span class="lifetime">&#39;att</span>&gt;(
-        <span class="self">self</span>,
-        builder: <span class="kw">impl for</span>&lt;<span class="lifetime">&#39;b</span>&gt; FnOnce(
-            <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span><span class="kw">crate</span>::CreateReply&lt;<span class="lifetime">&#39;att</span>&gt;,
-        ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span><span class="kw">crate</span>::CreateReply&lt;<span class="lifetime">&#39;att</span>&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw">crate</span>::ReplyHandle&lt;<span class="lifetime">&#39;a</span>&gt;, serenity::Error&gt; {
-        <span class="highlight focus"><span class="kw">crate</span>::send_reply</span>(<span class="self">self</span>, builder).<span class="kw">await
-    </span>}</code></pre></div>
-</div></div></div></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (ec56537c4 2022-12-15)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.68.0-nightly (ec56537c4 2022-12-15)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
