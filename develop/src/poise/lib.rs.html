@@ -401,15 +401,19 @@
 <a href="#401" id="401">401</a>
 <a href="#402" id="402">402</a>
 <a href="#403" id="403">403</a>
+<a href="#404" id="404">404</a>
+<a href="#405" id="405">405</a>
 </pre><pre class="rust"><code><span class="attr">#![cfg_attr(doc_nightly, feature(doc_cfg, doc_auto_cfg))]
 #![doc(test(attr(deny(deprecated))))]
-#![warn(rust_2018_idioms)]
-#![warn(missing_docs)]
-#![warn(clippy::missing_docs_in_private_items)]
-#![allow(clippy::type_complexity)]
 </span><span class="comment">// native #[non_exhaustive] is awful because you can&#39;t do struct update syntax with it (??)
 </span><span class="attr">#![allow(clippy::manual_non_exhaustive)]
-
+#![allow(clippy::type_complexity)]
+#![warn(
+    clippy::missing_docs_in_private_items,
+    clippy::unused_async,
+    rust_2018_idioms,
+    missing_docs
+)]
 </span><span class="doccomment">/*!
 Poise is an opinionated Discord bot framework with a few distinctive features:
 - edit tracking: when user edits their message, automatically update bot response

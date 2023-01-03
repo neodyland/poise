@@ -217,7 +217,7 @@
     }
 
     <span class="doccomment">/// Retrieves user data
-    </span><span class="kw">pub async fn </span>user_data(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>U {
+    </span><span class="kw">pub fn </span>user_data(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>U {
         <span class="self">self</span>.user_data
     }
 }
@@ -335,7 +335,7 @@
     <span class="comment">// Do this after the framework&#39;s Ready handling, so that get_user_data() doesnt
     // potentially block infinitely
     </span><span class="kw">if let </span><span class="prelude-val">Err</span>(error) =
-        (framework.options.event_handler)(ctx, event, framework, framework.user_data().<span class="kw">await</span>).<span class="kw">await
+        (framework.options.event_handler)(ctx, event, framework, framework.user_data()).<span class="kw">await
     </span>{
         <span class="kw">let </span>error = <span class="kw">crate</span>::FrameworkError::EventHandler {
             ctx,

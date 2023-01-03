@@ -267,6 +267,7 @@
 <a href="#267" id="267">267</a>
 <a href="#268" id="268">268</a>
 <a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
 </pre><pre class="rust"><code><span class="doccomment">//! Building blocks for common commands like help commands or application command registration
 //!
 //! This file provides sample commands and utility functions like help menus or error handlers to
@@ -437,6 +438,7 @@
 <span class="doccomment">/// An autocomplete function that can be used for the command parameter in your help function.
 ///
 /// See `examples/framework_usage` for an example
+</span><span class="attr">#[allow(clippy::unused_async)] </span><span class="comment">// Required for the return type
 </span><span class="kw">pub async fn </span>autocomplete_command&lt;<span class="lifetime">&#39;a</span>, U, E&gt;(
     ctx: <span class="kw">crate</span>::Context&lt;<span class="lifetime">&#39;a</span>, U, E&gt;,
     partial: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,

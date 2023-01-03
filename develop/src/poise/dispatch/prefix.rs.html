@@ -339,7 +339,7 @@
         author: <span class="kw-2">&amp;</span>msg.author,
         serenity_context: ctx,
         framework,
-        data: framework.user_data().<span class="kw">await</span>,
+        data: framework.user_data(),
     };
 
     <span class="kw">if let </span><span class="prelude-val">Some</span>(dynamic_prefix) = framework.options.prefix_options.dynamic_prefix {
@@ -389,7 +389,7 @@
     }
 
     <span class="kw">if let </span><span class="prelude-val">Some</span>(dynamic_prefix) = framework.options.prefix_options.stripped_dynamic_prefix {
-        <span class="kw">match </span>dynamic_prefix(ctx, msg, framework.user_data().<span class="kw">await</span>).<span class="kw">await </span>{
+        <span class="kw">match </span>dynamic_prefix(ctx, msg, framework.user_data()).<span class="kw">await </span>{
             <span class="prelude-val">Ok</span>(result) =&gt; {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>((prefix, content)) = result {
                     <span class="kw">return </span><span class="prelude-val">Some</span>((prefix, content));
@@ -587,7 +587,7 @@
         invoked_command_name,
         args,
         framework,
-        data: framework.user_data().<span class="kw">await</span>,
+        data: framework.user_data(),
         parent_commands,
         command,
         invocation_data,
