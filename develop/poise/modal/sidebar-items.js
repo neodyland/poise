@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["execute_modal","Convenience function for showing the modal and waiting for a response."]],"trait":[["Modal","Derivable trait for modal interactions, Discords version of interactive forms"]]};
+window.SIDEBAR_ITEMS = {"fn":["execute_modal"],"trait":["Modal"]};

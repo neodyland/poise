@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"type":[["OAuth2Scope",""]]};
+window.SIDEBAR_ITEMS = {"type":["OAuth2Scope"]};

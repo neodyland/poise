@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["Error",""]],"struct":[["DiscordJsonError",""],["DiscordJsonSingleError",""],["ErrorResponse",""]]};
+window.SIDEBAR_ITEMS = {"enum":["Error"],"struct":["DiscordJsonError","DiscordJsonSingleError","ErrorResponse"]};

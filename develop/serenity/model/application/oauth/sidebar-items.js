@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["Scope","The available OAuth2 Scopes."]]};
+window.SIDEBAR_ITEMS = {"enum":["Scope"]};
