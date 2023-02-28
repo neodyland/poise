@@ -9,7 +9,7 @@
     (kind: <span class="macro-nonterminal">$kind</span>:expr, <span class="macro-nonterminal">$lvl</span>:expr) =&gt; { ... };
     (<span class="macro-nonterminal">$lvl</span>:expr) =&gt; { ... };
     (<span class="macro-nonterminal">$lvl</span>:expr, $(<span class="macro-nonterminal">$field</span>:tt)<span class="kw-2">*</span>) =&gt; { ... };
-}</pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Checks whether a span or event is <a href="trait.Subscriber.html#tymethod.enabled" title="associated function tracing::Subscriber::enabled">enabled</a> based on the provided <a href="struct.Metadata.html" title="struct tracing::Metadata">metadata</a>.</p>
+}</pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Checks whether a span or event is <a href="trait.Subscriber.html#tymethod.enabled" title="method tracing::Subscriber::enabled">enabled</a> based on the provided <a href="struct.Metadata.html" title="struct tracing::Metadata">metadata</a>.</p>
 <p>This macro is a specialized tool: it is intended to be used prior
 to an expensive computation required <em>just</em> for that event, but
 <em>cannot</em> be done as part of an argument to that event, such as
@@ -67,7 +67,7 @@ to true:</p>
 </span>}</code></pre></div>
 <h2 id="alternatives"><a href="#alternatives">Alternatives</a></h2>
 <p><code>enabled!</code> queries subscribers with <a href="struct.Metadata.html" title="struct tracing::Metadata"><code>Metadata</code></a> where
-<a href="struct.Metadata.html#method.is_event" title="associated function tracing::Metadata::is_event"><code>is_event</code></a> and <a href="struct.Metadata.html#method.is_span" title="associated function tracing::Metadata::is_span"><code>is_span</code></a> both return <code>false</code>. Alternatively,
+<a href="struct.Metadata.html#method.is_event" title="method tracing::Metadata::is_event"><code>is_event</code></a> and <a href="struct.Metadata.html#method.is_span" title="method tracing::Metadata::is_span"><code>is_span</code></a> both return <code>false</code>. Alternatively,
 use <a href="macro.event_enabled.html" title="macro tracing::event_enabled"><code>event_enabled!</code></a> or <a href="macro.span_enabled.html" title="macro tracing::span_enabled"><code>span_enabled!</code></a> to ensure one of these
 returns true.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="tracing" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="tracing" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

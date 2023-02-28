@@ -20,7 +20,7 @@ allowed. In this case, <code>block_in_place</code> just calls the provided closu
 normally.</p>
 <p>Code running behind <code>block_in_place</code> cannot be cancelled. When you shut
 down the executor, it will wait indefinitely for all blocking operations
-to finish. You can use <a href="../runtime/struct.Runtime.html#method.shutdown_timeout" title="associated function tokio::runtime::Runtime::shutdown_timeout"><code>shutdown_timeout</code></a> to stop waiting for them
+to finish. You can use <a href="../runtime/struct.Runtime.html#method.shutdown_timeout" title="method tokio::runtime::Runtime::shutdown_timeout"><code>shutdown_timeout</code></a> to stop waiting for them
 after a certain timeout. Be aware that this will still not cancel the
 tasks — they are simply allowed to keep running after the method
 returns.</p>
@@ -43,4 +43,4 @@ task::block_in_place(<span class="kw">move </span>|| {
 });</code></pre></div>
 <h2 id="panics"><a href="#panics">Panics</a></h2>
 <p>This function panics if called from a <a href="../runtime/struct.Builder.html#method.new_current_thread" title="associated function tokio::runtime::Builder::new_current_thread"><code>current_thread</code></a> runtime.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

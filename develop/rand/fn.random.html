@@ -25,7 +25,7 @@ compound types where all component types are supported:</p>
 <ul>
 <li>Tuples (up to 12 elements): each element is generated sequentially.</li>
 <li>Arrays (up to 32 elements): each element is generated sequentially;
-see also <a href="trait.Rng.html#method.fill" title="associated function rand::Rng::fill"><code>Rng::fill</code></a> which supports arbitrary array length for integer
+see also <a href="trait.Rng.html#method.fill" title="method rand::Rng::fill"><code>Rng::fill</code></a> which supports arbitrary array length for integer
 types and tends to be faster for <code>u32</code> and smaller types.</li>
 <li><code>Option&lt;T&gt;</code> first generates a <code>bool</code>, and if true generates and returns
 <code>Some(value)</code> where <code>value: T</code>, otherwise returning <code>None</code>.</li>
@@ -58,4 +58,4 @@ following example can increase performance.</p>
 <span class="kw">for </span>x <span class="kw">in </span>v.iter_mut() {
     <span class="kw-2">*</span>x = rng.gen();
 }</code></pre></div>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="rand" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="rand" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

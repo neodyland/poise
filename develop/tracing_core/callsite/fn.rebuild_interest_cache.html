@@ -6,10 +6,10 @@ The alternative is to have the <a href="../trait.Subscriber.html" title="trait t
 reconfiguration of filters always return <a href="../subscriber/struct.Interest.html#method.sometimes" title="associated function tracing_core::subscriber::Interest::sometimes"><code>Interest::sometimes()</code></a> so that
 <a href="../trait.Subscriber.html#tymethod.enabled" title="trait tracing_core::Subscriber"><code>enabled</code></a> is evaluated for every event.</p>
 <p>This function will also re-compute the global maximum level as determined by
-the <a href="../trait.Subscriber.html#method.max_level_hint" title="associated function tracing_core::Subscriber::max_level_hint"><code>max_level_hint</code></a> method. If a <a href="../trait.Subscriber.html" title="trait tracing_core::Subscriber"><code>Subscriber</code></a>
+the <a href="../trait.Subscriber.html#method.max_level_hint" title="method tracing_core::Subscriber::max_level_hint"><code>max_level_hint</code></a> method. If a <a href="../trait.Subscriber.html" title="trait tracing_core::Subscriber"><code>Subscriber</code></a>
 implementation changes the value returned by its <code>max_level_hint</code>
 implementation at runtime, then it <strong>must</strong> call this function after that
 value changes, in order for the change to be reflected.</p>
 <p>See the <a href="index.html#rebuilding-cached-interest" title="mod tracing_core::callsite">documentation on callsite interest caching</a> for
 additional information on this function’s usage.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tracing_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

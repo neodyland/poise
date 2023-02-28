@@ -7,12 +7,12 @@
 <p>This function returns a future that will read from both streams,
 writing any data read to the opposing stream.
 This happens in both directions concurrently.</p>
-<p>If an EOF is observed on one stream, <a href="trait.AsyncWriteExt.html#method.shutdown" title="associated function tokio::io::AsyncWriteExt::shutdown"><code>shutdown()</code></a> will be invoked on
+<p>If an EOF is observed on one stream, <a href="trait.AsyncWriteExt.html#method.shutdown" title="method tokio::io::AsyncWriteExt::shutdown"><code>shutdown()</code></a> will be invoked on
 the other, and reading from that stream will stop. Copying of data in
 the other direction will continue.</p>
 <p>The future will complete successfully once both directions of communication has been shut down.
 A direction is shut down when the reader reports EOF,
-at which point <a href="trait.AsyncWriteExt.html#method.shutdown" title="associated function tokio::io::AsyncWriteExt::shutdown"><code>shutdown()</code></a> is called on the corresponding writer. When finished,
+at which point <a href="trait.AsyncWriteExt.html#method.shutdown" title="method tokio::io::AsyncWriteExt::shutdown"><code>shutdown()</code></a> is called on the corresponding writer. When finished,
 it will return a tuple of the number of bytes copied from a to b
 and the number of bytes copied from b to a, in that order.</p>
 <h2 id="errors"><a href="#errors">Errors</a></h2>
@@ -21,4 +21,4 @@ or <code>b</code> returns an error. Some data read from either stream may be los
 written to the other stream) in this case.</p>
 <h2 id="return-value"><a href="#return-value">Return value</a></h2>
 <p>Returns a tuple of bytes copied <code>a</code> to <code>b</code> and bytes copied <code>b</code> to <code>a</code>.</p>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

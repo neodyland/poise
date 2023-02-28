@@ -131,11 +131,11 @@ written to this <code>AsyncWrite</code>.</p>
     &amp;'a mut self,
     bufs: &amp;'a [<a class="struct" href="https://doc.rust-lang.org/nightly/std/io/struct.IoSlice.html" title="struct std::io::IoSlice">IoSlice</a>&lt;'b&gt;]
 ) -&gt; WriteVectored&lt;'a, 'b, Self&gt;<span class="where fmt-newline">where
-    Self: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Unpin.html" title="trait core::marker::Unpin">Unpin</a>,</span></h4></section></summary><div class="docblock"><p>Like <a href="trait.AsyncWriteExt.html#method.write" title="associated function tokio::io::AsyncWriteExt::write"><code>write</code></a>, except that it writes from a slice of buffers.</p>
+    Self: <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Unpin.html" title="trait core::marker::Unpin">Unpin</a>,</span></h4></section></summary><div class="docblock"><p>Like <a href="trait.AsyncWriteExt.html#method.write" title="method tokio::io::AsyncWriteExt::write"><code>write</code></a>, except that it writes from a slice of buffers.</p>
 <p>Equivalent to:</p>
 
 <div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="kw">async fn </span>write_vectored(<span class="kw-2">&amp;mut </span><span class="self">self</span>, bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;]) -&gt; io::Result&lt;usize&gt;;</code></pre></div>
-<p>See <a href="trait.AsyncWrite.html#method.poll_write_vectored" title="associated function tokio::io::AsyncWrite::poll_write_vectored"><code>AsyncWrite::poll_write_vectored</code></a> for more details.</p>
+<p>See <a href="trait.AsyncWrite.html#method.poll_write_vectored" title="method tokio::io::AsyncWrite::poll_write_vectored"><code>AsyncWrite::poll_write_vectored</code></a> for more details.</p>
 <h5 id="cancel-safety-1"><a href="#cancel-safety-1">Cancel safety</a></h5>
 <p>This method is cancellation safe in the sense that if it is used as
 the event in a <a href="../macro.select.html" title="macro tokio::select"><code>tokio::select!</code></a> statement and some
@@ -226,8 +226,8 @@ written to this <code>AsyncWrite</code>.</p>
     }
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-<p>This method will continuously call <a href="trait.AsyncWriteExt.html#method.write" title="associated function tokio::io::AsyncWriteExt::write"><code>write</code></a> until
-<a href="../../bytes/buf/buf_impl/trait.Buf.html#method.has_remaining" title="associated function bytes::buf::buf_impl::Buf::has_remaining"><code>buf.has_remaining()</code></a> returns false. This method will not
+<p>This method will continuously call <a href="trait.AsyncWriteExt.html#method.write" title="method tokio::io::AsyncWriteExt::write"><code>write</code></a> until
+<a href="../../bytes/buf/buf_impl/trait.Buf.html#method.has_remaining" title="method bytes::buf::buf_impl::Buf::has_remaining"><code>buf.has_remaining()</code></a> returns false. This method will not
 return until the entire buffer has been successfully written or an error occurs. The
 first error generated will be returned.</p>
 <p>The buffer is advanced after each chunk is successfully written. After failure,
@@ -237,7 +237,7 @@ first error generated will be returned.</p>
 <a href="../macro.select.html" title="macro tokio::select"><code>tokio::select!</code></a> statement and some other branch
 completes first, then the data in the provided buffer may have been
 partially written. However, it is guaranteed that the provided
-buffer has been <a href="../../bytes/buf/buf_impl/trait.Buf.html#tymethod.advance" title="associated function bytes::buf::buf_impl::Buf::advance">advanced</a> by the amount of bytes that have been
+buffer has been <a href="../../bytes/buf/buf_impl/trait.Buf.html#tymethod.advance" title="method bytes::buf::buf_impl::Buf::advance">advanced</a> by the amount of bytes that have been
 partially written.</p>
 <h5 id="examples-3"><a href="#examples-3">Examples</a></h5>
 <p><a href="../fs/struct.File.html" title="struct tokio::fs::File"><code>File</code></a> implements <a href="trait.AsyncWrite.html" title="trait tokio::io::AsyncWrite"><code>AsyncWrite</code></a> and <a href="https://doc.rust-lang.org/nightly/std/io/cursor/struct.Cursor.html" title="struct std::io::cursor::Cursor"><code>Cursor</code></a><code>&lt;&amp;[u8]&gt;</code> implements <a href="../../bytes/buf/buf_impl/trait.Buf.html" title="trait bytes::buf::buf_impl::Buf"><code>Buf</code></a>:</p>
@@ -260,7 +260,7 @@ partially written.</p>
 <p>Equivalent to:</p>
 
 <div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="kw">async fn </span>write_all(<span class="kw-2">&amp;mut </span><span class="self">self</span>, buf: <span class="kw-2">&amp;</span>[u8]) -&gt; io::Result&lt;()&gt;;</code></pre></div>
-<p>This method will continuously call <a href="trait.AsyncWriteExt.html#method.write" title="associated function tokio::io::AsyncWriteExt::write"><code>write</code></a> until there is no more data
+<p>This method will continuously call <a href="trait.AsyncWriteExt.html#method.write" title="method tokio::io::AsyncWriteExt::write"><code>write</code></a> until there is no more data
 to be written. This method will not return until the entire buffer
 has been successfully written or such an error occurs. The first
 error generated from this method will be returned.</p>
@@ -271,7 +271,7 @@ branch completes first, then the provided buffer may have been
 partially written, but future calls to <code>write_all</code> will start over
 from the beginning of the buffer.</p>
 <h5 id="errors-2"><a href="#errors-2">Errors</a></h5>
-<p>This function will return the first error that <a href="trait.AsyncWriteExt.html#method.write" title="associated function tokio::io::AsyncWriteExt::write"><code>write</code></a> returns.</p>
+<p>This function will return the first error that <a href="trait.AsyncWriteExt.html#method.write" title="method tokio::io::AsyncWriteExt::write"><code>write</code></a> returns.</p>
 <h5 id="examples-4"><a href="#examples-4">Examples</a></h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>tokio::io::{<span class="self">self</span>, AsyncWriteExt};
 <span class="kw">use </span>tokio::fs::File;
@@ -291,7 +291,7 @@ from the beginning of the buffer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-3"><a href="#errors-3">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-5"><a href="#examples-5">Examples</a></h5>
 <p>Write unsigned 8 bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -315,7 +315,7 @@ syscalls.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-4"><a href="#errors-4">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-6"><a href="#examples-6">Examples</a></h5>
 <p>Write signed 8 bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -340,7 +340,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-5"><a href="#errors-5">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-7"><a href="#examples-7">Examples</a></h5>
 <p>Write unsigned 16-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -365,7 +365,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-6"><a href="#errors-6">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-8"><a href="#examples-8">Examples</a></h5>
 <p>Write signed 16-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -390,7 +390,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-7"><a href="#errors-7">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-9"><a href="#examples-9">Examples</a></h5>
 <p>Write unsigned 32-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -415,7 +415,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-8"><a href="#errors-8">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-10"><a href="#examples-10">Examples</a></h5>
 <p>Write signed 32-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -440,7 +440,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-9"><a href="#errors-9">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-11"><a href="#examples-11">Examples</a></h5>
 <p>Write unsigned 64-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -465,7 +465,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-10"><a href="#errors-10">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-12"><a href="#examples-12">Examples</a></h5>
 <p>Write signed 64-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -490,7 +490,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-11"><a href="#errors-11">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-13"><a href="#examples-13">Examples</a></h5>
 <p>Write unsigned 128-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -517,7 +517,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-12"><a href="#errors-12">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-14"><a href="#examples-14">Examples</a></h5>
 <p>Write signed 128-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -544,7 +544,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-13"><a href="#errors-13">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-15"><a href="#examples-15">Examples</a></h5>
 <p>Write 32-bit floating point type to a <code>AsyncWrite</code>:</p>
 
@@ -568,7 +568,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-14"><a href="#errors-14">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-16"><a href="#examples-16">Examples</a></h5>
 <p>Write 64-bit floating point type to a <code>AsyncWrite</code>:</p>
 
@@ -594,7 +594,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-15"><a href="#errors-15">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-17"><a href="#examples-17">Examples</a></h5>
 <p>Write unsigned 16-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -619,7 +619,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-16"><a href="#errors-16">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-18"><a href="#examples-18">Examples</a></h5>
 <p>Write signed 16-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -644,7 +644,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-17"><a href="#errors-17">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-19"><a href="#examples-19">Examples</a></h5>
 <p>Write unsigned 32-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -669,7 +669,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-18"><a href="#errors-18">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-20"><a href="#examples-20">Examples</a></h5>
 <p>Write signed 32-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -694,7 +694,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-19"><a href="#errors-19">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-21"><a href="#examples-21">Examples</a></h5>
 <p>Write unsigned 64-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -719,7 +719,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-20"><a href="#errors-20">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-22"><a href="#examples-22">Examples</a></h5>
 <p>Write signed 64-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -744,7 +744,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-21"><a href="#errors-21">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-23"><a href="#examples-23">Examples</a></h5>
 <p>Write unsigned 128-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -771,7 +771,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-22"><a href="#errors-22">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-24"><a href="#examples-24">Examples</a></h5>
 <p>Write signed 128-bit integers to a <code>AsyncWrite</code>:</p>
 
@@ -798,7 +798,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-23"><a href="#errors-23">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-25"><a href="#examples-25">Examples</a></h5>
 <p>Write 32-bit floating point type to a <code>AsyncWrite</code>:</p>
 
@@ -822,7 +822,7 @@ underlying writer.</p>
 <p>It is recommended to use a buffered writer to avoid excessive
 syscalls.</p>
 <h5 id="errors-24"><a href="#errors-24">Errors</a></h5>
-<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
+<p>This method returns the same errors as <a href="trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>AsyncWriteExt::write_all</code></a>.</p>
 <h5 id="examples-26"><a href="#examples-26">Examples</a></h5>
 <p>Write 64-bit floating point type to a <code>AsyncWrite</code>:</p>
 
@@ -867,7 +867,7 @@ cleanly.</p>
 <p>Equivalent to:</p>
 
 <div class="example-wrap ignore"><a href="#" class="tooltip" title="This example is not tested">ⓘ</a><pre class="rust rust-example-rendered"><code><span class="kw">async fn </span>shutdown(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; io::Result&lt;()&gt;;</code></pre></div>
-<p>Similar to <a href="trait.AsyncWriteExt.html#method.flush" title="associated function tokio::io::AsyncWriteExt::flush"><code>flush</code></a>, all intermediately buffered is written to the
+<p>Similar to <a href="trait.AsyncWriteExt.html#method.flush" title="method tokio::io::AsyncWriteExt::flush"><code>flush</code></a>, all intermediately buffered is written to the
 underlying stream. Once the operation completes, the caller should
 no longer attempt to write to the stream. For example, the
 <code>TcpStream</code> implementation will issue a <code>shutdown(Write)</code> sys call.</p>
@@ -884,4 +884,4 @@ no longer attempt to write to the stream. For example, the
     buffer.shutdown().<span class="kw">await</span><span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>(())
 }</code></pre></div>
-</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-AsyncWriteExt-for-W" class="impl"><a class="srclink rightside" href="../../src/tokio/io/util/async_write_ext.rs.html#1293">source</a><a href="#impl-AsyncWriteExt-for-W" class="anchor">§</a><h3 class="code-header">impl&lt;W: <a class="trait" href="trait.AsyncWrite.html" title="trait tokio::io::AsyncWrite">AsyncWrite</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>&gt; <a class="trait" href="trait.AsyncWriteExt.html" title="trait tokio::io::AsyncWriteExt">AsyncWriteExt</a> for W</h3></section></div><script src="../../implementors/tokio/io/util/async_write_ext/trait.AsyncWriteExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-AsyncWriteExt-for-W" class="impl"><a class="srclink rightside" href="../../src/tokio/io/util/async_write_ext.rs.html#1293">source</a><a href="#impl-AsyncWriteExt-for-W" class="anchor">§</a><h3 class="code-header">impl&lt;W: <a class="trait" href="trait.AsyncWrite.html" title="trait tokio::io::AsyncWrite">AsyncWrite</a> + ?<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html" title="trait core::marker::Sized">Sized</a>&gt; <a class="trait" href="trait.AsyncWriteExt.html" title="trait tokio::io::AsyncWriteExt">AsyncWriteExt</a> for W</h3></section></div><script src="../../implementors/tokio/io/util/async_write_ext/trait.AsyncWriteExt.js" async></script></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>

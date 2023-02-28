@@ -109,35 +109,35 @@ describes whether they are cancel safe.  The lists in this section are not
 exhaustive.</p>
 <p>The following methods are cancellation safe:</p>
 <ul>
-<li><a href="sync/mpsc/struct.Receiver.html#method.recv" title="associated function tokio::sync::mpsc::Receiver::recv"><code>tokio::sync::mpsc::Receiver::recv</code></a></li>
-<li><a href="sync/mpsc/struct.UnboundedReceiver.html#method.recv" title="associated function tokio::sync::mpsc::UnboundedReceiver::recv"><code>tokio::sync::mpsc::UnboundedReceiver::recv</code></a></li>
-<li><a href="sync/broadcast/struct.Receiver.html#method.recv" title="associated function tokio::sync::broadcast::Receiver::recv"><code>tokio::sync::broadcast::Receiver::recv</code></a></li>
-<li><a href="sync/watch/struct.Receiver.html#method.changed" title="associated function tokio::sync::watch::Receiver::changed"><code>tokio::sync::watch::Receiver::changed</code></a></li>
-<li><a href="net/struct.TcpListener.html#method.accept" title="associated function tokio::net::TcpListener::accept"><code>tokio::net::TcpListener::accept</code></a></li>
-<li><a href="net/struct.UnixListener.html#method.accept" title="associated function tokio::net::UnixListener::accept"><code>tokio::net::UnixListener::accept</code></a></li>
+<li><a href="sync/mpsc/struct.Receiver.html#method.recv" title="method tokio::sync::mpsc::Receiver::recv"><code>tokio::sync::mpsc::Receiver::recv</code></a></li>
+<li><a href="sync/mpsc/struct.UnboundedReceiver.html#method.recv" title="method tokio::sync::mpsc::UnboundedReceiver::recv"><code>tokio::sync::mpsc::UnboundedReceiver::recv</code></a></li>
+<li><a href="sync/broadcast/struct.Receiver.html#method.recv" title="method tokio::sync::broadcast::Receiver::recv"><code>tokio::sync::broadcast::Receiver::recv</code></a></li>
+<li><a href="sync/watch/struct.Receiver.html#method.changed" title="method tokio::sync::watch::Receiver::changed"><code>tokio::sync::watch::Receiver::changed</code></a></li>
+<li><a href="net/struct.TcpListener.html#method.accept" title="method tokio::net::TcpListener::accept"><code>tokio::net::TcpListener::accept</code></a></li>
+<li><a href="net/struct.UnixListener.html#method.accept" title="method tokio::net::UnixListener::accept"><code>tokio::net::UnixListener::accept</code></a></li>
 <li><a href="crate::signal::unix::Signal::recv"><code>tokio::signal::unix::Signal::recv</code></a></li>
-<li><a href="io/trait.AsyncReadExt.html#method.read" title="associated function tokio::io::AsyncReadExt::read"><code>tokio::io::AsyncReadExt::read</code></a> on any <code>AsyncRead</code></li>
-<li><a href="io/trait.AsyncReadExt.html#method.read_buf" title="associated function tokio::io::AsyncReadExt::read_buf"><code>tokio::io::AsyncReadExt::read_buf</code></a> on any <code>AsyncRead</code></li>
-<li><a href="io/trait.AsyncWriteExt.html#method.write" title="associated function tokio::io::AsyncWriteExt::write"><code>tokio::io::AsyncWriteExt::write</code></a> on any <code>AsyncWrite</code></li>
-<li><a href="io/trait.AsyncWriteExt.html#method.write_buf" title="associated function tokio::io::AsyncWriteExt::write_buf"><code>tokio::io::AsyncWriteExt::write_buf</code></a> on any <code>AsyncWrite</code></li>
+<li><a href="io/trait.AsyncReadExt.html#method.read" title="method tokio::io::AsyncReadExt::read"><code>tokio::io::AsyncReadExt::read</code></a> on any <code>AsyncRead</code></li>
+<li><a href="io/trait.AsyncReadExt.html#method.read_buf" title="method tokio::io::AsyncReadExt::read_buf"><code>tokio::io::AsyncReadExt::read_buf</code></a> on any <code>AsyncRead</code></li>
+<li><a href="io/trait.AsyncWriteExt.html#method.write" title="method tokio::io::AsyncWriteExt::write"><code>tokio::io::AsyncWriteExt::write</code></a> on any <code>AsyncWrite</code></li>
+<li><a href="io/trait.AsyncWriteExt.html#method.write_buf" title="method tokio::io::AsyncWriteExt::write_buf"><code>tokio::io::AsyncWriteExt::write_buf</code></a> on any <code>AsyncWrite</code></li>
 <li><a href="https://docs.rs/tokio-stream/0.1/tokio_stream/trait.StreamExt.html#method.next"><code>tokio_stream::StreamExt::next</code></a> on any <code>Stream</code></li>
 <li><a href="https://docs.rs/futures/0.3/futures/stream/trait.StreamExt.html#method.next"><code>futures::stream::StreamExt::next</code></a> on any <code>Stream</code></li>
 </ul>
 <p>The following methods are not cancellation safe and can lead to loss of data:</p>
 <ul>
-<li><a href="io/trait.AsyncReadExt.html#method.read_exact" title="associated function tokio::io::AsyncReadExt::read_exact"><code>tokio::io::AsyncReadExt::read_exact</code></a></li>
-<li><a href="io/trait.AsyncReadExt.html#method.read_to_end" title="associated function tokio::io::AsyncReadExt::read_to_end"><code>tokio::io::AsyncReadExt::read_to_end</code></a></li>
-<li><a href="io/trait.AsyncReadExt.html#method.read_to_string" title="associated function tokio::io::AsyncReadExt::read_to_string"><code>tokio::io::AsyncReadExt::read_to_string</code></a></li>
-<li><a href="io/trait.AsyncWriteExt.html#method.write_all" title="associated function tokio::io::AsyncWriteExt::write_all"><code>tokio::io::AsyncWriteExt::write_all</code></a></li>
+<li><a href="io/trait.AsyncReadExt.html#method.read_exact" title="method tokio::io::AsyncReadExt::read_exact"><code>tokio::io::AsyncReadExt::read_exact</code></a></li>
+<li><a href="io/trait.AsyncReadExt.html#method.read_to_end" title="method tokio::io::AsyncReadExt::read_to_end"><code>tokio::io::AsyncReadExt::read_to_end</code></a></li>
+<li><a href="io/trait.AsyncReadExt.html#method.read_to_string" title="method tokio::io::AsyncReadExt::read_to_string"><code>tokio::io::AsyncReadExt::read_to_string</code></a></li>
+<li><a href="io/trait.AsyncWriteExt.html#method.write_all" title="method tokio::io::AsyncWriteExt::write_all"><code>tokio::io::AsyncWriteExt::write_all</code></a></li>
 </ul>
 <p>The following methods are not cancellation safe because they use a queue for
 fairness and cancellation makes you lose your place in the queue:</p>
 <ul>
-<li><a href="sync/struct.Mutex.html#method.lock" title="associated function tokio::sync::Mutex::lock"><code>tokio::sync::Mutex::lock</code></a></li>
-<li><a href="sync/struct.RwLock.html#method.read" title="associated function tokio::sync::RwLock::read"><code>tokio::sync::RwLock::read</code></a></li>
-<li><a href="sync/struct.RwLock.html#method.write" title="associated function tokio::sync::RwLock::write"><code>tokio::sync::RwLock::write</code></a></li>
-<li><a href="sync/struct.Semaphore.html#method.acquire" title="associated function tokio::sync::Semaphore::acquire"><code>tokio::sync::Semaphore::acquire</code></a></li>
-<li><a href="sync/struct.Notify.html#method.notified" title="associated function tokio::sync::Notify::notified"><code>tokio::sync::Notify::notified</code></a></li>
+<li><a href="sync/struct.Mutex.html#method.lock" title="method tokio::sync::Mutex::lock"><code>tokio::sync::Mutex::lock</code></a></li>
+<li><a href="sync/struct.RwLock.html#method.read" title="method tokio::sync::RwLock::read"><code>tokio::sync::RwLock::read</code></a></li>
+<li><a href="sync/struct.RwLock.html#method.write" title="method tokio::sync::RwLock::write"><code>tokio::sync::RwLock::write</code></a></li>
+<li><a href="sync/struct.Semaphore.html#method.acquire" title="method tokio::sync::Semaphore::acquire"><code>tokio::sync::Semaphore::acquire</code></a></li>
+<li><a href="sync/struct.Notify.html#method.notified" title="method tokio::sync::Notify::notified"><code>tokio::sync::Notify::notified</code></a></li>
 </ul>
 <p>To determine whether your own methods are cancellation safe, look for the
 location of uses of <code>.await</code>. This is because when an asynchronous method is
@@ -369,4 +369,4 @@ run uninterrupted despite the sleep having elapsed.</p>
         }
     }
 }</code></pre></div>
-</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (fdbc4329c 2023-02-22)" data-search-js="search-14421e1532aead08.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="tokio" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0-nightly (7281249a1 2023-02-27)" data-search-js="search-d5a6cd8418084717.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
