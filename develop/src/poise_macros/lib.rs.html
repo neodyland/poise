@@ -238,6 +238,10 @@
 <a href="#238" id="238">238</a>
 <a href="#239" id="239">239</a>
 <a href="#240" id="240">240</a>
+<a href="#241" id="241">241</a>
+<a href="#242" id="242">242</a>
+<a href="#243" id="243">243</a>
+<a href="#244" id="244">244</a>
 </pre><pre class="rust"><code><span class="doccomment">/*!
 Procedural macros used in poise, like [`macro@command`]
 */
@@ -282,6 +286,10 @@ for example for command-specific help (i.e. `~help command_name`). Escape newlin
 - `ephemeral`: Make bot responses ephemeral if possible
     - Only poise&#39;s function, like `poise::send_reply`, respect this preference
 - `required_permissions`: Permissions which the command caller needs to have
+- `default_member_permissions`: Like `required_permissions`, but checked server-side (slash only)
+    - Due to being checked server-side, users without the required permissions are prevented from executing the command in the first place, which is a better experience
+    - However, `default_member_permissions` has no effect on subcommands, which always inherit their permissions from the top-level command
+    - Also, guild owners can freely change the required permissions for any bot command for their guild
 - `required_bot_permissions`: Permissions which the bot is known to need
 - `owners_only`: Restricts command callers to a configurable list of owners (see FrameworkOptions)
 - `guild_only`: Restricts command callers to only run on a guild
