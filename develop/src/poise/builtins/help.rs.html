@@ -223,6 +223,7 @@
 <a href="#223" id="223">223</a>
 <a href="#224" id="224">224</a>
 <a href="#225" id="225">225</a>
+<a href="#226" id="226">226</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Contains the built-in help command and surrounding infrastructure
 
 </span><span class="kw">use </span><span class="kw">crate</span>::serenity_prelude <span class="kw">as </span>serenity;
@@ -289,7 +290,8 @@
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="kw">async fn </span>append_command_line&lt;U, E&gt;(
+<span class="doccomment">/// Writes a single line of the help menu, like &quot;  /ping        Emits a ping message\n&quot;
+</span><span class="kw">async fn </span>append_command_line&lt;U, E&gt;(
     ctx: <span class="kw">crate</span>::Context&lt;<span class="lifetime">&#39;_</span>, U, E&gt;,
     menu: <span class="kw-2">&amp;mut </span>String,
     command: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Command&lt;U, E&gt;,
