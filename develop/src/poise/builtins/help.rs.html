@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/builtins/help.rs`."><title>help.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-fbd14db5c88ed452.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (5e1d3299a 2023-03-31)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../../../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-8e6affb8c73a5ff1.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../poise/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/builtins/help.rs`."><title>help.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-63a85fc7cf22dee2.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="poise" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0-nightly (23ee2af2f 2023-04-07)" data-search-js="search-bc5a112813b5d712.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" data-theme-light-css="light-db279b6232be9c13.css" data-theme-dark-css="dark-cf923f49f397b216.css" data-theme-ayu-css="ayu-be46fdc453a55015.css" ></div><script src="../../../static.files/storage-d4a1a279bad1a0c0.js"></script><script defer src="../../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../static.files/main-8e6affb8c73a5ff1.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" href="../../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../poise/index.html"><img class="rust-logo" src="../../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -205,7 +205,25 @@
 <a href="#205" id="205">205</a>
 <a href="#206" id="206">206</a>
 <a href="#207" id="207">207</a>
-</pre><pre class="rust"><code><span class="doccomment">//! Contains the built-in help command and surrounding infrastructure
+<a href="#208" id="208">208</a>
+<a href="#209" id="209">209</a>
+<a href="#210" id="210">210</a>
+<a href="#211" id="211">211</a>
+<a href="#212" id="212">212</a>
+<a href="#213" id="213">213</a>
+<a href="#214" id="214">214</a>
+<a href="#215" id="215">215</a>
+<a href="#216" id="216">216</a>
+<a href="#217" id="217">217</a>
+<a href="#218" id="218">218</a>
+<a href="#219" id="219">219</a>
+<a href="#220" id="220">220</a>
+<a href="#221" id="221">221</a>
+<a href="#222" id="222">222</a>
+<a href="#223" id="223">223</a>
+<a href="#224" id="224">224</a>
+<a href="#225" id="225">225</a>
+</pre></div><pre class="rust"><code><span class="doccomment">//! Contains the built-in help command and surrounding infrastructure
 
 </span><span class="kw">use </span><span class="kw">crate</span>::serenity_prelude <span class="kw">as </span>serenity;
 <span class="kw">use </span>std::fmt::Write <span class="kw">as _</span>;
@@ -219,6 +237,8 @@
     </span><span class="kw">pub </span>ephemeral: bool,
     <span class="doccomment">/// Whether to list context menu commands as well
     </span><span class="kw">pub </span>show_context_menu_commands: bool,
+    <span class="doccomment">/// Whether to list context menu commands as well
+    </span><span class="kw">pub </span>show_subcommands: bool,
 }
 
 <span class="kw">impl </span>Default <span class="kw">for </span>HelpConfiguration&lt;<span class="lifetime">&#39;_</span>&gt; {
@@ -227,6 +247,7 @@
             extra_text_at_bottom: <span class="string">&quot;&quot;</span>,
             ephemeral: <span class="bool-val">true</span>,
             show_context_menu_commands: <span class="bool-val">false</span>,
+            show_subcommands: <span class="bool-val">false</span>,
         }
     }
 }
@@ -268,6 +289,53 @@
     <span class="prelude-val">Ok</span>(())
 }
 
+<span class="kw">async fn </span>append_command_line&lt;U, E&gt;(
+    ctx: <span class="kw">crate</span>::Context&lt;<span class="lifetime">&#39;_</span>, U, E&gt;,
+    menu: <span class="kw-2">&amp;mut </span>String,
+    command: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Command&lt;U, E&gt;,
+    indent: <span class="kw-2">&amp;</span>str,
+) {
+    <span class="kw">if </span>command.hide_in_help {
+        <span class="kw">return</span>;
+    }
+
+    <span class="kw">let </span>prefix = <span class="kw">if </span>command.slash_action.is_some() {
+        String::from(<span class="string">&quot;/&quot;</span>)
+    } <span class="kw">else if </span>command.prefix_action.is_some() {
+        <span class="kw">let </span>options = <span class="kw-2">&amp;</span>ctx.framework().options().prefix_options;
+
+        <span class="kw">match </span><span class="kw-2">&amp;</span>options.prefix {
+            <span class="prelude-val">Some</span>(fixed_prefix) =&gt; fixed_prefix.clone(),
+            <span class="prelude-val">None </span>=&gt; <span class="kw">match </span>options.dynamic_prefix {
+                <span class="prelude-val">Some</span>(dynamic_prefix_callback) =&gt; {
+                    <span class="kw">match </span>dynamic_prefix_callback(<span class="kw">crate</span>::PartialContext::from(ctx)).<span class="kw">await </span>{
+                        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(dynamic_prefix)) =&gt; dynamic_prefix,
+                        <span class="comment">// `String::new()` defaults to &quot;&quot; which is what we want
+                        </span><span class="prelude-val">Err</span>(<span class="kw">_</span>) | <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; String::new(),
+                    }
+                }
+                <span class="prelude-val">None </span>=&gt; String::new(),
+            },
+        }
+    } <span class="kw">else </span>{
+        <span class="comment">// This is not a prefix or slash command, i.e. probably a context menu only command
+        // which we will only show later
+        </span><span class="kw">return</span>;
+    };
+
+    <span class="kw">let </span>total_command_name_length = prefix.chars().count() + command.name.chars().count();
+    <span class="kw">let </span>padding = <span class="number">12_usize</span>.saturating_sub(total_command_name_length) + <span class="number">1</span>;
+    <span class="kw">let _ </span>= <span class="macro">writeln!</span>(
+        menu,
+        <span class="string">&quot;{}{}{}{}{}&quot;</span>,
+        indent,
+        prefix,
+        command.name,
+        <span class="string">&quot; &quot;</span>.repeat(padding),
+        command.description.as_deref().unwrap_or(<span class="string">&quot;&quot;</span>)
+    );
+}
+
 <span class="doccomment">/// Code for printing an overview of all commands (e.g. `~help`)
 </span><span class="kw">async fn </span>help_all_commands&lt;U, E&gt;(
     ctx: <span class="kw">crate</span>::Context&lt;<span class="lifetime">&#39;_</span>, U, E&gt;,
@@ -285,44 +353,12 @@
         menu += category_name.unwrap_or(<span class="string">&quot;Commands&quot;</span>);
         menu += <span class="string">&quot;:\n&quot;</span>;
         <span class="kw">for </span>command <span class="kw">in </span>commands {
-            <span class="kw">if </span>command.hide_in_help {
-                <span class="kw">continue</span>;
-            }
-
-            <span class="kw">let </span>prefix = <span class="kw">if </span>command.slash_action.is_some() {
-                String::from(<span class="string">&quot;/&quot;</span>)
-            } <span class="kw">else if </span>command.prefix_action.is_some() {
-                <span class="kw">let </span>options = <span class="kw-2">&amp;</span>ctx.framework().options().prefix_options;
-
-                <span class="kw">match </span><span class="kw-2">&amp;</span>options.prefix {
-                    <span class="prelude-val">Some</span>(fixed_prefix) =&gt; fixed_prefix.clone(),
-                    <span class="prelude-val">None </span>=&gt; <span class="kw">match </span>options.dynamic_prefix {
-                        <span class="prelude-val">Some</span>(dynamic_prefix_callback) =&gt; {
-                            <span class="kw">match </span>dynamic_prefix_callback(<span class="kw">crate</span>::PartialContext::from(ctx)).<span class="kw">await </span>{
-                                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(dynamic_prefix)) =&gt; dynamic_prefix,
-                                <span class="comment">// `String::new()` defaults to &quot;&quot; which is what we want
-                                </span><span class="prelude-val">Err</span>(<span class="kw">_</span>) | <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; String::new(),
-                            }
-                        }
-                        <span class="prelude-val">None </span>=&gt; String::new(),
-                    },
+            append_command_line(ctx, <span class="kw-2">&amp;mut </span>menu, command, <span class="string">&quot;  &quot;</span>).<span class="kw">await</span>;
+            <span class="kw">if </span>config.show_subcommands {
+                <span class="kw">for </span>command <span class="kw">in </span><span class="kw-2">&amp;</span>command.subcommands {
+                    append_command_line(ctx, <span class="kw-2">&amp;mut </span>menu, command, <span class="string">&quot;    &quot;</span>).<span class="kw">await</span>;
                 }
-            } <span class="kw">else </span>{
-                <span class="comment">// This is not a prefix or slash command, i.e. probably a context menu only command
-                // which we will only show later
-                </span><span class="kw">continue</span>;
-            };
-
-            <span class="kw">let </span>total_command_name_length = prefix.chars().count() + command.name.chars().count();
-            <span class="kw">let </span>padding = <span class="number">12_usize</span>.saturating_sub(total_command_name_length) + <span class="number">1</span>;
-            <span class="kw">let _ </span>= <span class="macro">writeln!</span>(
-                menu,
-                <span class="string">&quot;  {}{}{}{}&quot;</span>,
-                prefix,
-                command.name,
-                <span class="string">&quot; &quot;</span>.repeat(padding),
-                command.description.as_deref().unwrap_or(<span class="string">&quot;&quot;</span>)
-            );
+            }
         }
     }
 
